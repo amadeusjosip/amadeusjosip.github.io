@@ -1,6 +1,6 @@
 var s1, s2;
 function setup() { 
-  createCanvas(810, 400);
+  createCanvas(410, 400);
   colorMode(HSB, 100); 
   textSize(15);
   noStroke();rectMode(CENTER);
