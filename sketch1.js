@@ -62,7 +62,7 @@ function setup() {
 	
 	var pocY = 70;
 	var pocRam = 51;
-	s1 = createSlider(1, 80, 11);
+	s1 = createSlider(1, 99, 11);
 	s1.position(1240, pocY + 0*pocRam);
 	s1.style('width', '140px');
 	
@@ -74,21 +74,24 @@ function setup() {
 	s2.style('width', '140px');
 	
 	
+	s6 = createSlider(0, 1, 0);
+	s6.position(1240, pocY + 2*pocRam);
+	s6.style('width', '40px');
+	
+	
 	s3 = createSlider(0, 100, 0);
-	s3.position(1240, pocY + 2*pocRam);
+	s3.position(1240, pocY + 3*pocRam);
 	s3.style('width', '140px');
 	
 	s4 = createSlider(0, 100, 0);
-	s4.position(1240, pocY + 3*pocRam);
+	s4.position(1240, pocY + 4*pocRam);
 	s4.style('width', '140px');
 	
 	s5 = createSlider(0, 55, 0);
-	s5.position(1240, pocY + 4*pocRam);
+	s5.position(1240, pocY + 5*pocRam);
 	s5.style('width', '140px');
 	
-	s6 = createSlider(0, 1, 0);
-	s6.position(1240, pocY + 5*pocRam);
-	s6.style('width', '140px');
+	
 	
 	s7 = createSlider(8, 100, 30);
 	s7.position(1240, pocY + 6*pocRam);
@@ -100,8 +103,7 @@ function setup() {
 	
 	//s9 = createSlider(0, 1, 1);
 	//s9.position(1240, pocY + 8*pocRam);
-	//s9.style('width', '140px');
-	
+	//s9.style('width', '140px'); 
 	 
 }
 
@@ -120,22 +122,22 @@ function draw() {
 	const alfa = s6.value(); 
 	const deb = s7.value(); 
 	const razv = s8.value(); 
-	//const smjer = s9.value(); 
+	//const smjer = s9.value();  
 	
 	//var smer = (smjer/1)-0.5;
 	
   background(boje[indeks]);
   stroke(0);
-  for(var i = 0; i < kol; i = i + 1){ 
+  for(var i = 0; i < kol; i = i + 0.5){ 
   fill((hju + (i/kol)*dia)%100, 80, 80, alfa*100);
     push();
     translate(width/2, height/2);
-    rotate(radians(m)+i*0.05);
+    rotate(radians(m)+0.05*i);
 	strokeWeight((102-i)*.03*(deb/100));
 	var lk = 5;
 	var cc = nojz*cos(radians(m)+55*noise(i*0.001*11));
 	var ss = nojz*sin(radians(m)+55*noise(i*0.001*11));
-    rect(cc, ss, (102-i)*lk, (102-i)*lk*(razv/100));
+    rect(cc, ss, (102-i)*lk*deb/100*3, (102-i)*lk*(razv/100)*deb/100*3);
     
     pop();  
   }
