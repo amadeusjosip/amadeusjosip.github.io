@@ -74,7 +74,7 @@ function setup() {
 	s2.style('width', '140px');
 	
 	
-	s6 = createSlider(0, 1, 0);
+	s6 = createSlider(0, 1, 1);
 	s6.position(1240, pocY + 2*pocRam);
 	s6.style('width', '40px');
 	
