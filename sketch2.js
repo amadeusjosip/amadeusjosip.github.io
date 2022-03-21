@@ -56,6 +56,8 @@ function setup() {
 	
 	l1 = createGraphics(width, height);
   l2 = createGraphics(width, height);
+  l5 = createGraphics(width, height);
+  l53 = createGraphics(width, height);
   lx = createGraphics(width, height);
  
 	l2.background("#f6f3f0");
@@ -98,14 +100,14 @@ function setup() {
  
  function odradi(){
 	 for(var crx = 0; crx <= width; crx+=(width/nx)){
-		l2.strokeWeight(1);
-		l2.stroke("#FFFFFF");
-		l2.line(crx, 0, crx, height); 
+		l5.strokeWeight(1);
+		l5.stroke("#FFFFFF");
+		l5.line(crx, 0, crx, height); 
 	}
 	for(var cry = 0; cry <= height; cry+=(height/ny)){
-		l2.strokeWeight(1);
-		l2.stroke("#FFFFFF");
-		l2.line(0, cry, width, cry); 
+		l5.strokeWeight(1);
+		l5.stroke("#FFFFFF");
+		l5.line(0, cry, width, cry); 
 	}
 	 
 	 
@@ -127,11 +129,36 @@ function setup() {
 	 
 	 
  }
+ 
+ function ajde(x, y, m){
+	 l53.colorMode(HSB, 100);
+	 l53.rectMode(CENTER);
+	 l53.fill((em*0.1)%100, 80, 80);
+	 l53.noStroke();
+	 l53.push();
+	 l53.translate(x, y);
+	 l53.rotate(radians(em));
+	 var erx = 30+15*sin(radians(em*3));
+	 var ery = erx*0.2; 
+	 l53.fill((em*0.1)%100, 80, 80);
+	 l53.ellipse(0, 0, erx*2,ery*2);
+	 l53.fill((25+em*0.1)%100, 80, 80);
+	 l53.ellipse(2, 2, erx*2,ery*2);
+	 l53.fill((20+em*0.1)%100, 50, 100);
+	 l53.rect(erx/2, 0, erx*.051,erx*.21);
+	 l53.rect(erx/2, 0, erx*.21,erx*.051);
+	 l53.rect(-erx/2, 0, erx*.051,erx*.21);
+	 l53.rect(-erx/2, 0, erx*.21,erx*.051);
+	 l53.pop();
+	 
+ }
 
 var indeks = 0;
 var pcellx = -1;
 var pcelly = -1;
+var em = 0;
 function draw() {
+	em++;
 	noStroke();
   var dx = width/nx;
   var cellx = floor(nx*mouseX/width);
@@ -150,8 +177,8 @@ function draw() {
    if (mouseIsPressed === true){ 
 			l1.fill(boje[indeks]);
 			l1.noStroke();
-			 
-			 l1.rect(x, y, dx-0.5, dy-0.5);
+			ajde(x, y, em);
+			l1.rect(x, y, dx, dy);
 			wow();
    }
    
@@ -160,7 +187,9 @@ function draw() {
   pcelly = celly;
     odradi();
   image(l2, 0, 0); 
+    //image(l53, 0, 0);
    image(l1, 0, 0);
+  image(l5, 0, 0); 
   
 }
 
@@ -169,10 +198,9 @@ function mouseClicked(){
 		if(mouseY>0 && mouseY<40)indeks = 0; 
 		else if(mouseY>0 + 60 && mouseY<60 + 40) indeks = 1;
 		else if(mouseY>0 + 60*2 && mouseY<60*2 + 40) indeks = 2;
-		else if(mouseY>0 + 60*3 -3 && mouseY<60*3 + 40) indeks = 3;
-		else if(mouseY>0 + 60*4 -5 && mouseY<60*4 + 40){  l1.clear(); lx.clear(); 
-																 }
-		else if(mouseY>0 + 60*5 -8 && mouseY<60*5 + 40) saveImage();
+		else if(mouseY>0 + 60*3 -3 && mouseY<60*3 + 40) { l1.clear(); lx.clear(); l53.clear(); }
+		else if(mouseY>0 + 60*4 -5 && mouseY<60*4 + 40)  saveImage();  
+		 
 		 
 		
 	}
@@ -184,7 +212,7 @@ function mouseClicked(){
 function saveImage(){
 	 var l3 = createGraphics(width, height); 
    l3.background("#f6f3f0");
-   l3.image(l1, 0, 0);
+   l3.image(l53, 0, 0);
    l3.save("slika.jpg"); 
 	
 }
