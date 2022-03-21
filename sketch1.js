@@ -133,7 +133,7 @@ function draw() {
     push();
     translate(width/2, height/2);
     rotate(radians(m)+0.05*i);
-	strokeWeight((102-i)*.03*(deb/100));
+	strokeWeight((102-i)*.03*(deb/50)*0.7);
 	var lk = 5;
 	var cc = nojz*cos(radians(m)+55*noise(i*0.001*11));
 	var ss = nojz*sin(radians(m)+55*noise(i*0.001*11));
