@@ -1,0 +1,337 @@
+@font-face {
+    font-family: fontA;
+    src: url(fontovi/font1.ttf); 
+}
+
+@keyframes m1efekt {
+    0%{width: 90%;}
+    100%{width: 10%;}
+    
+}
+@keyframes m2efekt {
+    0%{margin-top: -150px;}
+    100%{margin-top: -20px;}
+    
+}
+@keyframes naslovEfekt {
+    0%{margin-top: -40px;}
+    100%{margin-top: 0px;}
+    
+}
+
+@keyframes opis1efekt {
+    0%{transform: translateX(30px); opacity: 0;}
+    30%{transform: translateX(30px); opacity: 0;}
+    100%{transform: translateX(0px); opacity: 1;}
+}
+@keyframes opis2efekt {
+    0%{transform: translateX(30px); opacity: 0;}
+    34%{transform: translateX(30px); opacity: 0;}
+    100%{transform: translateX(0px); opacity: 1;}
+}
+
+@keyframes opis3efekt {
+    0%{transform: translateX(30px) translateY(20px); opacity: 0;}
+    38%{transform: translateX(30px) translateY(20px); opacity: 0;}
+    100%{transform: translateX(0px) translateY(20px); opacity: 1;}
+}
+@keyframes opis4efekt {
+    0%{transform: translateX(30px) translateY(20px); opacity: 0;}
+    42%{transform: translateX(30px) translateY(20px); opacity: 0;}
+    100%{transform: translateX(0px) translateY(20px); opacity: 1;}
+}
+
+@keyframes imgEfekt{
+    0%{transform: scaleX(0%); opacity: 1;} 
+    100%{transform: scaleX(100%); opacity: 1;}
+
+}
+
+@keyframes krajEfekt{
+    0%{
+        opacity: 0;
+        transform: translateY(-20px);
+    } 
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+}
+
+:root{
+
+    --velFonta: 58px; 
+
+    --velFontaMali: 21px; 
+
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #010912;
+    background-color: #ed2e1a;
+    background-color: #d0cfce;
+}
+
+html{
+    font-family: fontA;
+    font-size: 14px;
+    color: #010912;
+}
+
+*{
+    font-weight: normal; 
+    overflow: hidden;
+    /*text-transform: uppercase;*/
+}
+
+
+main{
+    display: grid;
+    padding: 0;
+    margin: 0;
+    grid-gap: 0;
+    grid-template-columns: 5vw 45vw 25vw 25vw;
+    grid-template-rows: repeat(9, 10vh) 5vh 5vh; 
+
+}
+
+.navbar{
+    grid-column: 1/2;
+    grid-row: 1/12; 
+     
+  
+}
+
+.ime{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: var(--velFonta);
+    display: flex;  
+    align-items: center;
+    justify-content: center; 
+    writing-mode: vertical-rl;  
+    transform: rotate(180deg); 
+    background-color: #0f03;
+}
+
+#ime1, #ime2{
+    background-color: transparent;
+}
+#ime1{ 
+    height: 69vh;
+    display: flex;  
+    flex-direction: row;
+    justify-content: end; 
+    padding-bottom: 1vh;
+}
+#ime2{ 
+    height: 29vh;
+    display: flex;  
+    flex-direction: row;
+    justify-content: start; 
+}
+
+
+.crveno{
+    background-color: #ed2e1a;
+    grid-column: 2/3;
+    grid-row: 1/12; 
+}
+
+.naslov{
+    font-size: var(--velFonta);
+    margin: 0;
+    animation: naslovEfekt 2s cubic-bezier(.68,0,.25,1);  
+    margin-top: 0px;
+    padding: 0; 
+    width: 100%;
+    height: 100%;  
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.gif1{
+    grid-column: 3/4;
+    grid-row: 1/5; 
+} 
+.gif2{
+    grid-column: 4/5;
+    grid-row: 1/4;
+} 
+.gif3{
+    grid-column: 3/4;
+    grid-row: 6/9;
+} 
+.gif4{
+    grid-column: 4/5;
+    grid-row: 5/8;
+} 
+
+img{
+    animation: imgEfekt 1.5s cubic-bezier(.68,0,.25,1);  
+    width: 100%;
+    height: 100%;  
+    transition: 0.3s;
+} 
+
+img:hover{
+    transform: scale(110%); 
+    transition: 0.3s; 
+}
+
+
+.kratkiOpis, svg{
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+} 
+
+.opis1{
+    grid-column: 3/4;
+    grid-row: 5/6; 
+    background-color: #f30a;
+    background-color: transparent;
+    margin: 0;
+    padding: 0; 
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: start;
+
+}
+
+.opis2{
+    grid-column: 4/5;
+    grid-row: 4/5; 
+    background-color: #f30a;
+    background-color: transparent;
+    margin: 0;
+    padding: 0; 
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: start;
+} 
+.opis3{
+    grid-column: 3/4;
+    grid-row: 9/10; 
+    background-color: #f30a;
+    background-color: transparent;
+    margin: 0;
+    padding: 0; 
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: start;
+} 
+.opis4{
+    grid-column: 4/5;
+    grid-row: 8/9; 
+    background-color: #f30a;
+    background-color: transparent;
+    margin: 0;
+    padding: 0; 
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: start;
+} 
+
+.opis1{
+    animation: opis1efekt 2.1s cubic-bezier(.68,0,.25,1);  
+    transform: translateX(0px);
+}
+.opis2{
+    animation: opis2efekt 2.1s cubic-bezier(.68,0,.25,1);  
+    transform: translateX(0px);
+}
+.opis3{
+    animation: opis3efekt 2.1s cubic-bezier(.68,0,.25,1);  
+    transform: translateX(0px) translateY(20px);
+}
+.opis4{
+    animation: opis4efekt 2.1s cubic-bezier(.68,0,.25,1);  
+    transform: translateX(0px) translateY(20px);
+}
+
+p{
+    font-family: fontA;
+    font-size: var(--velFontaMali);
+}
+
+.transY{transform: translateY(20px);}
+
+.kraj{ 
+    margin: 0;
+    padding: 0; 
+    grid-column: 3/5;
+    grid-row: 11/12;
+    width: 98%;
+    margin-left: 1%;
+    height: 80%;  
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    animation: krajEfekt 2s cubic-bezier(.68,0,.25,1);
+    opacity: 1;
+    transform: translateY(0px);
+}
+ 
+a{
+    text-decoration: none;
+    color: #010912;
+    font-family: fontA;
+    font-size: var(--velFonta);
+    font-weight: normal;
+}
+
+.aa{
+    transition: 0.3s;
+    transform: translateX(0px);
+}
+.aa:hover{
+    color: #ed2e1a;
+    transform: translateX(5px);
+    transition: 0.3s;
+
+}
+ 
+
+.maska1{
+    background-color: #d0cfce;
+    grid-column: 1/2;
+    grid-row: 1/12; 
+     z-index: 1;
+     
+     animation: m1efekt 2s cubic-bezier(.68,0,.25,1);
+     width: 10%;
+}
+
+
+.maska2{
+    background-color: #ed2e1a;
+    grid-column: 2/3; 
+    grid-row: 7/12; 
+     z-index: 1;
+ 
+     
+     animation: m2efekt 2s cubic-bezier(.68,0,.25,1);  
+     height: 100%;
+     margin-top: -20px;
+}
+
+span{
+    color: #ed2e1a;
+}
+
+.otpis{
+    font-size: 17px;
+}
