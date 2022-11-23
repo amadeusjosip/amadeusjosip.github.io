@@ -16,7 +16,7 @@ function setup() {
 
 }
 
-var pom = 30;
+var pom = 18;
 var m = 0;
 var poc = -110;
 var povecanje = 2; 
