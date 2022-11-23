@@ -265,3 +265,7 @@ a{
     animation: opac 3.3s cubic-bezier(0.8, 0, 0.2, 1);
     opacity: 1;
 }
+
+.translacijaNaslova{
+ transform: translateY(20px);   
+}
