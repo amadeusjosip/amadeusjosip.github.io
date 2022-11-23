@@ -1,19 +1,19 @@
 
 @font-face {
     font-family: fontA; 
-    src: url(assets/font1.ttf);
+    src: url(assets/fontovi/font1.ttf);
 }
 @font-face {
     font-family: fontB; 
-    src: url(assets/font1.ttf);
+    src: url(assets/fontovi/font1.ttf);
 }
 @font-face {
     font-family: fontC;
-    src: url(assets/font1.ttf);
+    src: url(assets/fontovi/font1.ttf);
 }
 @font-face {
     font-family: fontD; 
-    src: url(assets/font1.ttf);
+    src: url(assets/fontovi/font1.ttf);
 }
 
 :root{
