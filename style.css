@@ -64,6 +64,7 @@ main{
     left: 10vw;
     top: 0;
     height: 100vh;
+    z-index: -1;
 }
  
  
@@ -78,6 +79,7 @@ main{
     left: 10vw; 
     text-align: center;   
     animation: desno var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 0ms;
+    z-index: 0;
 }  
 
 
@@ -94,6 +96,7 @@ main{
     left: 10vw; 
     text-align: center;   
     animation: desno var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 70ms;
+    z-index: 0;
 }  
 
  .links{  
@@ -107,6 +110,7 @@ main{
     left: 10vw; 
     text-align: center;  
     animation: desno var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 140ms;  
+    z-index: 0;
 }
 
 
@@ -120,6 +124,7 @@ main{
     width: 80vw; 
     left: 10vw;  
     text-align: center;
+    z-index: 0;
 
 }
 
@@ -154,6 +159,7 @@ a{
     text-decoration: none;
     color: var(--clr);
     transition: 0.12s;
+    z-index: 0;
 }
 
  
@@ -167,6 +173,7 @@ h3{
     font-size: 12px;
     font-weight: normal;
     color: var(--clr);
+    z-index: 0;
 }
  
 .trakaG{ 
@@ -178,6 +185,7 @@ h3{
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
+    z-index: 0;
 }
 .trakaD{ 
     position: absolute;
@@ -188,5 +196,63 @@ h3{
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
+    z-index: 0;
+}
+
+.oky{
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
  
+
+.sekcija{
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    background-color: #f00;
+}
+
+.ha{
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    color: transparent;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 800px) {
+   
+    .sekcija{ 
+        position: absolute;
+        z-index: 2;
+        width: 100vw;
+        height: 100vh;
+        background-color: #f00;
+    }
+      }
+      @media screen and (max-width: 800px) {
+        .ha{
+            font-family: fontA;
+            position: absolute;
+            z-index: 2;
+            margin: 0; 
+            padding: 0;
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 20%;
+            color: transparent; 
+            background-color: transparent;
+            text-align: center;
+            color: black;
+        }
+        }
