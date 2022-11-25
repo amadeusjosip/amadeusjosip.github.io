@@ -1,0 +1,222 @@
+@font-face {
+    font-family: fontA;
+    src: url(fontovi/font1.ttf);
+}
+
+*{overflow: hidden;}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+}
+
+
+ main{
+    margin: 10px;
+    position: absolute;
+    width: 70vw;
+    height: calc(100vh - 20px);
+    top: 0;
+    left: calc(15vw - 10px);
+    background-color: #984b33;
+ }
+
+ .galerija{
+    width: 56%;
+    margin-left: 22%;
+    padding-top: calc(50vh - 10px);
+    height: calc(100vh - 50vh - 20px);
+    background-color: #00fa;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.malaSlika{
+    width: calc((15vw - 10px)/2.3); 
+    height: calc(((15vw - 10px)/2.3)*1.48); 
+    object-fit: cover; 
+}
+.malaSlika:hover{cursor: pointer;}
+
+
+#v1{
+    position: absolute;
+    object-fit: cover; 
+    width: calc(15vw - 20px); 
+    height: calc(50vh - 15px); 
+    top: 10px;
+    left: 10px;
+}
+
+#v2{
+    position: absolute;
+    object-fit: cover;
+    width: calc(15vw - 20px); 
+    height: calc(50vh - 15px);
+    top: 10px;
+    right: 10px;
+}
+
+
+
+#v3{
+    position: absolute;
+    object-fit: cover; 
+    width: calc(15vw - 20px); 
+    height: calc(50vh - 15px); 
+    bottom: 10px;
+    left: 10px;
+}
+
+#v4{
+    position: absolute;
+    object-fit: cover;
+    width: calc(15vw - 20px); 
+    height: calc(50vh - 15px);
+    bottom: 10px;
+    right: 10px;
+}
+
+p{ 
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: black;
+    font-family: fontA;
+    font-size: 14px;
+}
+
+.opis{
+    margin: 0;
+    padding: 0;
+}
+.fleks{
+    margin: 0;
+    padding: 0; 
+    background-color: transparent;
+    width: fit-content;
+    height: calc((((15vw - 10px)/2.3)*1.48) + 25px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+a{
+    font-family: fontA; 
+    text-decoration: none; 
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+
+}
+h3{
+    font-family: fontA; 
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+}
+.navbar{
+    position: absolute;
+    width: 100%;
+    background-color: #00f8;
+    background-color: transparent;
+    display: grid;   
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#navbar-1{
+    grid-column: 1 / 2;
+    background-color: #f00;
+    background-color: transparent;
+    padding-left: 20px;
+}
+#navbar-2{
+    grid-column: 2 / 3;
+    background-color: #1f1;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#navbar-3{
+    grid-column: 3 / 4;
+    background-color: #2ff;
+    background-color: transparent;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 20px;
+}
+  
+#naslov{
+    color: black;
+    font-family: fontA;
+    font-size: 195.0px;
+    font-weight: bold;
+    background-color: #2ff3;
+    background-color: transparent;
+    position: absolute;
+    width: 70vw;
+    height: fit-content;
+    top: -90px;
+    left: calc(15vw);
+    text-align: center;
+
+}
+
+.fleks-dole{
+    position: absolute;
+    width: 70%;
+    left: 15%;
+    bottom: 10px; 
+    background-color: transparent;
+    display: grid;   
+    gap: 40px;
+    grid-template-columns: repeat(15, 1fr);
+}
+
+.odjava{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end; 
+}
+
+.odjavni{
+    text-align: left;
+}
+
+#od1{ 
+    margin-left: 20px;
+    background-color: #0f0a;
+    background-color: transparent;
+}
+#od2{ 
+    background-color: #ff0a;
+    background-color: transparent;
+}
+#od3{ 
+    margin-left: 10px;
+    background-color: #f3fa;
+    background-color: transparent;
+}
+#fleks-dole-1{
+    grid-column: 1/3; 
+}
+#fleks-dole-2{
+    grid-column: 3/8; 
+}
+#fleks-dole-3{
+    grid-column: 8/13; 
+}
+
+.hesh{text-align: left;}
