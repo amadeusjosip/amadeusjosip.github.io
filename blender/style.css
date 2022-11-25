@@ -44,22 +44,25 @@ body{
 
 }
 
+.div-malaSlika{
+    object-fit: contain;
+    width: calc((11vw - 10px)/2.3); 
+    height: calc(((11vw - 10px)/2.3)*1.48); 
+    transition: 0.3s;
+}
+
 .malaSlika{
     width: calc((11vw - 10px)/2.3); 
     height: calc(((11vw - 10px)/2.3)*1.48); 
-     
-}
-.malaSlika:hover{cursor: pointer;}
-img{
-    transition: .3s;
-}
-
-img:hover{  
-    width: calc((11vw - 10px)/2.3); 
-    height: calc(((11vw - 10px)/2.3)*1.48); 
-    transform: scaleX(120%);
     transition: 0.3s;
 }
+
+.malaSlika:hover{
+    cursor: pointer; 
+    transform: scale(120%);
+    transition: .3s;
+}
+ 
 
 #v1{
     position: absolute;
@@ -129,7 +132,7 @@ a{
     font-family: fontA; 
     text-decoration: none; 
     text-decoration: underline;
-    text-decoration-thickness: 1px;
+    text-decoration-thickness: 2px;
     color: black;
     color: rgb(34, 34, 34);
     color: var(--boja-slova);
@@ -362,3 +365,22 @@ h3{
     animation: s-anim 2s cubic-bezier(0.8, 0, 0.2, 1) 250ms; 
 }
 
+#goback{
+    background-color: #2ff; 
+    background-color: var(--boja-podloge);
+    color: var(--boja-slova);  
+    transform: scale(100%);  
+    transition: 0.3s;
+} 
+ 
+ 
+ 
+#goback:hover{    
+    background-color: #2ff; 
+    background-color: var(--boja-podloge);
+    color: #7a7a7a;  
+    transform: scale(100%);  
+    transition: 0.3s;
+} 
+
+ 
