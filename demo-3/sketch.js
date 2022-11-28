@@ -20,15 +20,15 @@ function setup() {
    
   var prvi = 50;  
   
-  gumb4 = createButton("TRAG SLOVA"); 
+  gumb4 = createButton("DULJINA TRAGA ZNAKA"); 
   gumb4.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*0);
   gumb4.mousePressed(pmSlovaY);  
   
-  gumb5 = createButton("GUSTOĆA SLOVA"); 
+  gumb5 = createButton("GUSTOĆA ZNAKOVA"); 
   gumb5.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*1);
   gumb5.mousePressed(mvRazmakY);  
   
-  gumb6 = createButton("PROMJENA VELIČINE SLOVA"); 
+  gumb6 = createButton("PROMJENA VELIČINE ZNAKA"); 
   gumb6.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*2);
   gumb6.mousePressed(tekst);  
 
