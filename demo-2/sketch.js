@@ -46,10 +46,10 @@ function setup() {
 var vr=0;
 var to = 80;
 var tekst = "MOVE MOUSE";
-var time = 0;
+var timea = 0;
 function draw(){ 
   pg.background(2, 222, 2, 255); 
-  time+=2;
+  timea+=2;
   var dista = dist(mouseX, mouseY, windowWidth/2, windowHeight/2)/1;
   var fila = map(dista, 0, 1000, 120, 20);
   pg.fill(fila, 212);
@@ -62,7 +62,7 @@ function draw(){
   var ra = 30;
   for(var x = windowWidth/2; x < windowWidth*1.5; x+=pomak){
     for(var y = windowHeight/2; y < windowHeight*1.5; y+=pomak){
-      var bb = ra+ra*sin(radians(time)+ra3*noise(x*0.001, y*0.001));
+      var bb = ra+ra*sin(radians(timea)+ra3*noise(x*0.001, y*0.001));
       pg.colorMode(HSB, 100);
       pg.fill((bb+ra2)%100, 80, 80);
       pg.rect(x, y, pomak, pomak);
