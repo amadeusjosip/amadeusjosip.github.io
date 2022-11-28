@@ -7,7 +7,7 @@ function preload(){
 
 var canvas; var slider;
 var gumb6;var input1;var input2;
-var gumb5; var gumb4; var gumb3; 
+var gumb5; var gumb4; var gumb3; var gumbS;
 function setup() {
   noiseSeed(1129);
   canvas = createCanvas(650, 400); //dimenzije ekrana 
@@ -18,45 +18,50 @@ function setup() {
   noStroke();
   textAlign(CENTER, CENTER); 
    
-  var prvi = 50;
-  gumb3 = createButton("INVERTAJ BOJE"); 
-  gumb3.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*0);
-  gumb3.mousePressed(invertBojeY);  
+  var prvi = 50;  
   
   gumb4 = createButton("TRAG SLOVA"); 
-  gumb4.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*1);
+  gumb4.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*0);
   gumb4.mousePressed(pmSlovaY);  
   
   gumb5 = createButton("GUSTOĆA SLOVA"); 
-  gumb5.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*2);
+  gumb5.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*1);
   gumb5.mousePressed(mvRazmakY);  
   
   gumb6 = createButton("PROMJENA VELIČINE SLOVA"); 
-  gumb6.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*3);
+  gumb6.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*2);
   gumb6.mousePressed(tekst);  
 
   
   var nameP3 = createP("Mijenjaj pozadinu: ");
-  nameP3.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*4);
- slider = createSlider(0, 100, 30);
-  slider.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*4.5); 
+  nameP3.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*3);
+ slider = createSlider(0, 100, 12);
+  slider.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*3.5); 
   slider.addClass("mojSlider");
     
 
   var nameP1 = createP("Upiši prvi znak: ");
-  nameP1.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*5.5);
+  nameP1.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*4.5);
   input1 = createInput("");
-  input1.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*6);
+  input1.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*5);
   input1.changed(updateText1); 
 
   
   var nameP2 = createP("Upiši drugi znak: ");
-  nameP2.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*7);
+  nameP2.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*6);
   input2 = createInput("");
-  input2.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*7.5);
+  input2.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*6.5);
   input2.changed(updateText2);
+  
+  gumbS = createButton("UZMI SCREENSHOT"); 
+  gumbS.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*7);
+  gumbS.mousePressed(skreen);  
 
   
+}
+
+function skreen(){
+  save("skrin" + ".jpg");
 }
 
 function screeny(){
