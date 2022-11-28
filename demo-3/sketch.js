@@ -33,7 +33,7 @@ function setup() {
   gumb6.mousePressed(tekst);  
 
   
-  var nameP3 = createP("Mijenjaj pozadinu: ");
+  var nameP3 = createP("Mijenjaj boju pozadine: ");
   nameP3.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*3);
  slider = createSlider(0, 100, 12);
   slider.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*3.5); 
@@ -41,20 +41,20 @@ function setup() {
     
 
   var nameP1 = createP("Upiši prvi znak: ");
-  nameP1.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*4.5);
+  nameP1.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*4.2);
   input1 = createInput("");
-  input1.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*5);
+  input1.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*4.7);
   input1.changed(updateText1); 
 
   
   var nameP2 = createP("Upiši drugi znak: ");
-  nameP2.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*6);
+  nameP2.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*5.5);
   input2 = createInput("");
-  input2.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*6.5);
+  input2.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*6);
   input2.changed(updateText2);
   
   gumbS = createButton("UZMI SCREENSHOT"); 
-  gumbS.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*7);
+  gumbS.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*7.1);
   gumbS.mousePressed(skreen);  
 
   
