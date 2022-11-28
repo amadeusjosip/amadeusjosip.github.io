@@ -24,20 +24,27 @@
  
 
 :root{
-    --vel: 40px;
+    --velMali: 20px;
+    --velVeliki: 40px;
+    --velMaliScreen: 140px;
+    --velVelikiScreen: 180px;
     --velIme: 70px;
     --vr: 1.4s;
     --vr2: 1.65s;
 
 
-    --drg: #fce762;
-    --drga: #fce76222;
+    --drg: #325897;
+    --drga: #e9e1cc;
     
-    --clr: #fce762; 
-    --bckclr: #1a1d1f;
-    --bckclrx: #111;
+    --clr: #325897; 
+    --bckclr: #e9e1cc;
+    --bckclrx: #e9e1cc;
+
+    
 }
 
+
+body{overflow: hidden;}
 
 body{
     margin: 0;
@@ -51,9 +58,31 @@ body{
     font-weight: normal;
 }
 
-html{
-    font-size: var(--vel);
+ 
+ 
+p, a{
+    font-size: 45px;
 }
+@media screen and (max-width: 800px) {
+    p, a{
+        font-size:  35px;
+}
+}
+
+
+.midl{
+    font-size:  17px;
+
+}
+@media screen and (max-width: 800px) {
+    .midl{
+        font-size:  11px;
+
+}
+}
+    
+ 
+
 
 main{
     background-color: var(--bckclr);
@@ -81,7 +110,7 @@ main{
     animation: desno var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 0ms;
     z-index: 0;
 }  
-
+ 
 
  
 .ime2{ 
@@ -98,6 +127,12 @@ main{
     animation: desno var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 70ms;
     z-index: 0;
 }  
+
+
+
+
+
+
 
  .links{  
     margin: 0;
@@ -178,8 +213,8 @@ h3{
  
 .trakaG{ 
     position: absolute;
-    width: 79vw;
-    left: 10.5vw; 
+    width: 98vw;
+    left: 1vw; 
     top: 0vh;
     line-height: 2px;
     display: flex;
@@ -189,8 +224,8 @@ h3{
 }
 .trakaD{ 
     position: absolute;
-    width: 79vw;
-    left: 10.5vw;
+    width: 98vw;
+    left: 1vw; 
     bottom: 0vh;
     line-height: 2px;
     display: flex;
