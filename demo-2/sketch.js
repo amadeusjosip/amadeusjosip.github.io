@@ -9,8 +9,8 @@ var pg;
 var pg2;
 var font;
 function preload(){
-  font = loadFont("./fontovi/Aeonik-Medium.ttf");
-   blurShader = loadShader('../assets/blur.vert', '../assets/blur.frag');
+  font = loadFont("fontovi/Aeonik-Medium.ttf");
+   blurShader = loadShader('assets/blur.vert', 'assets/blur.frag');
 }
 
 let a1, a2, a3, a4, a5, a6, a7, a8, a9;
@@ -46,10 +46,10 @@ function setup() {
 var vr=0;
 var to = 80;
 var tekst = "MOVE MOUSE";
-var timea = 0;
+var time = 0;
 function draw(){ 
   pg.background(2, 222, 2, 255); 
-  timea+=2;
+  time+=2;
   var dista = dist(mouseX, mouseY, windowWidth/2, windowHeight/2)/1;
   var fila = map(dista, 0, 1000, 120, 20);
   pg.fill(fila, 212);
@@ -62,7 +62,7 @@ function draw(){
   var ra = 30;
   for(var x = windowWidth/2; x < windowWidth*1.5; x+=pomak){
     for(var y = windowHeight/2; y < windowHeight*1.5; y+=pomak){
-      var bb = ra+ra*sin(radians(timea)+ra3*noise(x*0.001, y*0.001));
+      var bb = ra+ra*sin(radians(time)+ra3*noise(x*0.001, y*0.001));
       pg.colorMode(HSB, 100);
       pg.fill((bb+ra2)%100, 80, 80);
       pg.rect(x, y, pomak, pomak);
