@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+//font-family: 'Righteous', cursive;
+$granica: 767px;
+$paleta: (  
+    zelena: #ceff5a,
+    plava: #181818,
+    bijela: #fefefe,
+    crna: #181818,
+    narancasta: #fefefe
+);
+ 
+@function boja($ime-boje){
+    @return map-get($paleta, $ime-boje);
+}
+ 
+
+@font-face{ 
+	font-family: fontichA;
+	src: url("/fontovi/Aeonik-Black.ttf");
+}
+
+@font-face{ 
+	font-family: fontichB;
+	src: url("/fontovi/Aeonik-Medium.ttf");
+}
+
+@font-face{ 
+	font-family: fontichC;
+	src: url("/fontovi/Aeonik-Air.ttf");
+}
+
+@font-face{ 
+	font-family: fontichD;
+	src: url("/fontovi/Aeonik-Light.ttf");
+}
+
+*{
+    margin: 0px;
+    padding: 0px; 
+    cursor: crosshair;
+    
+
+}
+
+body{
+    background-color: boja(plava);
+    width: 100%;
+}
+
+nav{
+    //background-color: boja(bijela);
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    @media screen and (min-width: $granica) {
+        background-color: boja(bijela);
+        justify-content: start; 
+        
+    }
+}
+
+a{  
+    text-decoration: none;
+    margin-top: 5vh;
+    letter-spacing: -4px; 
+	font-family: fontichB;    
+    color: boja(bijela); 
+    font-size: 52px;  
+    transition: 0.3s;
+
+    @media screen and (min-width: $granica) {
+        color: boja(crna);
+        font-size: 90px; 
+        letter-spacing: -8px; 
+        font-family: fontichB;  
+        margin-top: -5px;
+        margin-left: 4vw;
+        transition: 0.4s;
+    }
+}
+
+a:hover{ 
+    transform: translateY(-2px);
+    color: boja(zelena);
+    transition: .2s;
+    @media screen and (min-width: $granica) {
+        color: boja(zelena); 
+        letter-spacing: -5px; 
+        transition: 0.3s;
+    }
+}
+
+.paragrafi1{  
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+}
+ 
+.opis{   
+    width: 50vw;
+    margin-top: 40px;
+    @media screen and (min-width: $granica) {
+        width: 70vw;
+        margin-top: 20px; 
+        margin-left: -21vw;
+    } 
+}
+
+
+p{ 
+    text-align: left;
+    margin-top: 20px;
+    color: boja(bijela);
+	font-family: fontichD;   
+    font-size: 18px; 
+    transition: 0.5s;
+ 
+    @media screen and (min-width: $granica) {
+        text-align: left;
+        font-size: 40px; 
+    }
+}
+
+p:hover{
+    transform: translateY(-5px); 
+    transition: 0.3s;
+
+    @media screen and (min-width: $granica) {
+        transform: translateX(11px); 
+        transition: 0.3s;
+    }
+}
+
+
+.paragrafi2{   
+    width: 100%;
+    transform: translateY(400px); 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.linkovi{  
+    background-color: boja(plava); 
+    width: 100%;
+    transform: translateY(500px);  
+    
+
+    @media screen and (min-width: $granica) {
+        background-color: boja(bijela); 
+        transform: translateY(600px);
+    }
+}
+
+.hrefovi{ 
+    height: 550px; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: start; 
+    
+ 
+
+}
+
+.radovi{
+    width: 0%;
+    background-color: transparent;
+    padding-left: 50px;
+    color: boja(bijela);
+    transition: 0.3s;
+
+    @media screen and (min-width: $granica) { 
+        color: boja(crna);
+        padding-left: 0px;
+    }
+} 
+
+.radovi:hover{
+    color: boja(zelena);
+    transition: 0.2s;
+
+    @media screen and (min-width: $granica) { 
+        color: boja(zelena);
+    }
+}
+
+
+.ftr{
+    cursor: auto;
+    font-family: fontichB;  
+    color: boja(zelena);
+    letter-spacing: -0.3px;
+    @media screen and (min-width: $granica) {
+        color: boja(zelena); 
+    }
+}
+
+
+#kontakt{
+    font-size: 15px;
+    cursor: auto;
+    align-items: center; 
+    background-color: boja(crna);
+    height: 90px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    transition: 0.5s;
+
+    @media screen and (min-width: $granica) {
+        background-color: boja(crna);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around; 
+        font-size: 18px;
+    }
+
+    .info1{
+        cursor: auto;
+        letter-spacing: -0.3px;
+        font-family: fontichB;  
+        background-color: transparent;
+        color: boja(bijela); 
+        @media screen and (min-width: $granica) {
+            color: boja(bijela);  
+            font-size: 18px;
+        }
+    }
+    
+    
+    .info2{
+        font-size: 15px;
+        cursor: auto;
+        letter-spacing: -0.3px;
+        font-family: fontichB;  
+        background-color: transparent;
+        color: boja(bijela); 
+        @media screen and (min-width: $granica) {
+            color: boja(bijela);  
+            font-size: 18px;
+        }
+    }
+
+    .info2:hover{
+        transform: translateY(0px);
+        @media screen and (min-width: $granica) { 
+            transform: translateY(0px);
+        }
+
+    }
+
+}
+
+
+#kontakt:hover{
+    
+    background-color: boja(crna);
+    @media screen and (min-width: $granica) {
+        background-color: boja(plava); 
+        transition: 0.3s;
+    }
+}
+
+button{
+  font-family: fontichB;  
+  font-size: 15px;
+  color: boja(plava);
+  background-color: boja(zelena);
+  background-color: boja(narancasta);
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  padding: 12px 18px; 
+  transition: .7s;
+  border-radius: 0px;
+
+  @media screen and (min-width: $granica) {
+    font-size: 21px;
+    transform: translateY(40px) translateX(-55px); 
+}
+}
+
+button:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: transparent;
+    color: boja(narancasta);
+}
+
+
+.isto{
+    color: boja(bijela);
+    font-family: fontichD;
+    position: absolute; 
+    bottom: 30px;
+    font-size: 14px;
+    @media screen and (min-width: $granica) {
+        font-size: 17px;
+    }
+}
+#maile{ 
+    left: 60px; 
+}
+#tele{ 
+    right: 60px; 
+}
+#adresa{ 
+    right: 34vw; 
+    @media screen and (min-width: $granica) {
+        right: 47vw;
+    }
+}
+
+
+
+h4{
+    
+    font-size: 50px;
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+}
+
+.glass{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.linkss{
+    font-family: fontichA;
+    font-size: 24px;
+    letter-spacing: -1.3px;
+    transform: translateY(0px);
+    color: boja(bijela);
+    transition: 0.3s;
+}
+
+.linkss:hover{
+    cursor: pointer;
+    color: boja(crna);
+    letter-spacing: -1.3px;
+    transform: translateY(0px);
+    transition: 0.15s;
+}
