@@ -143,17 +143,24 @@ main{
     grid-row: 1/12; 
 }
 
-.naslov{
-    font-size: var(--velFonta);
-    margin: 0;
-    animation: naslovEfekt 2s cubic-bezier(.68,0,.25,1);  
-    margin-top: 0px;
-    padding: 0; 
+.omotac{
     width: 100%;
-    height: 100%;  
-    display: flex;  
-    align-items: center;
+    height: 100%;
+    background-color: #ff0a;
+    background-color: transparent;
+    display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.naslov{
+    background-color: #0f05;
+    background-color: transparent;
+    font-size: var(--velFonta); 
+    animation: naslovEfekt 2s cubic-bezier(.68,0,.25,1);   
+    width: fit-content;
+    height: fit-content;    
+    
 }
 
 
