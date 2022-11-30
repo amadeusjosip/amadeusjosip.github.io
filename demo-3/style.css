@@ -1,0 +1,272 @@
+@font-face {
+  font-family: fontA;
+  src: url(fontovi/Aeonik-Medium.ttf);
+}
+
+:root{
+
+  --crna: #111;
+  --roza: #efd7f4;
+  
+  --bodij: #e6de2e;
+  --ljubicasta: #b62ee6;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh; 
+  background-color: var(--bodij);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+#vid{
+  width: 22vw;
+  height: calc(100vh - 20px);
+  position: absolute; 
+  top: 10px;
+  left: 30px; 
+}
+
+h1{
+  text-align: left;
+  font-family: fontA; 
+  font-size: 41px;
+  font-weight: bold;
+  line-height: 90%;
+}
+h3{ 
+  text-align: left;
+  font-family: fontA; 
+  font-size: 18px;
+  font-weight: normal;
+}
+  
+span{
+  font-style: italic; 
+  color: var(--ljubicasta);
+  font-weight: bold;
+}
+
+button{ 
+    font-family: fontA;
+    font-size: 16px;
+    color:var(--roza);
+    background-color: var(--crna);
+    text-decoration: none; 
+    border: none;
+    padding: 8px 15px;
+    margin: 0;
+    border-radius: 0px;
+    transition: .2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*
+button:hover{
+    background-color:#efd7f4;
+    color: #111;
+    transition: .2s;
+}
+*/
+
+
+p{
+  
+  font-family: fontA;
+  font-size: 16px;
+  color:var(--crna); 
+  text-decoration: none; 
+  border: none;
+  padding: 0px;
+  margin: 0;
+  border-radius: 3px;
+  transition: .2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+input{
+  background: var(--roza);
+  color: var(--crna);
+  height: 15px;
+  width: 150px;
+} 
+ 
+ 
+/* Styles the whole slider */
+.mojSlider{
+  width: 150px;
+  background-color: transparent; 
+  -webkit-appearance: none;
+}
+
+
+/* These styles affect what happens when the cursor is focused on the slider (i.e. clicking it) */
+.mojSlider:focus {
+  
+  /* Stops the default outline showing up */ 
+  outline-width: 3px;
+  outline: none;
+}
+ 
+.mojSlider::-webkit-slider-runnable-track {
+  background: var(--crna);
+  height: 3px;
+  -webkit-appearance: none;
+   
+  cursor: pointer;
+  
+}
+
+/* This is the moveable bit of the slider, known as the "thumb"*/
+.mojSlider::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--roza);
+  cursor: pointer;
+  -webkit-appearance: none;
+   
+  margin-top: -12px;
+  outline: red;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:var(--crna);
+}
+
+
+#progressBar{ 
+  width: 100vw; 
+  margin: 0;
+  padding: 0; 
+  position: absolute; 
+  text-align: center;
+  color: var(--crna);
+  font-weight: bold;
+  font-family: fontA;
+  font-size: 30px; 
+}
+ 
+ 
+ 
+.g1{ 
+  transition: 0.3s;
+  color: var(--roza);
+  background-color: var(--crna);
+}
+
+.saveg{ 
+  transition: 0.3s;
+  color: var(--roza);
+  background-color: var(--crna);
+}
+
+.saveg:hover{
+  
+  transition: 0.3s;
+  background-color: var(--roza);
+  color: var(--crna);
+}
+ 
+.g2{ 
+  transition: 0.3s;
+  background-color: var(--roza);
+  color: var(--crna);
+}
+  
+
+footer{ 
+  margin: 0; padding: 0;
+  width: 100vw;
+  height: 100vh;
+  top: 100vh;
+  left: 0;
+  display: grid;
+
+  grid-template-rows: repeat(15, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.info1, .info2, .info3, .info4, .infox1, .infox2, .infox3{
+  font-family: fontA;
+  font-size: 14px;
+  font-weight: bold; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ljubicasta);
+  color: #111;
+}
+ 
+.info1{ 
+  grid-row: 15/16;
+  grid-column: 1/2;
+}
+.infox1{ 
+  grid-row: 15/16;
+  grid-column: 2/3;
+}
+.info2{
+  grid-row: 15/16;
+  grid-column: 3/4;
+}
+.infox2{ 
+  grid-row: 15/16;
+  grid-column: 4/5;
+}
+.info3{
+  grid-row: 15/16;
+  grid-column: 5/6; 
+}
+.infox3{
+  grid-row: 15/16;
+  grid-column: 6/7; 
+}
+.info4{
+  grid-row: 15/16;
+  grid-column: 7/8;
+}
+
+
+#sek{
+  width: 100vw;
+  position: absolute; 
+  margin: 0;
+  padding: 0;
+  top: 0; 
+  right: 90px;
+  top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+a{
+  text-decoration: none;
+  color: var(--crna);
+  font-size: 14px;
+  font-family: fontA;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  letter-spacing: 0px;
+  text-align: center;
+  transition: 0.3s; 
+}
+
+a:hover{
+  background-color:#b62ee6;
+  color:#e6de2e;
+  transition: 0.3s;
+
+}
