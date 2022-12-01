@@ -1,7 +1,7 @@
 var font;var font2;var font1;
 function preload(){
-  font = loadFont("fontovi/Aeonik-Medium.ttf");
-  font1 = loadFont("fontovi/Aeonik-Air.ttf");
+  font = loadFont("fontovi/Aeonik-Medium.ttf"); 
+  font1 = loadFont("fontovi/BauhausRegular.ttf");
   font2 = loadFont("fontovi/Aeonik-Medium.ttf");  
 
 }
@@ -38,7 +38,7 @@ function setup() {
   
   var nameP3 = createP("Pozadina: ");
   nameP3.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*3);
- slider = createSlider(17, 35, 21);
+ slider = createSlider(0, 5, 1);
   slider.position(windowWidth/2 + 420, windowHeight/2 - 200 + prvi*3.5); 
   slider.addClass("mojSlider");
     
@@ -62,13 +62,13 @@ function setup() {
   gumbS.addClass("saveg");
 
   stroke(0);
-  strokeWeight(5);
+  strokeWeight(6);
 } 
 var stanje5 = 1;
 function stil5() {
 if(stanje5%2==0){
   stroke(0);
-  strokeWeight(3);
+  strokeWeight(6);
   font = font2;
   gumb5.removeClass("g2");
   gumb5.addClass("g1");
@@ -76,8 +76,7 @@ if(stanje5%2==0){
 
 else{
   stroke(0);
-  strokeWeight(0); 
-  noStroke();
+  strokeWeight(2);  
   
   font = font1;
   gumb5.removeClass("g1");
@@ -166,7 +165,8 @@ function draw() {
   textFont(font);
   time = frameCount;
   colorMode(HSB, 100);
-  background(100 - slider.value(), 80, 90);
+  var pozzadina = ((slider.value() - 0 ) / 5) * 100;
+  background(0, 0, pozzadina);
    
   translate(70,4);
   vr+=brijeme;  
