@@ -93,3 +93,21 @@ const observer1a = new IntersectionObserver((entries) => {
 
 const hiddenElements1a = document.querySelectorAll('.oou');
 hiddenElements1a.forEach((el) => observer1a.observe(el));
+
+ 
+document.getElementById("extraGumb").addEventListener("click", eprikazi);  
+
+const x = document.getElementById("extraSlika");
+var y = 0;
+function eprikazi(){
+  if(y % 2 == 0){
+    x.style.opacity = "1";
+    x.style.transition = "0.4s";
+    }
+    else{
+      x.style.opacity = "0";
+      x.style.transition = "0.2s";
+      }
+      y++;
+}
+ 
