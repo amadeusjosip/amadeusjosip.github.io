@@ -7,9 +7,10 @@
 
   --crna: #111;
   --roza: #efd7f4;
+  --bijela: #eee;
   
-  --bodij: #e6de2e;
-  --ljubicasta: #b62ee6;
+  --bodij: #fdb927;
+  --ljubicasta: #552583;
 }
 
 
@@ -28,7 +29,7 @@ html, body {
   width: 22vw;
   height: calc(100vh - 20px);
   position: absolute; 
-  top: 10px;
+  top: -20px;
   left: 30px; 
 }
 
@@ -38,6 +39,7 @@ h1{
   font-size: 41px;
   font-weight: bold;
   line-height: 90%;
+  color: var(--crna);
 }
 h3{ 
   text-align: left;
@@ -201,9 +203,9 @@ footer{
   font-weight: bold; 
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: var(--ljubicasta);
-  color: #111;
+  align-items: center; 
+  color: var(--crna);
+  background-color: #ddd;
 }
  
 .info1{ 
@@ -242,31 +244,45 @@ footer{
   margin: 0;
   padding: 0;
   top: 0; 
-  right: 90px;
+  right: 0px;
   top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: end;
 }
+ 
+.kvd{
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  margin-right: 5px;
+  border-radius: 2px;
+  border: 2px solid #444;
+  border-color: #444;
+}
+.kvd:hover{cursor: pointer;}
+ 
+#kvd2{background-color: #552583; border-color: #fff;}
+#kvd3{background-color: #fdb927; border-color: #fff;}  
 
 a{
-  text-decoration: none;
+  text-decoration: none; 
   color: var(--crna);
+  color: var(--ljubicasta);
   font-size: 14px;
   font-family: fontA;
   margin-left: 10px;
   margin-right: 10px;
-  padding: 5px 10px;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
+  padding: 5px 10px; 
   letter-spacing: 0px;
   text-align: center;
   transition: 0.3s; 
 }
 
-a:hover{
-  background-color:#b62ee6;
-  color:#e6de2e;
+a:hover{ 
+  color: var(--crna);
+  transform: rotate(-4deg);
   transition: 0.3s;
 
 }
+
