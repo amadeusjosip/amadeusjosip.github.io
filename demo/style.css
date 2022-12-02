@@ -4,13 +4,16 @@
 }
 
 :root{
-    --pozadina: #FFBF00;
+    --pozadina: #10A19D;
     --naslov: #540375;
     --linkovi: #fff;
-    --polje: #10A19D;
+    --polje: #FFBF00;
     --haver: #FF7000;
 }
 
+p{
+    color: var(--linkovi);
+}
 
 
 *{
@@ -54,10 +57,10 @@ a{
     text-decoration: none;
     color: var(--linkovi);
     font-weight: normal; 
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     width: fit-content; 
     transition: 0.2s;  
-    padding-top: 0.3vw;  
+    padding-top: 1vw;    
 }
 
 a:hover{
@@ -71,6 +74,7 @@ h1{
     font-size: 3.3vw; 
     line-height: 95%;
     padding-bottom: 2vw;
+    text-align: center;
 }
 
 
@@ -80,7 +84,7 @@ header{
     width: 98vw;
     left: 1vw;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     top: 1vw;
     color: var(--naslov);
 }
@@ -90,17 +94,61 @@ footer{
     width: 98vw;
     left: 1vw;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     bottom: 1vw;
     color: var(--naslov);
 }
 
-#p-c{
-    text-align: center;
+#p-c-header{
+    font-weight: bold;
 }
+
+#p-c{
+    text-align: center; 
+} 
 #p-l{
     text-align: left;
 }
 #p-r{
     text-align: right;
+}
+
+@media screen and (max-width: 600px) { 
+    p { 
+        font-size: 3.3vw;
+        letter-spacing: -0.3px;
+    }
+
+    .polje{
+        margin: 0; 
+        padding: 0;
+        background-color: var(--polje);
+        position: absolute;
+        width: 80vw;
+        height: fit-content;
+        top: 30vw;
+        left: 10vw;
+        padding: 0vw;
+        padding-bottom: 6vw;
+        outline: solid;
+        outline-width: 0.5vw;
+        outline-color: var(--naslov);
+    }
+    
+    h1{
+        font-size: 11vw;
+        padding: 3vw;
+        padding-bottom: 7vw;
+    }
+
+    .linkovi{
+        padding-top: 4vw;
+    }
+
+    a{
+        padding: 3vw;
+        font-size: 6vw;
+        padding-top: 4vw;
+    }
+
 }
