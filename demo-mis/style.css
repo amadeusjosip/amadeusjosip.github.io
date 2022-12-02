@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+@font-face {
+  font-family: fontichA; 
+  src: url("fontovi/Aeonik-Medium.ttf");
+}
+
+@font-face {
+  font-family: fontichB;
+  src: url("fontovi/Aeonik-Medium.ttf");
+}
+
+@font-face {
+  font-family: fontichC; 
+  src: url("fontovi/Aeonik-Medium.ttf");
+}
+
+@font-face {
+  font-family: fontichD; 
+  src: url("fontovi/Aeonik-Medium.ttf");
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+body { 
+  width: 100%;
+}
+
+ 
+ 
+ 
+
+ 
+ 
+#kontakt {
+  font-size: 15px;
+  cursor: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #181818;
+  height: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media screen and (min-width: 767px) {
+  #kontakt {
+    background-color: #181818;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    font-size: 18px;
+  }
+}
+
+#kontakt .info1 {
+  cursor: auto;
+  letter-spacing: -0.3px;
+  font-family: fontichB;
+  background-color: transparent;
+  color: #fefefe;
+}
+
+@media screen and (min-width: 767px) {
+  #kontakt .info1 {
+    color: #fefefe;
+    font-size: 18px;
+  }
+}
+
+#kontakt .info2 {
+  font-size: 15px;
+  cursor: auto;
+  letter-spacing: -0.3px;
+  font-family: fontichB;
+  background-color: transparent;
+  color: #fefefe;
+}
+
+@media screen and (min-width: 767px) {
+  #kontakt .info2 {
+    color: #fefefe;
+    font-size: 18px;
+  }
+}
+
+#kontakt .info2:hover {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+@media screen and (min-width: 767px) {
+  #kontakt .info2:hover {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+#kontakt:hover {
+  background-color: #181818;
+}
+
+@media screen and (min-width: 767px) {
+  #kontakt:hover {
+    background-color: #181818;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+}
+
+ 
+ 
+
+.heder{ 
+  position: absolute;
+  width: 96vw;
+  left: 2vw;
+  top: 5vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+a{
+  text-decoration: none; 
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+  font-family: fontichA;
+  font-size: 14px;
+  text-align: center;
+  text-decoration-thickness: 2px;
+  letter-spacing: normal;
+  transition: 0.5s;
+}
+
+a:hover{
+  cursor: pointer;
+  letter-spacing: 3px;
+  transition: 0.3s;
+}
+
+
+
+.futer{ 
+  position: absolute;
+  width: 96vw;
+  left: 2vw;
+  bottom: 5vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.isto{
+  color: white;
+  font-family: fontichA;
+  font-size: 14px;
+  text-align: center;
+}
+
+ 
