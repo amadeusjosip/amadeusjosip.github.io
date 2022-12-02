@@ -1,0 +1,167 @@
+@font-face {
+    font-family: fontA;
+    src: url(fontovi/font1.ttf);
+}
+
+
+ 
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: fontA;
+    overflow-x: hidden;
+  }
+  
+  canvas {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+  
+   
+
+
+  p{
+    padding-top: 30px;
+    width: 50vw;
+    text-align: left;
+  }
+  
+  .opis {
+    position: fixed;
+    z-index: 2;
+    color: white; 
+    font-size: 140px;
+    top: calc(50vh - 140px);
+    font-weight: bold;
+    width: 100vw; 
+    text-align: center;
+    text-transform: uppercase; 
+    mix-blend-mode: difference;
+  }
+
+  h1{ 
+    color: black;
+    width: fit-content;  
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-decoration-thickness: 6px;
+  }
+   
+
+  .stranica{  
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .ok { 
+    padding-top: 30px;
+    padding-left: 30px;
+    width: 100vw;  
+    font-size: 2rem; 
+  }
+
+  .futer{  
+    padding: 0;
+    margin: 0;
+    height: 70px;
+    text-align: center;
+    font-size: 13px;
+    padding-top: calc(35px - 6.5px);
+    width: 100vw;  
+    background-color: black;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .lnk{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    transition: 0.3s;
+  }
+  .lnk:hover{
+    cursor: pointer;
+  }
+
+  .lnk:active{ 
+    color: red;
+    transition: 0.15s;
+    transform: rotate(-5deg);
+  }
+  
+  h3{
+    font-weight: normal;
+  }
+  span{
+    font-weight: bold;
+    color: red;
+  }
+
+  .pe{
+    margin-top: 50px;
+    transition: 0.3s;
+    transition-delay: 0.1s;
+  }
+
+  .efektpe{
+    margin-top: 0px;
+    transition: 1.2s;
+
+  }
+
+
+  
+  .oou{
+    margin-left: -20px;
+    opacity: 0;
+    transition: 0.3s;
+    transition-delay: 0.1s;
+  }
+
+  .efektoou{
+    opacity: 1;
+    margin-left: 0px;
+    transition: 1.8s;
+
+  }
+  a{ 
+    transform: translateX(30px) translateY(-20px);
+    font-size: 30px;
+    color: red;
+    background-color: black;
+    padding: 10px 30px;
+    border-radius: 100px;
+    width: fit-content;
+    height: fit-content;
+    transition: 0.23s;
+  }
+
+  a:hover{
+    cursor: pointer;
+    color: white;
+    transition: 0.23s;
+  }
+
+  a:active + .imag{opacity: 1;}
+
+  .imag{
+    opacity: 0;
+    width: 100px; 
+    transform: translateX(-330px) translateY(-280px) scale(300%);
+  }
+  .gumb{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
