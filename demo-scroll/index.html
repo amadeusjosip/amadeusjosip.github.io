@@ -9,6 +9,11 @@
     <title>3D slušalice</title>
   </head>
   <body> 
+    
+    
+    <div class="page-loader"></div>
+    
+    
     <h2 class="opis">Slusalice HD-12X-II</h2>
     <canvas class="canvas"></canvas>
 
@@ -62,6 +67,19 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    
+     <script>
+      var loader = document.getElementsByClassName("page-loader")[0];
+
+      window.addEventListener("load", function(){
+        loader.style.display = "none";
+
+      })
+
+
+
+    </script>
+    
     <script src="./app.js"></script>
   </body>
 </html>
