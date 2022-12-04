@@ -1,8 +1,8 @@
 var font;var font2;var font1;
 function preload(){
-  font = loadFont("fontovi/Aeonik-Medium.ttf"); 
-  font1 = loadFont("fontovi/BauhausRegular.ttf");
-  font2 = loadFont("fontovi/Aeonik-Medium.ttf");  
+  font = loadFont("../assets/fontovi/font1.ttf"); 
+  font1 = loadFont("../assets/fontovi/font2.ttf");
+  font2 = loadFont("../assets/fontovi/font1.ttf");  
 
 }
 
