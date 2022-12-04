@@ -1,6 +1,6 @@
 var font;
 function preload(){
-  font = loadFont("fontovi/Aeonik-Medium.ttf");   
+  font = loadFont("../assets/fontovi/font1.ttf");   
 }
 
 function windowResized(){
