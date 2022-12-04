@@ -211,7 +211,31 @@ footer{
 :root{
     --opac: 0.3;
     --margin-L: 20px; 
+   }
+    
+    
+#hdr-tekst-mali-1{ 
+    padding-left: 0.5vw;
+    background-color: #1f1a; 
+    background-color: transparent;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
 }
+#hdr-tekst-mali-2{ 
+    background-color: rgba(255, 0, 251, 0.388);
+    background-color: transparent;
+}
+#hdr-tekst-mali-3{ 
+    padding-right: 0.5vw;
+    background-color: rgba(0, 255, 204, 0.297);
+    background-color: transparent;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
+}
+
+    
 }
 
 
