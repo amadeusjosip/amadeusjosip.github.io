@@ -48,6 +48,7 @@ var to = 80;
 var tekst = "NEKI RANDOM TEKST";
 var time = 0;
 function draw(){ 
+  windowResized();
   pg.background("#111"); 
   time+=2;
   var dista = dist(mouseX, mouseY, windowWidth/2, windowHeight/2)/1;
