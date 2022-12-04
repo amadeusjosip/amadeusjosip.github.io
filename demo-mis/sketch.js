@@ -50,6 +50,7 @@ var time = 0;
 function draw(){ 
   windowResized();
   pg.background("#111"); 
+  pg.clear();
   time+=2;
   var dista = dist(mouseX, mouseY, windowWidth/2, windowHeight/2)/1;
   var fila = map(dista, 0, 1000, 120, 20);
