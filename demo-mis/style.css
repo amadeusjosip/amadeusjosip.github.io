@@ -2,22 +2,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
 @font-face {
   font-family: fontichA; 
-  src: url("fontovi/Aeonik-Medium.ttf");
+  src: url(../assets/fontovi/font1.ttf);
 }
 
 @font-face {
   font-family: fontichB;
-  src: url("fontovi/Aeonik-Medium.ttf");
+  src: url(../assets/fontovi/font1.ttf);
 }
 
 @font-face {
   font-family: fontichC; 
-  src: url("fontovi/Aeonik-Medium.ttf");
+  src: url(../assets/fontovi/font1.ttf);
 }
 
 @font-face {
   font-family: fontichD; 
-  src: url("fontovi/Aeonik-Medium.ttf");
+  src: url(../assets/fontovi/font1.ttf);
 }
 
 * {
