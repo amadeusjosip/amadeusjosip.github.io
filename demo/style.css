@@ -5,10 +5,17 @@
 
 :root{
     --pozadina: #10A19D;
-    --naslov: #540375;
+    --naslov: #FFBF00;
     --linkovi: #fff;
-    --polje: #FFBF00;
+    --polje: #540375;
     --haver: #FF7000;
+     
+    --pozadina: #FFBF00;
+    --naslov: #540375;
+    --linkovi: #540375;
+    --polje: #10A19D;
+    --haver: #540375;
+    --bijela: #fff;
 }
 
 p{
@@ -65,7 +72,7 @@ a{
 
 a:hover{
     transition: 0.2s;
-    color: var(--pozadina);
+    color: var(--haver);
 }
 
 h1{ 
@@ -78,6 +85,51 @@ h1{
 }
 
 
+@keyframes anim-header {
+    0%{
+        margin-top: 0px;
+    }
+    50%{
+        margin-top: 20px; 
+    }
+    100%{
+        margin-top: 0px;
+    }
+    
+}
+
+header #p-l{
+    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+}
+header #p-c{
+    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 250ms;
+}
+header #p-r{
+    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 500ms;
+}
+
+@keyframes anim-footer {
+    0%{
+        margin-top: 0px;
+    }
+    50%{
+        opacity: 0.1; 
+    }
+    100%{
+        margin-top: 0px;
+    }
+    
+}
+
+footer #p-l{
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 300ms;
+}
+footer #p-c{
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 300ms;
+}
+footer #p-r{
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 300ms;
+}
 
 header{
     position: absolute;
@@ -111,6 +163,10 @@ footer{
 }
 #p-r{
     text-align: right;
+}
+
+.linkovi-clr{
+    color: var(--bijela);
 }
 
 @media screen and (max-width: 600px) { 
@@ -151,4 +207,114 @@ footer{
         padding-top: 3vw;
     }
 
+}
+
+
+@keyframes anim-polje {
+    0%{
+        margin-top: 0px;
+    }
+    50%{
+        margin-top: 50px;
+        background-color: var(--haver);
+    }
+    100%{
+        margin-top: 0px;
+    }
+    
+}
+
+.polje{
+    animation: anim-polje 1.4s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+@keyframes anim-h1-polje {
+    0%{
+        margin-top: 0px;
+    }
+    50%{
+        margin-top: 20px;
+        color: var(--polje);
+    }
+    100%{
+        margin-top: 0px;
+    }
+    
+}
+
+#h1-polje{
+    animation: anim-h1-polje 1.4s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+
+@keyframes anim-linkovi-link-1 {
+    0%{
+        margin-top: 0px;
+    }
+    50%{
+        margin-top: 5px;
+        color: var(--pozadina);
+    }
+    100%{
+        margin-top: 0px;
+    }
+    
+}
+
+
+@keyframes anim-linkovi-link-2 {
+    0%{
+        margin-top: 0px;
+    }
+    50%{
+        margin-top: 10px;
+        color: var(--pozadina);
+    }
+    100%{
+        margin-top: 0px;
+    }
+    
+}
+
+
+@keyframes anim-linkovi-link-3 {
+    0%{
+        margin-top: 0px;
+    }
+    50%{
+        margin-top: 20px;
+        color: var(--pozadina);
+    }
+    100%{
+        margin-top: 0px;
+    }
+    
+}
+
+
+@keyframes anim-linkovi-link-4 {
+    0%{
+        margin-top: 0px;
+    }
+    50%{
+        margin-top: 37px;
+        color: var(--pozadina);
+    }
+    100%{
+        margin-top: 0px;
+    }
+    
+}
+
+#linkovi-link-1{
+    animation: anim-linkovi-link-1 1.4s cubic-bezier(0.8, 0, 0.2, 1) 50ms;
+}
+#linkovi-link-2{
+    animation: anim-linkovi-link-2 1.4s cubic-bezier(0.8, 0, 0.2, 1) 100ms;
+}
+#linkovi-link-3{
+    animation: anim-linkovi-link-3 1.4s cubic-bezier(0.8, 0, 0.2, 1) 150ms;
+}
+#linkovi-link-4{
+    animation: anim-linkovi-link-4 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
 }
