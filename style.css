@@ -3,291 +3,271 @@
     src: url(assets/fontovi/font1.ttf);
 }
 
-  
-@keyframes desno{
-    0%{margin-left: 0px; color: var(--clr);}
-    50%{margin-left: 50px;color: var(--drg);}
-    100%{margin-left: 0px;color: var(--clr);}
-}
-@keyframes desno3{
-    0%{margin-left: 0px; color: var(--clr);}
-    50%{margin-left: 100px;color: var(--drg);}
-    100%{margin-left: 0px;color: var(--clr);}
-}
 
-
-@keyframes desno2{
-    0%{color: var(--clr);}
-    50%{color: var(--drga);}
-    100%{color: var(--clr);}
+*{ 
+    font-family: fontA;  
+    font-weight: normal;
+    text-transform: uppercase;
+    font-weight: normal;
 }
- 
 
 :root{
-    --velMali: 20px;
-    --velVeliki: 40px;
-    --velMaliScreen: 140px;
-    --velVelikiScreen: 180px;
-    --velIme: 70px;
-    --vr: 1.4s;
-    --vr2: 1.65s;
-
-
-    --drg: #325897;
-    --drga: #e9e1cc;
-    
-    --clr: #325897; 
-    --bckclr: #e9e1cc;
-    --bckclrx: #e9e1cc;
-
-    
+    --bijela: #e9e1cc; 
+    --plava: #325897; 
 }
-
-
-body{overflow: hidden;}
+ 
 
 body{
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    background-color: var(--bckclrx);
-    text-transform: uppercase; 
-    color: var(--clr);
-    font-weight: normal;
-}
-
- 
- 
-p, a{
-    font-size: 45px;
-}
-@media screen and (max-width: 800px) {
-    p, a{
-        font-size:  35px;
-}
-}
-
-
-.midl{
-    font-size:  17px;
-
-}
-@media screen and (max-width: 800px) {
-    .midl{
-        font-size:  11px;
-
-}
-}
-    
- 
-
-
-main{
-    background-color: var(--bckclr);
-    margin: 0;
-    padding: 0;
-    position: absolute; 
-    width: 80vw;
-    left: 10vw;
-    top: 0;
-    height: 100vh;
-    z-index: -1;
-}
- 
- 
-.ime1{ 
-    margin: 0;
-    padding: 0;
-    font-family: fontA;  
-    position: absolute;
-    top: 5vh;
-    left: 0;
-    width: 80vw; 
-    left: 10vw; 
-    text-align: center;   
-    animation: desno var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 0ms;
-    z-index: 0;
-}  
- 
-
- 
-.ime2{ 
-    margin: 0;
-    padding: 0;
-    font-family: fontA;  
-    position: absolute;
-    top: 5vh;
-    margin-top: 43px;
-    left: 0;
-    width: 80vw; 
-    left: 10vw; 
-    text-align: center;   
-    animation: desno var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 70ms;
-    z-index: 0;
-}  
-
-
-
-
-
-
-
- .links{  
-    margin: 0;
-    padding: 0;
-    font-family: fontA; 
-    position: absolute;
-    top: 53vh;
-    left: 0;
-    width: 80vw; 
-    left: 10vw; 
-    text-align: center;  
-    animation: desno var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 140ms;  
-    z-index: 0;
-}
-
-
-.linkovi{ 
-    margin: 0;
-    padding: 0;
-    font-family: fontA; 
-    position: absolute;
-    top: 70vh;
-    left: 0;
-    width: 80vw; 
-    left: 10vw;  
-    text-align: center;
-    z-index: 0;
-
-}
-
-.l1{ 
-    animation: desno3 var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 210ms;  
-}
-.l2{ 
-    animation: desno3 var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 280ms;  
-}
-.l3{ 
-    animation: desno3 var(--vr) cubic-bezier(0.7, 0, 0.3, 1) 350ms;  
-}
-
-.midl{
-    animation: desno2 var(--vr2) cubic-bezier(0.7, 0, 0.3, 1) 610ms; 
-}
-
-
-
-
-br{
-    display: block; /* makes it have a width */
-    content: ""; /* clears default height */
-    margin-top: -5px; /* height */
-}
-
-
-
- 
-
-a{
-    text-decoration: none;
-    color: var(--clr);
-    transition: 0.12s;
-    z-index: 0;
-}
-
- 
- 
- a:hover{
-    -webkit-text-stroke: 2px var(--clr); 
-}
-
-h3{
-    font-family: fontA;
-    font-size: 12px;
-    font-weight: normal;
-    color: var(--clr);
-    z-index: 0;
-}
- 
-.trakaG{ 
-    position: absolute;
-    width: 98vw;
-    left: 1vw; 
-    top: 0vh;
-    line-height: 2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; 
-    z-index: 0;
-}
-.trakaD{ 
-    position: absolute;
-    width: 98vw;
-    left: 1vw; 
-    bottom: 0vh;
-    line-height: 2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; 
-    z-index: 0;
-}
-
-.oky{
-    position: absolute;
-    z-index: 1;
     width: 100vw;
     height: 100vh;
-    margin: 0;
-    padding: 0;
-}
- 
-
-.sekcija{
-    position: absolute;
-    z-index: 2;
-    margin: 0;
-    padding: 0;
-    width: 0;
-    height: 0;
-    background-color: #f00;
+    background-color: #000;
+    background-color: var(--bijela);
+    text-transform: uppercase; 
+    color: var(--plava);
+    display: grid;
+    grid-template-rows: 4vh 88vh 4vh 4vh;
 }
 
-.ha{
-    position: absolute;
-    z-index: 2;
-    margin: 0;
-    padding: 0;
-    width: 0;
-    height: 0;
-    color: transparent;
+
+/*-----------------------------------------*/
+#hdr-tekst-mali-1{ 
+    padding-left: 0.5vw;
+    background-color: #1f1a; 
+    background-color: transparent;
+}
+#hdr-tekst-mali-2{ 
+    background-color: rgba(255, 0, 251, 0.388);
+    background-color: transparent;
+}
+#hdr-tekst-mali-3{ 
+    padding-right: 0.5vw;
+    background-color: rgba(0, 255, 204, 0.297);
+    background-color: transparent;
+    display: flex;
+    flex-direction: row; 
+    justify-content: end;
+}
+
+
+/*-----------------------------------------*/
+#ftr-tekst-mali-1{
+    background-color: #ff09; 
+    padding-left: 0.5vw;
+    background-color: transparent;
+}
+#ftr-tekst-mali-2{
+    background-color: #f11a;
+    background-color: transparent;
+}
+#ftr-tekst-mali-3{
+    background-color: #11f6; 
+    padding-right: 0.5vw;
     background-color: transparent;
 }
 
-@media screen and (max-width: 800px) {
-   
-    .sekcija{ 
-        position: absolute;
-        z-index: 2;
-        width: 100vw;
-        height: 100vh;
-        background-color: #f00;
+a{
+    text-decoration: none;
+    color: var(--plava);
+} 
+
+.link-main{
+    transition: 0.2s;
+}
+.link-main:hover{
+    -webkit-text-stroke: 0.23vw var(--plava); 
+    transform: rotate(-1deg);
+    transition: 0.2s;
+}
+
+
+.mali-hover:hover{
+    -webkit-text-stroke: 0.08vw var(--plava);  
+}
+
+.poravnanje-left{text-align: left;}
+.poravnanje-center{text-align: center;}
+.poravnanje-right{text-align: right;}
+
+.tekst-mali{  
+    margin: 0;
+    padding: 0; 
+}
+ 
+/*-----------------------------------------------*/
+header{
+    background-color: #ff44;
+    background-color: transparent;
+    grid-row: 1/2; 
+    font-size: 1vw;
+    width: 100vw; 
+    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+/*-----------------------------------------------*/
+main{
+    grid-row: 2/3;
+    width: 100vw;   
+    background-color: #0f08; 
+    background-color: transparent; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/*-----------------------------------------------*/
+footer{
+    grid-row: 4/5; 
+    font-size: 1vw;  
+    background-color: #f117;
+    background-color: transparent; 
+    width: 100vw; 
+    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+}
+/*-----------------------------------------------*/
+
+.link-main, .tekst-main{
+    margin: 0;
+    padding: 0;
+    font-size: 2.8vw;
+    line-height: 100%;
+}
+
+.main-gornji{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 1vh;
+}
+.main-sredina{
+    margin-top: 22vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.main-donji{
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+} 
+
+:root{
+    --opac: 0;
+    --margin-L: 50px;
+}
+ 
+/*-----------MID----------*/
+@media (max-width: 800px){
+
+    .main-gornji{  
+        margin-top: 0vh;
     }
-      }
-      @media screen and (max-width: 800px) {
-        .ha{
-            font-family: fontA;
-            position: absolute;
-            z-index: 2;
-            margin: 0; 
-            padding: 0;
-            width: 80%;
-            margin-left: 10%;
-            margin-top: 20%;
-            color: transparent; 
-            background-color: transparent;
-            text-align: center;
-            color: black;
-        }
-        }
+
+    .main-sredina{
+        margin-top: 0vh; 
+    }
+
+    header, footer{
+        font-size: 3vw;
+    }
+
+    .link-main, .tekst-main{ 
+        font-size: 5vw; 
+    }
+:root{
+    --opac: 0.3;
+    --margin-L: 30px;
+}
+} 
+
+
+
+/*-----------mobile----------*/
+@media (max-width: 600px){
+
+    .main-gornji{  
+        margin-top: 10vh;
+    }
+
+    .main-sredina{
+        margin-top: 0vh; 
+    }
+
+    .main-donji{
+        margin-bottom: 20vh; 
+    }
+
+    header, footer{
+        font-size: 3vw;
+    }
+
+    .link-main, .tekst-main{ 
+        font-size: 8vw; 
+    }
+:root{
+    --opac: 0.3;
+    --margin-L: 20px; 
+}
+}
+
+
+
+
+/*-------ANIMIRANJE---------*/
+@keyframes anim-1 { 
+    0%{
+        opacity: 1;
+        margin-left: 0px;
+    } 
+    50%{
+        opacity: var(--opac);
+        margin-left: var(--margin-L);
+    }
+    100%{
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+ 
+
+
+#anim-1{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+}
+#anim-2{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 70ms;
+}
+#anim-3{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 140ms;
+}
+#anim-4{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 210ms;
+}
+#anim-5{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 280ms;
+}
+#anim-6{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 350ms;
+}
+
+@keyframes anim-0 {
+    0%{
+        opacity: 1; 
+    } 
+    50%{
+        opacity: var(--opac); 
+    }
+    100%{
+        opacity: 1; 
+    }
+    
+}
+
+header, footer{
+    animation: anim-0 1.8s cubic-bezier(0.8, 0, 0.2, 1) 120ms;
+}
