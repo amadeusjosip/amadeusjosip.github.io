@@ -409,22 +409,18 @@ h3{
     background-color: transparent;
 }
 #od2{ 
-    background-color: #ff0a;
-    background-color: transparent;
+    background-color: transparent; 
     transition: 0.3s;
 }
-#od3{ 
-    margin-left: 10px;
-    background-color: #f3fa;
-    background-color: transparent;
+#od3{  
+    background-color: transparent; 
     transition: 0.3s;
 }
 
 #od2:hover, #od3:hover{
     transition: 0.3s;
-    margin-left: 1.5vw; 
+    letter-spacing: -0.5px;
 }
-
 
 
 @media screen and (max-width: 800px) {
@@ -543,14 +539,12 @@ h3{
 } 
  
  
- 
+  
 #goback:hover{    
     background-color: #2ff; 
     background-color: var(--boja-podloge);
     color: #cacaca;  
     transform: scale(100%);  
-    letter-spacing: 1vw;
+    letter-spacing: 0.1vw;
     transition: 0.3s;
 } 
-
- 
