@@ -4,20 +4,22 @@
 }
 
 :root{
-    --pozadina: #10A19D;
+    --pozadina: #10A19D;    
     --naslov: #FFBF00;
     --linkovi: #fff;
     --polje: #540375;
-    --haver: #FF7000;
-     
-    --pozadina: #FFBF00;
-    --naslov: #540375;
-    --linkovi: #540375;
-    --polje: #10A19D;
-    --haver: #540375;
-    --bijela: #fff;
+    --haver: #FF7000; 
+    
+    
+            --border-clr: #540375;
+            --polje: #FF7000;
+            --pozadina: #10A19D;
+            --naslov: #540375;
+            --linkovi: #540375;
+            --haver: #540375;
+            --bijela: #fff;
 }
-
+ 
 p{
     color: var(--linkovi);
 }
@@ -51,7 +53,7 @@ body{
     padding: 1vw;
     outline: solid;
     outline-width: 0.5vw;
-    outline-color: var(--naslov);
+    outline-color: var(--border-clr);
 }
 
 .linkovi{ 
@@ -90,7 +92,7 @@ h1{
         margin-top: 0px;
     }
     50%{
-        margin-top: 20px; 
+        margin-top: 30px; 
     }
     100%{
         margin-top: 0px;
@@ -102,33 +104,33 @@ header #p-l{
     animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
 }
 header #p-c{
-    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 250ms;
+    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
 }
 header #p-r{
-    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 500ms;
+    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
 }
 
 @keyframes anim-footer {
     0%{
-        margin-top: 0px;
+        margin-bottom: 0px;
     }
     50%{
-        opacity: 0.1; 
+        margin-bottom: 30px;
     }
     100%{
-        margin-top: 0px;
+        margin-bottom: 0px;
     }
     
 }
 
 footer #p-l{
-    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 300ms;
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
 }
 footer #p-c{
-    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 300ms;
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
 }
 footer #p-r{
-    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 300ms;
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
 }
 
 header{
@@ -170,6 +172,9 @@ footer{
 }
 
 @media screen and (max-width: 600px) { 
+
+    
+
     p { 
         font-size: 3.3vw;
         letter-spacing: -0.3px;
@@ -217,6 +222,7 @@ footer{
     50%{
         margin-top: 50px;
         background-color: var(--haver);
+        outline-color: var(--polje);
     }
     100%{
         margin-top: 0px;
@@ -225,7 +231,7 @@ footer{
 }
 
 .polje{
-    animation: anim-polje 1.4s cubic-bezier(0.8, 0, 0.2, 1);
+    animation: anim-polje 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
 }
 
 @keyframes anim-h1-polje {
@@ -233,7 +239,7 @@ footer{
         margin-top: 0px;
     }
     50%{
-        margin-top: 20px;
+        margin-top: 0px;
         color: var(--polje);
     }
     100%{
@@ -253,7 +259,6 @@ footer{
     }
     50%{
         margin-top: 5px;
-        color: var(--pozadina);
     }
     100%{
         margin-top: 0px;
@@ -268,7 +273,6 @@ footer{
     }
     50%{
         margin-top: 10px;
-        color: var(--pozadina);
     }
     100%{
         margin-top: 0px;
@@ -282,8 +286,7 @@ footer{
         margin-top: 0px;
     }
     50%{
-        margin-top: 20px;
-        color: var(--pozadina);
+        margin-top: 15px;
     }
     100%{
         margin-top: 0px;
@@ -297,8 +300,7 @@ footer{
         margin-top: 0px;
     }
     50%{
-        margin-top: 37px;
-        color: var(--pozadina);
+        margin-top: 20px;
     }
     100%{
         margin-top: 0px;
@@ -307,14 +309,14 @@ footer{
 }
 
 #linkovi-link-1{
-    animation: anim-linkovi-link-1 1.4s cubic-bezier(0.8, 0, 0.2, 1) 50ms;
+    animation: anim-linkovi-link-1 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
 }
 #linkovi-link-2{
-    animation: anim-linkovi-link-2 1.4s cubic-bezier(0.8, 0, 0.2, 1) 100ms;
+    animation: anim-linkovi-link-2 1.4s cubic-bezier(0.8, 0, 0.2, 1) 50ms;
 }
 #linkovi-link-3{
-    animation: anim-linkovi-link-3 1.4s cubic-bezier(0.8, 0, 0.2, 1) 150ms;
+    animation: anim-linkovi-link-3 1.4s cubic-bezier(0.8, 0, 0.2, 1) 100ms;
 }
 #linkovi-link-4{
-    animation: anim-linkovi-link-4 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
+    animation: anim-linkovi-link-4 1.4s cubic-bezier(0.8, 0, 0.2, 1) 150ms;
 }
