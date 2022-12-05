@@ -411,11 +411,18 @@ h3{
 #od2{ 
     background-color: #ff0a;
     background-color: transparent;
+    transition: 0.3s;
 }
 #od3{ 
     margin-left: 10px;
     background-color: #f3fa;
     background-color: transparent;
+    transition: 0.3s;
+}
+
+#od2:hover, #od3:hover{
+    transition: 0.3s;
+    margin-left: 1.5vw; 
 }
 
 
