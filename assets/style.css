@@ -76,7 +76,7 @@ a{
 }
 .link-main:hover{
     -webkit-text-stroke: 0.23vw var(--plava); 
-    transform: rotate(-1deg);
+    transform: rotate(-0.7deg);
     transition: 0.2s;
 }
 
