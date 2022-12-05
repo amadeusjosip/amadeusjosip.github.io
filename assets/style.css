@@ -220,7 +220,7 @@ footer{
     background-color: transparent;
     display: flex;
     flex-direction: row; 
-    justify-content: start;
+    justify-content: space-evenly;
 }
 #hdr-tekst-mali-2{ 
     background-color: rgba(255, 0, 251, 0.388);
@@ -232,7 +232,7 @@ footer{
     background-color: transparent;
     display: flex;
     flex-direction: row; 
-    justify-content: end;
+    justify-content: space-evenly;
 }
 
     
