@@ -13,11 +13,7 @@
     100%{margin-top: -20px;}
     
 }
-@keyframes naslovEfekt {
-    0%{margin-top: -40px;}
-    100%{margin-top: 0px;}
-    
-}
+
 
 @keyframes opis1efekt {
     0%{transform: translateX(30px) translateY(-10px); opacity: 0;}
@@ -100,9 +96,7 @@ main{
 
 .navbar{
     grid-column: 1/2;
-    grid-row: 1/12; 
-     
-  
+    grid-row: 1/12;  
 }
 
 .ime{
@@ -116,18 +110,35 @@ main{
     justify-content: center; 
     writing-mode: vertical-rl;  
     transform: rotate(180deg); 
-    background-color: #0f03;
 }
+
+@keyframes imenaEfekt {
+    0%{        
+        margin-left: 0px;
+        clip-path: polygon(100% 100%, 100% 0%, 0% 0%, 0% 100%);
+    }
+    50%{ 
+        margin-left: 10px;
+        clip-path: polygon(100% 100%, 100% 0%, 100% 0%, 100% 100%);
+    }
+    100%{     
+        margin-left: 0px;   
+        clip-path: polygon(100% 100%, 100% 0%, 0% 0%, 0% 100%);
+    }
+    
+}
+
 
 #ime1, #ime2{
     background-color: transparent;
+    animation: imenaEfekt 2s cubic-bezier(0.8, 0, 0.2, 1); 
 }
 #ime1{ 
     height: 69vh;
     display: flex;  
     flex-direction: row;
     justify-content: end; 
-    padding-bottom: 1vh;
+    padding-bottom: 1vh; 
 }
 #ime2{ 
     height: 29vh;
@@ -153,17 +164,43 @@ main{
     align-items: center;
 }
 
-.naslov{
-    background-color: #0f05;
-    background-color: transparent;
-    font-size: var(--velFonta); 
-    animation: naslovEfekt 2s cubic-bezier(.68,0,.25,1);   
-    width: fit-content;
-    height: fit-content;    
+ 
+@keyframes naslovEfekt {
+    0%{
+        margin-top: 0px;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 0% 95%);
+    }
+    50%{ 
+        margin-top: 50px;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 5%, 0% 5%);
+    }
+    100%{
+        margin-top: 0px;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 0% 95%);
+    }
     
 }
 
 
+.naslov{
+    background-color: #0f05;
+    background-color: transparent; 
+    font-size: var(--velFonta); 
+     padding: 0;
+     margin: 0;
+     animation: naslovEfekt 2s cubic-bezier(0.8, 0, 0.2, 1);  
+    transition: 0.2s; 
+    word-spacing: -12px;
+}
+
+.naslov:hover{ 
+    word-spacing: normal;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+ 
 
 .gif1{
     grid-column: 3/4;
@@ -312,28 +349,7 @@ a{
 }
  
 
-.maska1{
-    background-color: #d0cfce;
-    grid-column: 1/2;
-    grid-row: 1/12; 
-     z-index: 1;
-     
-     animation: m1efekt 2s cubic-bezier(.68,0,.25,1);
-     width: 10%;
-}
-
-
-.maska2{
-    background-color: #ed2e1a;
-    grid-column: 2/3; 
-    grid-row: 7/12; 
-     z-index: 1;
  
-     
-     animation: m2efekt 2s cubic-bezier(.68,0,.25,1);  
-     height: 100%;
-     margin-top: -20px;
-}
 
 span{
     color: #ed2e1a;
