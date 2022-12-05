@@ -538,12 +538,10 @@ h3{
     transition: 0.3s;
 } 
  
- 
-  
 #goback:hover{    
     background-color: #2ff; 
     background-color: var(--boja-podloge);
-    color: #cacaca;  
+    color: #bababa;  
     transform: scale(100%);  
     letter-spacing: 0.1vw;
     transition: 0.3s;
