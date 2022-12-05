@@ -235,6 +235,28 @@ footer{
     justify-content: space-evenly;
 }
 
+    #ftr-tekst-mali-1{
+    background-color: #ff09; 
+    padding-left: 0.5vw;
+    background-color: transparent;
+        
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
+#ftr-tekst-mali-2{
+    background-color: #f11a;
+    background-color: transparent;
+}
+#ftr-tekst-mali-3{
+    background-color: #11f6; 
+    padding-right: 0.5vw;
+    background-color: transparent;
+    
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
     
 }
 
