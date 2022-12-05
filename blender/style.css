@@ -547,9 +547,9 @@ h3{
 #goback:hover{    
     background-color: #2ff; 
     background-color: var(--boja-podloge);
-    color: #eaeaea;  
+    color: #cacaca;  
     transform: scale(100%);  
-    letter-spacing: 2vw;
+    letter-spacing: 1vw;
     transition: 0.3s;
 } 
 
