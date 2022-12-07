@@ -1,0 +1,404 @@
+@font-face {
+  font-family: fontA;
+  src: url(../assets/fontovi/font3.ttf);
+}
+
+:root{
+
+  --crna: #222831;
+  --roza: #efd7f4;
+  --bijela: #eee;
+  
+  --bojaTeksta: #f4f4f0;
+  --bojaPozadine: #e4ff00;
+  --bojaObruba: #f4f4f0;
+  --bojaPara: #f4f4f0;
+  --bojaParaBlijeda: #f4f4f0;
+
+  --gumbP: #000;
+  --gumbS: #fff;
+
+  --strk: 20px;
+  --strk2: 10px;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh; 
+  background-color: #f4f4f0; 
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  overflow: hidden;
+}
+
+*{
+  font-weight: normal;
+}
+
+main{
+  margin: 0;
+  padding: 0;
+  width: 80vw;
+  height: 80vh; 
+  margin-bottom: 50px;
+  background-color: #fff; 
+  border: 1px black solid;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: repeat(7, 1fr); 
+}
+
+.lijevo{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  grid-column: 1 / 2;
+}
+
+.desno-1{ 
+  background-color: white;
+  grid-column: 1 / 2;
+  border-right: 1px black solid;
+  
+}
+.desno-23{ 
+  background-color: white;
+  grid-column: 2 / 4;  
+  display: grid;
+  grid-template-rows: repeat(15, 1fr);
+}
+.txt{
+  font-family: fontA; font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+}
+.desno-naslov{
+  font-size: 45px;
+  grid-row: 3 / 5;
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+}
+h1{font-weight: bold; }
+.desno-opis{
+  font-size: 17px;
+  grid-row: 5 / 6;
+  display: flex;
+  align-items: center;
+  border-top: 1px black solid;
+  border-bottom: 1px black solid;
+  display: grid;
+  grid-template-columns: repeat(200, 1fr);
+}
+
+.desno-opis-A{
+  grid-column: 1 / 39;
+  border-right: 1px black solid;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: bold; 
+  text-transform: none;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-decoration-color: #e4ff00;
+}
+.desno-opis-B{
+  grid-column: 39 / 201;
+  padding-left: 10px;
+}
+
+ 
+
+.desno-para{
+  font-size: 17px;
+  grid-row: 6 / 10;
+  display: flex;
+  align-items: center;
+  font-weight: normal; 
+}
+.desno-para2{
+  font-size: 17px;
+  grid-row: 10 / 12;
+  display: flex;
+  align-items: center;
+}
+.desno-para3{
+  font-size: 17px;
+  grid-row: 12 / 14;
+  display: flex;
+  align-items: center;
+}
+
+a{
+  text-decoration: none;
+  background-color: #f4f4f0;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 5px #000;
+  color: black;
+  font-family: fontA;
+  padding: 10px;
+  transition: 0.6s;
+}
+
+a:hover{
+  background-color: #000; 
+  color: #f4f4f0;
+  box-shadow: 0px 0px #000;
+  border-radius: 4px;
+  transform: translateY(0px);
+  transition: 0.3s;
+}
+
+.desno-link{
+  font-size: 17px;
+  grid-row: 14 / 16; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.desno{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 1px black solid;
+  grid-column: 2 / 4;
+  grid-row: 1 / 8;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.nav-bar{
+  width: 100%;
+  height: 100%;
+  background-color: #e4ff00;
+  border: 1px black solid;
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+  display: flex;
+  align-items: center; 
+  padding-left: 2%;
+}
+
+h1{
+  margin: 0;
+  padding: 0;
+  font-family: fontA;
+  font-size: max(1vw, 30px);
+}
+   
+ 
+
+button{ 
+    font-family: fontA;
+    font-size: 16px;
+    color:var(--roza);
+    background-color: var(--crna);
+    text-decoration: none; 
+    border: none;
+    padding: 8px 15px;
+    margin: 0;
+    border-radius: 0px;
+    transition: .2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*
+button:hover{
+    background-color:#efd7f4;
+    color: #111;
+    transition: .2s;
+}
+*/
+
+
+p{
+  
+  font-family: fontA;
+  font-size: 16px; 
+  color: black;
+  text-decoration: none; 
+  border: none;
+  padding: 0px;
+  margin: 0;
+  border-radius: 3px;
+  transition: .2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+input{ 
+  color: var(--gumbS);
+  background-color: var(--gumbP);
+  height: 15px;
+  width: 150px;
+} 
+
+.poljeUpisa{
+  background-color: red;
+  color: yellow;
+}
+ 
+ 
+/* Styles the whole slider */
+.mojSlider{
+  width: 150px;
+  background-color: transparent; 
+  -webkit-appearance: none;
+}
+
+
+/* These styles affect what happens when the cursor is focused on the slider (i.e. clicking it) */
+.mojSlider:focus {
+  
+  /* Stops the default outline showing up */ 
+  outline-width: 3px;
+  outline: none;
+}
+ 
+.mojSlider::-webkit-slider-runnable-track {
+  background: black;
+  height: 1px;
+  -webkit-appearance: none;
+   
+  cursor: pointer;
+  
+}
+
+/* This is the moveable bit of the slider, known as the "thumb"*/
+.mojSlider::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--roza);
+  background: var(--gumbP);
+  cursor: pointer;
+  -webkit-appearance: none;
+   
+  margin-top: -12px;
+  outline: red;
+  border-radius: 0px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+}
+
+
+#progressBar{ 
+  width: 100vw; 
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;  
+  position: absolute;  
+  text-align: right;
+  color: black;
+  font-weight: normal;
+  font-family: fontA; 
+  transform: translateX(-15px);
+  text-transform: none;
+}
+ 
+ 
+ 
+.g1{  
+  transition: 0.3s;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+.g2:hover{
+  transition: 0.3s;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px black;
+}
+
+.g2{ 
+  transition: 0.3s;
+  color: black;
+  background-color: #f4f4f0;
+  border: 1px black solid;
+  box-shadow: 5px 5px black;
+  border-radius: 5px;
+}
+
+.g1:hover, .g2:hover{cursor: pointer;}
+ 
+
+.saveg{ 
+  border-radius: 5px;
+  transition: 0.3s;
+  color: black;
+  background-color: #f4f4f0;
+  border: 1px black solid;
+  box-shadow: 5px 5px black;
+}
+
+.saveg:hover{
+  transition: 0.3s;
+  border: 1px black solid;
+  box-shadow: 0px 0px black;
+  background-color: black;
+  color: white; 
+}
+
+  
+ 
+   
+.oklop-p5js{
+  margin: 0;
+  padding: 0;  
+  position: absolute;
+  border: var(--strk2) solid var(--bojaObruba);
+  background-color: transparent;
+  width: calc(100vw - 400px - var(--strk)); 
+  height: calc(100vh - var(--strk)); 
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.oklop-gumbi{
+  margin: 0;
+  padding: 0;  
+  position: absolute;
+  border: var(--strk2) solid var(--bojaObruba);
+  background-color: transparent;
+  width: 100vw;
+  height: calc(100vh - var(--strk)); 
+  right: 0;
+  top: 0;
+  z-index: 0;
+  display: none;
+}
+
+
+h6{
+  position: absolute;
+  left: 45vw;
+  bottom: 0vh;
+  font-family: fontA;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+#aj{
+  font-size: 31px;
+  font-weight: bold;
+}
