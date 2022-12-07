@@ -12,7 +12,7 @@
     
     
             --border-clr: #540375;
-            --polje: #FF7000;
+            --polje: #FFBF00;
             --pozadina: #10A19D;
             --naslov: #540375;
             --linkovi: #540375;
@@ -52,8 +52,8 @@ body{
     left: 30vw;
     padding: 1vw;
     outline: solid;
-    outline-width: 0.5vw;
-    outline-color: var(--border-clr);
+    outline-width: 0.5vw; 
+    outline-color: var(--border-clr); 
 }
 
 .linkovi{ 
@@ -93,6 +93,7 @@ h1{
     }
     50%{
         margin-top: 30px; 
+        opacity: 0.3;
     }
     100%{
         margin-top: 0px;
@@ -101,13 +102,13 @@ h1{
 }
 
 header #p-l{
-    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 770ms;
 }
 header #p-c{
-    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 770ms;
 }
 header #p-r{
-    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+    animation: anim-header 1.4s cubic-bezier(0.8, 0, 0.2, 1) 770ms;
 }
 
 @keyframes anim-footer {
@@ -116,6 +117,7 @@ header #p-r{
     }
     50%{
         margin-bottom: 30px;
+        opacity: 0.3;
     }
     100%{
         margin-bottom: 0px;
@@ -124,13 +126,13 @@ header #p-r{
 }
 
 footer #p-l{
-    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 770ms;
 }
 footer #p-c{
-    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 770ms;
 }
 footer #p-r{
-    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
+    animation: anim-footer 1.4s cubic-bezier(0.8, 0, 0.2, 1) 770ms;
 }
 
 header{
@@ -220,9 +222,7 @@ footer{
         margin-top: 0px;
     }
     50%{
-        margin-top: 50px;
-        background-color: var(--haver);
-        outline-color: var(--polje);
+        margin-top: 0px;
     }
     100%{
         margin-top: 0px;
@@ -231,57 +231,28 @@ footer{
 }
 
 .polje{
-    animation: anim-polje 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
+    animation: anim-polje 1.4s cubic-bezier(0.8, 0, 0.2, 1) 400ms;
 }
 
 @keyframes anim-h1-polje {
     0%{
-        margin-top: 0px;
+        margin-top: 0px; 
     }
     50%{
-        margin-top: 0px;
-        color: var(--polje);
+        margin-top: 40px;  
     }
     100%{
-        margin-top: 0px;
+        margin-top: 0px; 
     }
     
 }
 
 #h1-polje{
-    animation: anim-h1-polje 1.4s cubic-bezier(0.8, 0, 0.2, 1);
+    animation: anim-h1-polje 1.4s cubic-bezier(0.8, 0, 0.2, 1); 
 }
 
 
-@keyframes anim-linkovi-link-1 {
-    0%{
-        margin-top: 0px;
-    }
-    50%{
-        margin-top: 5px;
-    }
-    100%{
-        margin-top: 0px;
-    }
-    
-}
-
-
-@keyframes anim-linkovi-link-2 {
-    0%{
-        margin-top: 0px;
-    }
-    50%{
-        margin-top: 10px;
-    }
-    100%{
-        margin-top: 0px;
-    }
-    
-}
-
-
-@keyframes anim-linkovi-link-3 {
+@keyframes anim-linkovi-link {
     0%{
         margin-top: 0px;
     }
@@ -293,30 +264,19 @@ footer{
     }
     
 }
-
-
-@keyframes anim-linkovi-link-4 {
-    0%{
-        margin-top: 0px;
-    }
-    50%{
-        margin-top: 20px;
-    }
-    100%{
-        margin-top: 0px;
-    }
-    
-}
-
+ 
 #linkovi-link-1{
-    animation: anim-linkovi-link-1 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+    animation: anim-linkovi-link 1.4s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
 }
 #linkovi-link-2{
-    animation: anim-linkovi-link-2 1.4s cubic-bezier(0.8, 0, 0.2, 1) 50ms;
+    animation: anim-linkovi-link 1.4s cubic-bezier(0.8, 0, 0.2, 1) 50ms;
 }
 #linkovi-link-3{
-    animation: anim-linkovi-link-3 1.4s cubic-bezier(0.8, 0, 0.2, 1) 100ms;
+    animation: anim-linkovi-link 1.4s cubic-bezier(0.8, 0, 0.2, 1) 100ms;
 }
 #linkovi-link-4{
-    animation: anim-linkovi-link-4 1.4s cubic-bezier(0.8, 0, 0.2, 1) 150ms;
+    animation: anim-linkovi-link 1.4s cubic-bezier(0.8, 0, 0.2, 1) 150ms;
+}
+#linkovi-link-5{
+    animation: anim-linkovi-link 1.4s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
 }
