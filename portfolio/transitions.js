@@ -32,7 +32,7 @@ elem7.classList.add('animiraj-7'); // pocetak
 
  
 const elem8 = document.getElementById('elemH'); 
-eleelem8m2.classList.add('animiraj-8'); // pocetak 
+elem8.classList.add('animiraj-8'); // pocetak 
 
  
 const elem9 = document.getElementById('elemI'); 
