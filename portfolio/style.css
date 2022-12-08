@@ -1,0 +1,507 @@
+@font-face {
+  font-family: fontA;
+  src: url(../assets/fontovi/font1.ttf);
+}
+@font-face {
+  font-family: fontB;
+  src: url(../assets/fontovi/font2.ttf);
+}
+@font-face {
+  font-family: fontC; 
+  src: url(../assets/fontovi/fontB1.ttf);
+}
+@font-face {
+  font-family: fontD;
+  src: url(../assets/fontovi/fontB2.ttf);
+}
+@font-face {
+  font-family: fontE;
+  src: url(../assets/fontovi/fontB3.ttf);
+}
+@font-face {
+  font-family: fontF; 
+  src: url(../assets/fontovi/fontB4.ttf);
+}
+@font-face {
+  font-family: fontG; 
+  src: url(../assets/fontovi/fontB5.ttf);
+}
+@font-face {
+  font-family: fontH;
+  src: url(../assets/fontovi/fontB6.ttf);
+}
+
+@font-face {
+  font-family: fontX; 
+  src: url(../assets/fontovi/fontB7.ttf);
+}
+
+:root{
+  --bijela: white;
+  --crna: black;
+  --change: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-family: fontA;
+  }
+  body {
+    background-color: var(--bijela);
+    color: var(--crna);
+    height: 100vh; 
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    margin-top: 6px; 
+    position: fixed;
+    z-index: 100; 
+    color: var(--change);
+    mix-blend-mode: difference; 
+  }
+  #padding-cont{
+    padding-top: 60px;
+  }
+  .sub-header { 
+    margin: 0px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--change);
+  }
+  .sub-header div { 
+    margin: 1px 0px;
+    color: var(--change);
+  }
+  .sub-header span {
+    color: var(--change);
+    text-decoration: underline;
+  }
+  .container {
+    margin-top: 6px;
+  } 
+  .work-items {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: min-content;
+    width: 100%;
+  }
+  .work-items span {
+    overflow: hidden;
+  }
+  .work-item {
+    display: flex;
+    align-items: baseline;
+  }
+  .work-item h1, .work-item a {
+    padding: 0px; 
+    cursor: pointer;
+    font-size: 100px;
+    text-decoration: none;
+  }
+  .work-item span {
+    overflow: hidden;
+  }
+  
+  .work-item p {
+    align-self: flex-start;
+    padding-top: 25px;
+    padding-left: 5px; 
+    font-weight: lighter;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: fontA;
+  }
+  
+  .work-item span img {
+    height: 80px;
+    margin: 0px 2px;
+    margin-left: -100px;
+    transform-origin: left;
+    object-fit: contain;
+    transition: all 0.5s cubic-bezier(0.6, 0, 0.4, 1);
+    clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%); 
+  }
+  .work-item:hover span img {
+    margin-left: 2px;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%); 
+  }
+  .line {
+    height: 2px; 
+    background-color: var(--crna);
+    z-index: 1;
+    transform-origin: left top;
+  }
+  
+
+  .item-1 {
+    margin-left: 6%;
+  }
+  .item-2 {
+    margin-left: 19%;
+  }
+  .item-3 {
+    margin-left: 13%;
+  }
+  .item-4 {
+    margin-left: 5%;
+  }
+  .item-5 {
+    margin-left: 50%;
+  }
+  .item-6 {
+    margin-left: 30%;
+  }
+  .item-7 {
+    margin-left: 10%;
+  }
+  .item-8 {
+    margin-left: 33%;
+  }
+  .item-9 {
+    margin-left: 25%;
+  }
+  .item-10 {
+    margin-left: 33%;
+  }
+  .item-11 {
+    margin-left: 11%;
+  }
+  .item-12 {
+    margin-left: 20%;
+  }
+  .item-13 {
+    margin-left: 48%;
+  }
+
+
+  
+
+  img:hover{cursor: pointer;}
+  
+
+  .sub-header-link{
+    text-decoration: none;   
+    color: var(--bijela); 
+    border-bottom: solid 3px var(--change); 
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 100% 61%, 100% 68%, 0 100%, 0% 70%, 0% 30%);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 100% 61%, 22% 100%, 0 100%, 0% 70%, 0% 30%);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 100% 61%, 100% 89%, 20% 89%, 20% 100%, 0 100%);
+
+
+    transition: 1.4s cubic-bezier(0.8, 0, 0.2, 1); 
+  }
+  .sub-header-link:hover{
+    transition: 0.4s cubic-bezier(0.6, 0, 0.4, 1); 
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 100% 61%, 100% 100%, 0 100%, 0% 70%, 0% 30%);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 100% 61%, 100% 100%, 71% 100%, 0% 70%, 0% 30%);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 100% 61%, 100% 100%, 70% 100%, 70% 90%, 0 90%);
+
+
+
+  }
+ 
+ 
+
+  @keyframes animiraj-liniju {
+    0%{ 
+      width: 100%; 
+    }
+    50%{
+      width: 1%;  
+    }
+    100%{ 
+      width: 100%; 
+    }
+    
+  }
+  .line-1{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+  }
+  .line-2{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 100ms;
+  }
+  .line-3{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 200ms;
+  }
+  .line-4{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 300ms;
+  }
+  .line-5{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 400ms;
+  }
+  .line-6{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 500ms;
+  }
+  .line-7{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 600ms;
+  }
+  .line-8{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 700ms;
+  }
+  .line-9{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 800ms;
+  }
+  .line-10{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 900ms;
+  }
+  .line-11{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 1000ms;
+  }
+  .line-12{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1) 1100ms;
+  }
+  .line-13{
+    animation: animiraj-liniju 2s cubic-bezier(0.8, 0, 0.2, 1)1200ms;
+  }
+
+  .work-item{
+    width: fit-content;
+  }
+
+  a, a:hover{ 
+    color: var(--crna);
+  } 
+
+  .font-A{
+    font-family: fontA;
+  }
+  .font-B{
+    font-family: fontB;
+  }
+  .font-C{
+    font-family: fontC;
+  }
+  .font-D{
+    font-family: fontD;
+  }
+  .font-E{
+    font-family: fontE;
+  }
+  .font-F{
+    font-family: fontF;
+  }
+  .font-G{
+    font-family: fontG;
+  }
+  .font-H{
+    font-family: fontH;
+  }
+
+  .fw-N{
+    font-weight: normal;
+  }
+  .fw-B{
+    font-weight: bold;
+  }
+
+  .boja{ 
+    color: var(--change);
+  }
+  .boja:hover{ 
+    color: var(--change);
+  }
+
+  #mode:hover{
+    cursor: pointer;
+  }
+
+ 
+ 
+
+ 
+
+  @keyframes anim-proba {
+    0%{
+      margin-top: 0px; 
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    45%{   
+      clip-path: polygon(0 0, 100% 0, 100% 0%, 0% 0%);
+    }
+    55%{
+      margin-top: 40px;
+    }
+    100%{
+      margin-top: 0px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    
+  }
+
+  .animiraj-1{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+  }
+  .animiraj-2{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 150ms;
+  }
+  .animiraj-3{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 300ms;
+  }
+
+  
+  .animiraj-4{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 450ms;
+  }
+  .animiraj-5{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 600ms;
+  }
+  .animiraj-6{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 750ms;
+  }
+
+  
+  .animiraj-7{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 900ms;
+  }
+  .animiraj-8{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 1050ms;
+  }
+  .animiraj-9{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 1200ms;
+  }
+
+  
+  .animiraj-10{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 1350ms;
+  }
+  .animiraj-11{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 1500ms;
+  } 
+  
+  .animiraj-12{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 1650ms;
+  }
+  .animiraj-13{
+    animation: anim-proba 2s cubic-bezier(0.8, 0, 0.2, 1) 1800ms;
+  } 
+
+
+
+
+
+  .item-1, .item-2, .item-3,
+  .item-4, .item-5, .item-6,
+  .item-7, .item-8, .item-9,
+  .item-10, .item-11, .item-12,
+  .item-13{
+    transition: 1s cubic-bezier(0.8, 0, 0.2, 1); 
+    transform: translateX(60px);
+  } 
+  
+  .scroll-1, .scroll-2, .scroll-3,
+  .scroll-4, .scroll-5, .scroll-6,
+  .scroll-7, .scroll-8, .scroll-9,
+  .scroll-10, .scroll-11, .scroll-12,
+  .scroll-13{
+    transition: 1s cubic-bezier(0.8, 0, 0.2, 1); 
+    transform: translateX(0px);
+  }
+
+  .moje-ime{
+    transition: 1.2s cubic-bezier(0.8, 0, 0.2, 1); 
+    transform: translateY(-60px);
+  }
+  .scroll-A{
+    transition: 1.2s cubic-bezier(0.8, 0, 0.2, 1); 
+    transform: translateY(0px);
+  }
+  
+
+  
+  .slika{
+    transition: 1.8s cubic-bezier(0.8, 0, 0.2, 1); 
+    transform: translateY(-80px);
+  }
+  .scroll-B{
+    transition: 1.8s cubic-bezier(0.8, 0, 0.2, 1); 
+    transform: translateY(0px);
+  }
+  
+
+  .moje-ime{
+    font-size: 200px;
+    font-family: fontA;
+    font-weight: bold;
+    color: var(--change);
+    mix-blend-mode: exclusion;
+    z-index: 200;
+  }
+
+  .naslov-ftr{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+    height: 140px;
+  }
+
+
+  .slika{
+    width: 40%;
+    z-index: 0;
+  } 
+  footer{
+    margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .end{
+    height: 210px;
+  }
+
+  .slika-ftr{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .p-opis{
+    font-family: fontA;
+    font-size: 18px;
+    text-transform: uppercase; 
+    z-index: 100;
+    
+  transform: translateY(-80px);
+  transition: 1.8s cubic-bezier(0.7, 0, 0.3, 1); 
+  }
+  
+.scroll-C{
+  transition: 1.8s cubic-bezier(0.7, 0, 0.3, 1); 
+  transform: translateY(20px);
+}
+
+.p-opis2{
+  text-indent: 50px;
+  font-family: fontA;
+  font-size: 18px;
+  text-transform: uppercase; 
+  z-index: 100;
+  
+transform: translateY(-80px);
+transition: 2s cubic-bezier(0.7, 0, 0.3, 1); 
+}
+
+.scroll-C2{
+transition: 2s cubic-bezier(0.7, 0, 0.3, 1); 
+transform: translateY(20px);
+}
+
+
+.opis{
+  width: 60vw;
+  color: white;
+  mix-blend-mode: exclusion;
+  margin-left: 20vw; 
+}
+
+
+
+footer{padding-bottom: 70px;}
+   
