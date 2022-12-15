@@ -1,0 +1,71 @@
+@font-face {font-family: fontA;src: url(../assets/fontovi/font1.ttf);}
+* {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+body { 
+  width: 100vw;
+  height: 100vh;
+  background-color: #E6DDC4;
+  font-family: fontA;
+}
+h1, h3, p{
+  font-weight: normal;
+  color: #181D31;
+  font-size: 24px;
+}
+h1{text-align: center;font-size: 45px;}
+.naslov{width: 100vw;}
+.opis{
+  width: 60vw;
+  margin-left: 20vw;
+  margin-top: 2vw;
+}
+footer{
+  position: absolute;
+  bottom: 2vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}
+header{
+  position: absolute;
+  top: 2vh;
+  width: 94vw;
+  margin-left: 3vw;
+  display: flex;
+  justify-content: space-between;
+}
+.mala-slova{font-size: 14px;text-align: center;}
+@keyframes kanvas-anim {
+  0%{margin-top: 150px;clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);}
+  20%{margin-top: 150px;clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);}
+  100%{margin-top: 0px;clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);}
+}
+.kanvas{ 
+  animation: kanvas-anim 2s cubic-bezier(0.9, 0, 0.1, 1);
+  border-radius: 2px; 
+}
+
+@keyframes p-opis-anim {
+  0%{opacity: 0;transform: translateX(50px);} 
+  100%{opacity: 1;transform: translateX(0px);}
+}
+.p-opis{
+  animation: p-opis-anim 1.5s cubic-bezier(0.8, 0, 0.2, 1);
+}
+h1{
+  animation: p-opis-anim 1.8s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+@keyframes opacity-anim {
+  0%{opacity: 0;} 
+  100%{opacity: 1;}
+}
+footer, header{
+  animation: opacity-anim 1.2s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+
+
