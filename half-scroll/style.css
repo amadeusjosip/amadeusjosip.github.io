@@ -27,7 +27,7 @@ body{
     margin: 0;
     padding: 0;
     width: 100vw;
-    height: 135vh; 
+    height: 130vh; 
     font-size: 3vw;
     overflow-x: hidden;
     font-family: mojFont9;
@@ -55,7 +55,7 @@ a{
     width: fit-content; 
     padding-left: 1%; 
     position: absolute;
-    top: 24%; 
+    top: 34%; 
     display: flex;
     flex-direction: column; 
     justify-content: space-between; 
@@ -110,7 +110,7 @@ header{
     color: #000;
     margin-left: 70vw;
     width: 30vw;
-    height: 15vh;
+    height: 10vh;
 }
 
 #s1 h3, #s2 h3, #s3 h3, #s4 h3{ font-weight: normal; font-size: 3vw;}
@@ -225,3 +225,22 @@ header{
 #s4{
     animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1) 50ms;
 } 
+
+
+.boldani-tekst-bijeli{
+    -webkit-text-stroke: 0.05vw #ecece1;
+}
+.boldani-tekst-crni{
+    -webkit-text-stroke: 0.05vw #000;
+}
+
+#s4{
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#s4-p{
+    font-size: 1.15vw;
+}
