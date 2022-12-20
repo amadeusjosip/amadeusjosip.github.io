@@ -1,0 +1,214 @@
+@font-face {
+    font-family: mojFont7;
+    src: url(../assets/fontovi/fontB7.ttf);
+}
+
+@font-face {
+    font-family: mojFont4;
+    src: url(../assets/fontovi/fontB5.ttf);
+}
+
+@font-face {
+    font-family: mojFont9;
+    src: url(../assets/fontovi/fontB7.ttf);
+}
+
+@font-face {
+    font-family: xyz;
+    src: url(../assets/fontovi/fontC1.otf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 135vh;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 50px;
+    overflow-x: hidden;
+    font-family: mojFont9;
+    background-color: black;
+}
+  
+a{
+    text-decoration: none;
+    color: black;  
+}
+
+
+.linkovi{
+    width: 98%;
+    margin-left: 1%; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+ 
+
+.tekst{  
+    z-index: 100;
+    width: fit-content; 
+    padding-left: 1%; 
+    position: absolute;
+    top: 24%; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+.tekst h1{ 
+    font-size: 320px;
+    color: black;
+    font-family: xyz;
+    line-height: 110px;
+}
+#spen{ 
+    font-family: mojFont9; 
+    font-size: 120px;
+    color: black;
+}
+ 
+ 
+header{
+    width: 70vw;
+    height: 100vh;
+    position: fixed;
+    background-color: #dfc545;
+    color: white;
+}
+
+#s1, #s2, #s3, #s4{padding-left: 0.5%; padding-top: 0.5%;}
+
+#s2 h3, #s3 h3, #s4 h3, #s4 p{
+    padding-left: 1%;
+}
+
+#s1{
+    background-color: #ecece1;
+    color: #000;
+    margin-left: 70vw;
+    width: 30vw;
+    height: 30vh;
+}
+#s2{
+    background-color: #000;
+    color: #ecece1;
+    margin-left: 70vw;
+    width: 30vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} 
+#s4{
+    background-color: #ecece1;
+    color: #000;
+    margin-left: 70vw;
+    width: 30vw;
+    height: 15vh;
+}
+
+#s1 h3, #s2 h3, #s3 h3, #s4 h3{ font-weight: normal; font-size: 50px;}
+
+
+span{
+    color: black;
+}
+
+#s2 .linkovi, #s3 .linkovi{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#s2 .linkovi a, #s3 .linkovi a{ 
+    font-family: mojFont4;
+    color: white;
+    width: fit-content;
+    letter-spacing: -0.5px;
+    transition: 0.3s; 
+}
+
+#s2 .linkovi a:hover, #s3 .linkovi a:hover{ 
+    transition: 0.2s;
+    letter-spacing: 2px;
+    color: #dfc545;
+}
+
+header .linkovi a{
+    opacity: 1;
+    transition: 0.3s;
+    margin-top: 0px;
+}
+
+header .linkovi a:hover{
+    transition: 0.2s;
+    color: #ecece1;
+    margin-top: 5px;
+}
+ 
+#s1 h3{
+    transform: translateY(-10px);
+}
+
+#s2-socials{
+    padding-bottom: 1%;
+}
+
+
+@keyframes anim-header {
+    0%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    30%{
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+@keyframes anim-demo {
+    0%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    30%{
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+ 
+
+header{
+    animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1);
+}
+
+#header-linkovi-1, #header-linkovi-2, #header-linkovi-3{
+    animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1) 100ms;
+}
+.tekst{
+    animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1) 200ms;
+} 
+
+#s1{
+    animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1) 50ms;
+}
+#s2{
+    animation: anim-demo 2s cubic-bezier(0.75, 0, 0.25, 1) 50ms;
+} 
+#s4{
+    animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1) 50ms;
+} 
