@@ -27,9 +27,8 @@ body{
     margin: 0;
     padding: 0;
     width: 100vw;
-    height: 135vh;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 50px;
+    height: 135vh; 
+    font-size: 3vw;
     overflow-x: hidden;
     font-family: mojFont9;
     background-color: black;
@@ -63,14 +62,14 @@ a{
 }
 
 .tekst h1{ 
-    font-size: 320px;
+    font-size: 18.6vw;
     color: black;
     font-family: xyz;
-    line-height: 110px;
+    line-height: 6.5vw;
 }
 #spen{ 
     font-family: mojFont9; 
-    font-size: 120px;
+    font-size: 7vw;
     color: black;
 }
  
@@ -114,7 +113,7 @@ header{
     height: 15vh;
 }
 
-#s1 h3, #s2 h3, #s3 h3, #s4 h3{ font-weight: normal; font-size: 50px;}
+#s1 h3, #s2 h3, #s3 h3, #s4 h3{ font-weight: normal; font-size: 3vw;}
 
 
 span{
@@ -131,30 +130,29 @@ span{
     font-family: mojFont4;
     color: white;
     width: fit-content;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.03vw;
     transition: 0.3s; 
 }
 
 #s2 .linkovi a:hover, #s3 .linkovi a:hover{ 
     transition: 0.2s;
-    letter-spacing: 2px;
+    letter-spacing: 0.1vw;
     color: #dfc545;
 }
 
 header .linkovi a{
     opacity: 1;
-    transition: 0.3s;
-    margin-top: 0px;
+    transition: 0.3s; 
 }
 
 header .linkovi a:hover{
     transition: 0.2s;
     color: #ecece1;
-    margin-top: 5px;
+    margin-top: 0.2vw;
 }
  
 #s1 h3{
-    transform: translateY(-10px);
+    transform: translateY(-0.5vw);
 }
 
 #s2-socials{
@@ -176,6 +174,21 @@ header .linkovi a:hover{
         transform: translateY(0%);
     }
 }
+@keyframes anim-hdr {
+    0%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    40%{
+        opacity: 0;
+        transform: translateY(40%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
 @keyframes anim-demo {
     0%{
         opacity: 1;
@@ -193,14 +206,14 @@ header .linkovi a:hover{
  
 
 header{
-    animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1);
+    animation: anim-hdr 2s cubic-bezier(0.75, 0, 0.25, 1);
 }
 
 #header-linkovi-1, #header-linkovi-2, #header-linkovi-3{
     animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1) 100ms;
 }
 .tekst{
-    animation: anim-header 2s cubic-bezier(0.75, 0, 0.25, 1) 200ms;
+    animation: anim-hdr 2s cubic-bezier(0.75, 0, 0.25, 1) 200ms;
 } 
 
 #s1{
