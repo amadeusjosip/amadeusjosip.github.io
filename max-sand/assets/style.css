@@ -1,0 +1,318 @@
+@font-face {
+    font-family: fontA; 
+    src: url(fontovi/font1.ttf);
+}
+
+
+*{ 
+    font-family: fontA;  
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+:root{
+    --bijela: #e9e1cc; 
+    --plava: #325897; 
+}
+ 
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    background-color: var(--bijela);
+    text-transform: uppercase; 
+    color: var(--plava);
+    display: grid;
+    grid-template-rows: 4vh 88vh 4vh 4vh;
+}
+
+
+/*-----------------------------------------*/
+#hdr-tekst-mali-1{ 
+    padding-left: 0.5vw;
+    background-color: #1f1a; 
+    background-color: transparent;
+}
+#hdr-tekst-mali-2{ 
+    background-color: rgba(255, 0, 251, 0.388);
+    background-color: transparent;
+}
+#hdr-tekst-mali-3{ 
+    padding-right: 0.5vw;
+    background-color: rgba(0, 255, 204, 0.297);
+    background-color: transparent;
+    display: flex;
+    flex-direction: row; 
+    justify-content: end;
+}
+
+
+/*-----------------------------------------*/
+#ftr-tekst-mali-1{
+    background-color: #ff09; 
+    padding-left: 0.5vw;
+    background-color: transparent;
+}
+#ftr-tekst-mali-2{
+    background-color: #f11a;
+    background-color: transparent;
+}
+#ftr-tekst-mali-3{
+    background-color: #11f6; 
+    padding-right: 0.5vw;
+    background-color: transparent;
+}
+
+a{
+    text-decoration: none;
+    color: var(--plava);
+} 
+
+.link-main{
+    transition: 0.2s;
+}
+.link-main:hover{
+    -webkit-text-stroke: 0.23vw var(--plava); 
+    transform: rotate(-1deg);
+    transition: 0.2s;
+}
+
+
+.mali-hover:hover{
+    -webkit-text-stroke: 0.08vw var(--plava);  
+}
+
+.poravnanje-left{text-align: left;}
+.poravnanje-center{text-align: center;}
+.poravnanje-right{text-align: right;}
+
+.tekst-mali{  
+    margin: 0;
+    padding: 0; 
+}
+ 
+/*-----------------------------------------------*/
+header{
+    background-color: #ff44;
+    background-color: transparent;
+    grid-row: 1/2; 
+    font-size: 1vw;
+    width: 100vw; 
+    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+/*-----------------------------------------------*/
+main{
+    grid-row: 2/3;
+    width: 100vw;   
+    background-color: #0f08; 
+    background-color: transparent; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/*-----------------------------------------------*/
+footer{
+    grid-row: 4/5; 
+    font-size: 1vw;  
+    background-color: #f117;
+    background-color: transparent; 
+    width: 100vw; 
+    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+}
+/*-----------------------------------------------*/
+
+.link-main, .tekst-main{
+    margin: 0;
+    padding: 0;
+    font-size: 2.8vw;
+    line-height: 100%;
+}
+
+.main-gornji{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 1vh;
+}
+.main-sredina{
+    margin-top: 22vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.main-donji{
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+} 
+
+:root{
+    --opac: 0;
+    --margin-L: 50px;
+}
+ 
+/*-----------MID----------*/
+@media (max-width: 800px){
+
+    .main-gornji{  
+        margin-top: 0vh;
+    }
+
+    .main-sredina{
+        margin-top: 0vh; 
+    }
+
+    header, footer{
+        font-size: 3vw;
+    }
+
+    .link-main, .tekst-main{ 
+        font-size: 5vw; 
+    }
+:root{
+    --opac: 0.3;
+    --margin-L: 30px;
+}
+} 
+
+
+
+/*-----------mobile----------*/
+@media (max-width: 600px){
+
+    .main-gornji{  
+        margin-top: 10vh;
+    }
+
+    .main-sredina{
+        margin-top: 0vh; 
+    }
+
+    .main-donji{
+        margin-bottom: 20vh; 
+    }
+
+    header, footer{
+        font-size: 3vw;
+    }
+
+    .link-main, .tekst-main{ 
+        font-size: 8vw; 
+    }
+:root{
+    --opac: 0.3;
+    --margin-L: 20px; 
+   }
+    
+    
+#hdr-tekst-mali-1{ 
+    padding-left: 0.5vw;
+    background-color: #1f1a; 
+    background-color: transparent;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
+#hdr-tekst-mali-2{ 
+    background-color: rgba(255, 0, 251, 0.388);
+    background-color: transparent;
+}
+#hdr-tekst-mali-3{ 
+    padding-right: 0.5vw;
+    background-color: rgba(0, 255, 204, 0.297);
+    background-color: transparent;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
+
+    #ftr-tekst-mali-1{
+    background-color: #ff09; 
+    padding-left: 0.5vw;
+    background-color: transparent;
+        
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
+#ftr-tekst-mali-2{
+    background-color: #f11a;
+    background-color: transparent;
+}
+#ftr-tekst-mali-3{
+    background-color: #11f6; 
+    padding-right: 0.5vw;
+    background-color: transparent;
+    
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
+    
+}
+
+
+
+
+/*-------ANIMIRANJE---------*/
+@keyframes anim-1 { 
+    0%{
+        opacity: 1;
+        margin-left: 0px;
+    } 
+    50%{
+        opacity: var(--opac);
+        margin-left: var(--margin-L);
+    }
+    100%{
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+ 
+
+
+#anim-1{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 0ms;
+}
+#anim-2{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 70ms;
+}
+#anim-3{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 140ms;
+}
+#anim-4{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 210ms;
+}
+#anim-5{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 280ms;
+}
+#anim-6{
+    animation: anim-1 1.6s cubic-bezier(0.8, 0, 0.2, 1) 350ms;
+}
+
+@keyframes anim-0 {
+    0%{
+        opacity: 1; 
+    } 
+    50%{
+        opacity: var(--opac); 
+    }
+    100%{
+        opacity: 1; 
+    }
+    
+}
+
+header, footer{
+    animation: anim-0 1.8s cubic-bezier(0.8, 0, 0.2, 1) 120ms;
+}
