@@ -65,7 +65,7 @@ body{
     height: 90dvh;
     position: absolute;
     left: var(--left-kanvas);
-    top: 5dvh;
+    bottom: 5vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
