@@ -59,13 +59,18 @@ body{
 }
 
 
+.div{ 
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .skup{
     background-color: #efff04;
     width: var(--kanvas);
-    height: 90dvh;
-    position: absolute;
-    left: var(--left-kanvas);
-    bottom: 5vh;
+    height: 90vh; 
+    left: var(--left-kanvas); 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
