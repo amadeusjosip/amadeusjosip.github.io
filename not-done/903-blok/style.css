@@ -1,0 +1,227 @@
+:root {
+    --kanvas: 60vw; 
+    --left-kanvas: 20vw; 
+    --desno: 150px;
+}
+
+  @media screen and (max-width: 820px){
+    :root {
+        --kanvas: 90vw; 
+        --left-kanvas: 5vw; 
+        --desno: 0px;
+      }
+  }
+
+
+@font-face {
+    font-family: myFont;
+    src: url(fontovi/fontB7crta.otf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: myFont1;
+    font-weight: normal;
+    overflow-x: hidden;
+} 
+
+h1, h3, a{font-family: myFont;color: #111;}
+h1{font-size: 6vw;}
+h3, a{font-size: 1vw;}
+
+
+.grid-gore, .grid-dolje{
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+}
+
+.grid-el{
+    display: flex;
+    justify-content: space-around; 
+}
+
+.grid-dolje{
+    position: absolute;
+    bottom: 1vh;
+}
+.grid-gore{
+    position: absolute;
+    top: 1vh;
+}
+
+
+body{ 
+    background-color: #111;
+    background-color: transparent;
+    background-color: #e7e7e7;
+}
+
+
+.skup{
+    background-color: #efff04;
+    width: var(--kanvas);
+    height: 90vh;
+    position: absolute;
+    left: var(--left-kanvas);
+    top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} 
+.tekst-gore{   
+    margin-left: 2%;
+} 
+.tekst-dolje{  
+    margin-right: 2%; 
+} 
+.sredina{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+} 
+#gore{ 
+    text-align: left;
+}
+#dolje{
+    text-align: right; 
+}
+h3, a{text-align: center;}
+
+a{
+    text-decoration: none; 
+    text-align: center;  
+}
+a:hover{
+    -webkit-text-stroke: 1px #111;
+}
+
+.tekst-lijevo, .tekst-desno, .fotka{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+}
+
+.link{ 
+    width: fit-content; 
+}
+.wrapper{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+ 
+img{
+    width: 28vw;
+    object-fit: cover;
+    transition: 0.3s cubic-bezier(0.85, 0, 0.15, 1);
+}
+img:hover{
+    width: 30vw;
+    transition: 0.3s cubic-bezier(0.85, 0, 0.15, 1);
+}
+ 
+.wrapper-fotka{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;  
+}
+
+
+@media screen and (max-width: 820px){
+    img{
+        width: 60vw;
+    }
+    h1, h3, a{font-family: myFont;color: #111;}
+    h1{font-size: 12vw;}
+    h3, a{font-size: 4vw;}
+    .grid-el a, .grid-el h3{font-size: 2vw;}
+    .sredina {
+        display: flex;
+        flex-direction: column; 
+        justify-content: space-around; 
+        height: 72%;
+      }
+  }
+
+
+
+/*////////////////////---animacije---///////////////////////*/
+.item-1{
+    opacity: 0;
+    transform: translateY(-20px);  
+}
+.scroll-1{
+    opacity: 1; 
+    transform: translateY(0px);
+    transition: 1.5s cubic-bezier(0.85, 0, 0.15, 1);
+}  
+  
+
+.item-x{
+    transform: translateX(var(--desno)); 
+}
+.scroll-x{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+ 
+@keyframes efekt {
+    0%{  
+        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    }
+    100%{         
+        clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+    }
+    
+}
+
+@keyframes efekat {
+    0%{                 transform: translateX(0px);
+
+    }
+    40%{  
+                        transform: translateX(40px);
+    }
+    100%{                 transform: translateX(0px);
+
+    }
+    
+}
+@keyframes ef_opac {
+    0%{                 opacity: 100%;
+
+    }
+    40%{  
+                        opacity: 0%;
+    }
+    100%{               opacity: 100%;
+
+    }
+    
+}
+
+.reveal{
+    animation: ef_opac 1.8s cubic-bezier(0.8, 0, 0.2, 1) 300ms; 
+}
+
+#gore, #dolje{ 
+    animation: ef_opac 1.9s cubic-bezier(0.8, 0, 0.2, 1); 
+}
+.link-1{ 
+    animation: efekat 1.92s cubic-bezier(0.8, 0, 0.2, 1) 50ms; 
+}
+.link-2{ 
+    animation: efekat 1.92s cubic-bezier(0.8, 0, 0.2, 1) 100ms; 
+}
+.link-3{ 
+    animation: efekat 1.92s cubic-bezier(0.8, 0, 0.2, 1) 150ms; 
+}
+.link-4{ 
+    animation: efekat 1.92s cubic-bezier(0.8, 0, 0.2, 1) 200ms; 
+}
+
+
+@media screen and (max-width: 670px){
+}
