@@ -62,10 +62,10 @@ body{
 .skup{
     background-color: #efff04;
     width: var(--kanvas);
-    height: 90vh;
+    height: 90dvh;
     position: absolute;
     left: var(--left-kanvas);
-    top: 5vh;
+    top: 5dvh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
