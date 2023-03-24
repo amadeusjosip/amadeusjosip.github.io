@@ -210,3 +210,23 @@ const observerx0 = new IntersectionObserver((entries) => {
 const hiddenElementsx0 = document.querySelectorAll('.item-x0');
 hiddenElementsx0.forEach((el) => observerx0.observe(el));
 ///////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////
+
+const observerx8 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scroll-x8');
+        }
+        else{
+            entry.target.classList.remove('scroll-x8');
+        }
+ 
+    });
+}); 
+
+const hiddenElementsx8 = document.querySelectorAll('.item-x8');
+hiddenElementsx8.forEach((el) => observerx8.observe(el));
+///////////////////////////
+
