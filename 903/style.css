@@ -3,7 +3,6 @@
     --left-kanvas: 20vw; 
     --desno: 150px;
     --granica: 60vw;
-    --vh100: 100vh;
 }
 
   @media screen and (max-width: 820px){
@@ -11,8 +10,7 @@
         --kanvas: 90vw; 
         --left-kanvas: 5vw; 
         --desno: 0px;
-        --granica: 92vw;
-        --vh100: 60vh;
+        --granica: 94vw;
       }
   }
 
@@ -253,7 +251,7 @@ img:hover{
 
 #druga{
     width: 100vw;
-    height: var(--vh100);
+    height: 100dvh;
     background-color: #111;
     display: flex;
     align-items: center;
@@ -273,7 +271,7 @@ img:hover{
 
 #treca{
     width: 100vw;
-    height: var(--vh100);
+    height: 100dvh;
     background-color: #efff04;
     display: flex;
     align-items: center;
@@ -294,7 +292,7 @@ img:hover{
 
 #cetvrta{
     width: 100vw;
-    height: var(--vh100);
+    height: 100dvh;
     background-color: #111;
     display: flex;
     align-items: center;
@@ -314,7 +312,7 @@ img:hover{
 
 #peta{
     width: 100vw;
-    height: var(--vh100);
+    height: 100dvh;
     background-color: #e7e7e7;
     display: flex;
     align-items: center;
@@ -334,7 +332,7 @@ img:hover{
 
 #sesta{
     width: 100vw;
-    height: var(--vh100);
+    height: 100dvh;
     background-color: #111;
     display: flex;
     align-items: center;
@@ -353,7 +351,7 @@ img:hover{
 
 #sedma{
     width: 100vw;
-    height: var(--vh100);
+    height: 100dvh;
     background-color: #e7e7e7;
     display: flex;
     align-items: center;
@@ -373,7 +371,7 @@ img:hover{
 
 #prva{
     width: 100vw;
-    height: var(--vh100);
+    height: 100dvh;
     background-color: #efff04;
     display: flex;
     align-items: center;
@@ -385,6 +383,26 @@ img:hover{
     transform: translateX(150px); 
 }
 .scroll-x0{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+/*---------------------------------*/
+
+
+#osma{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #e7e7e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-8{width: var(--granica);}
+.slide-8:hover{width: var(--granica);}
+.item-x8{
+    transform: translateX(150px); 
+}
+.scroll-x8{
     transform: translateX(0px);
     transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
 }
