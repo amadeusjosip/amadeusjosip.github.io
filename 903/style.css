@@ -10,7 +10,7 @@
         --kanvas: 90vw; 
         --left-kanvas: 5vw; 
         --desno: 0px;
-        --granica: 90vw;
+        --granica: 92vw;
       }
   }
 
@@ -251,7 +251,8 @@ img:hover{
 
 #druga{
     width: 100vw;
-    height: 100dvh;
+    height: 100vh;
+    height: 100svh;
     background-color: #111;
     display: flex;
     align-items: center;
