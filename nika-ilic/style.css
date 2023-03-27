@@ -1,0 +1,480 @@
+:root {
+    --kanvas: 60vw; 
+    --left-kanvas: 20vw; 
+    --desno: 150px;
+    --granica: 60vw;
+}
+
+  @media screen and (max-width: 820px){
+    :root {
+        --kanvas: 90vw; 
+        --left-kanvas: 5vw; 
+        --desno: 0px;
+        --granica: 94vw;
+      }
+  }
+
+
+@font-face {
+    font-family: myFont;
+    src: url(fontovi/fontB7crta.otf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: myFont1;
+    font-weight: normal;
+    overflow-x: hidden;
+} 
+
+h1, h3, a{font-family: myFont;color: #e7e7e7;}
+h1{font-size: 6vw;}
+h3, a{font-size: 1vw;}
+
+
+.grid-gore, .grid-dolje{
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+}
+
+.grid-el{
+    display: flex;
+    justify-content: space-around; 
+}
+
+.grid-el a, .grid-el h3{color: #111;}
+ 
+.grid-gore{
+    position: absolute;
+    top: 1vh;
+}
+
+
+body{ 
+    background-color: #111;
+    background-color: transparent;
+    background-color: #efff04;
+    background-color: #efff04;
+    background-color: #e7e7e7;
+    background-color: #111;
+    background-color: #ffa304;
+    background-color: #efff04;
+}
+
+#div2{background-color: #333; color: #111; background-color: #111;}
+
+#gore2, #dolje2{color: #111;}
+.div{ 
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skup{
+    background-color: #111;
+    width: var(--kanvas);
+    height: 90vh; 
+    left: var(--left-kanvas); 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} 
+#skup2{background-color: #e7e7e7;color: #111;}
+.tekst-gore{   
+    margin-left: 2%;
+} 
+.tekst-dolje{  
+    margin-right: 2%; 
+} 
+.sredina{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+} 
+#gore{ 
+    text-align: left;
+}
+#dolje, #dolje2{
+    text-align: right; 
+}
+h3, a{text-align: center;}
+
+a{
+    text-decoration: none; 
+    text-align: center;  
+    color: #efff04;
+}
+a:hover{
+    -webkit-text-stroke: 1px #efff04;
+}
+
+.tekst-lijevo, .tekst-desno, .fotka{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+}
+
+.link{ 
+    width: fit-content; 
+}
+.wrapper{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+  
+ 
+.wrapper-fotka{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;  
+}
+
+ 
+  #skup2 .sredina .tekst-desno .wrapper a{color: #111;}
+  #skup2 .sredina .tekst-lijevo .wrapper a{color: #111;}
+  #skup2 .sredina .tekst-desno .wrapper a:hover{  -webkit-text-stroke: 1px #111;}
+  #skup2 .sredina .tekst-lijevo .wrapper a:hover{  -webkit-text-stroke: 1px #111;}
+  #skup2 h3{color: #111}
+
+
+
+/*////////////////////---animacije---///////////////////////*/
+.item-1{
+    opacity: 0;
+    transform: translateY(-20px);  
+}
+.scroll-1{
+    opacity: 1; 
+    transform: translateY(0px);
+    transition: 1.5s cubic-bezier(0.85, 0, 0.15, 1);
+}  
+  
+
+.item-x{
+    transform: translateX(var(--desno)); 
+}
+.scroll-x{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+ 
+@keyframes efekt {
+    0%{  
+        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    }
+    100%{         
+        clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+    }
+    
+}
+
+@keyframes efekat {
+    0%{                 transform: translateX(0px);
+
+    }
+    40%{  
+                        transform: translateX(40px);
+    }
+    100%{                 transform: translateX(0px);
+
+    }
+    
+}
+@keyframes ef_opac {
+    0%{                 opacity: 100%;
+
+    }
+    40%{  
+                        opacity: 0%;
+    }
+    100%{               opacity: 100%;
+
+    }
+    
+}
+
+.reveal{
+    animation: ef_opac 1.8s cubic-bezier(0.8, 0, 0.2, 1) 300ms; 
+}
+
+#gore, #dolje{ 
+    animation: ef_opac 1.9s cubic-bezier(0.8, 0, 0.2, 1); 
+}
+.link-1{ 
+    animation: efekat 1.92s cubic-bezier(0.8, 0, 0.2, 1) 50ms; 
+}
+.link-2{ 
+    animation: efekat 1.92s cubic-bezier(0.8, 0, 0.2, 1) 100ms; 
+}
+.link-3{ 
+    animation: efekat 1.92s cubic-bezier(0.8, 0, 0.2, 1) 150ms; 
+}
+.link-4{ 
+    animation: efekat 1.92s cubic-bezier(0.8, 0, 0.2, 1) 200ms; 
+}
+
+
+@media screen and (max-width: 670px){
+}
+
+
+
+
+#druga{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-2{width: var(--granica);}
+.slide-2:hover{width: var(--granica);}
+.item-x2{
+    transform: translateX(150px); 
+}
+.scroll-x2{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+/*---------------------------------*/
+
+
+#treca{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #efff04;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-3{width: var(--granica);}
+.slide-3:hover{width: var(--granica);}
+.item-x3{
+    transform: translateX(150px); 
+}
+.scroll-x3{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+
+/*---------------------------------*/
+
+
+#cetvrta{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-4{width: var(--granica);}
+.slide-4:hover{width: var(--granica);}
+.item-x4{
+    transform: translateX(150px); 
+}
+.scroll-x4{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+/*---------------------------------*/
+
+
+#peta{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #e7e7e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-5{width: var(--granica);}
+.slide-5:hover{width: var(--granica);}
+.item-x5{
+    transform: translateX(150px); 
+}
+.scroll-x5{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+/*---------------------------------*/
+
+
+#sesta{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-6{width: var(--granica);}
+.slide-6:hover{width: var(--granica);}
+.item-x6{
+    transform: translateX(150px); 
+}
+.scroll-x6{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}/*---------------------------------*/
+
+
+#sedma{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #e7e7e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-7{width: var(--granica);}
+.slide-7:hover{width: var(--granica);}
+.item-x7{
+    transform: translateX(150px); 
+}
+.scroll-x7{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+/*---------------------------------*/
+
+
+#prva{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #efff04;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-0{width: var(--granica);}
+.slide-0:hover{width: var(--granica);}
+.item-x0{
+    transform: translateX(150px); 
+}
+.scroll-x0{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+/*---------------------------------*/
+
+
+#osma{
+    width: 100vw;
+    height: 100dvh;
+    background-color: #e7e7e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-8{width: var(--granica);}
+.slide-8:hover{width: var(--granica);}
+.item-x8{
+    transform: translateX(150px); 
+}
+.scroll-x8{
+    transform: translateX(0px);
+    transition: 1.3s cubic-bezier(0.85, 0, 0.15, 1); 
+}
+
+
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+/*-------------------NEWWWWWWWWWWWWWWWWWWWWWWW NIKA ILIC --------------------------------------*/
+
+body{background-color: transparent;}
+.gifovi{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(21, 21, 21);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#gif-L{
+    background-color: rgb(21, 21, 21);
+    width: 50vw;
+    height: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+#gif-R{
+    background-color: rgb(235, 235, 235);
+    width: 50vw;
+    height: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+img{
+    width: 40vw;
+}
+
+
+@media screen and (max-width: 740px){
+    
+    .gifovi{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(21, 21, 21);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    #gif-L{
+        background-color: rgb(21, 21, 21);
+        width: 100%;
+        height: 50vh;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+    }
+    #gif-R{
+        background-color: rgb(235, 235, 235);
+        width: 100%;
+        height: 50vh;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    img{
+        width: 80vw;
+    }
+}
