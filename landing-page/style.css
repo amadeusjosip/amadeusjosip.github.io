@@ -1,0 +1,187 @@
+:root {
+    --kanvas: 60vw; 
+    --left-kanvas: 20vw; 
+    --desno: 150px;
+    --granica: 60vw;
+}
+
+  @media screen and (max-width: 820px){
+    :root {
+        --kanvas: 90vw; 
+        --left-kanvas: 5vw; 
+        --desno: 0px;
+        --granica: 94vw;
+      }
+  }
+
+
+@font-face {
+    font-family: myFont; 
+    src: url(fontovi/fontB8.ttf); 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: myFont;
+    font-weight: normal;
+    overflow-x: hidden;
+    font-size: 18px;
+} 
+a{
+    text-decoration: none;
+    color: black;
+}
+ 
+body{
+    background-color: white;
+    color: black;
+}
+
+.all{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    width: 99vw;
+    height: 97.5vh;
+    display: grid;
+    grid-template-rows: 5fr 25px; 
+}
+
+.para{ 
+    width: 400px;
+}
+
+
+.tab{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#tab-1{text-align: left;}
+#tab-2, #tab-3{text-align: center;}
+#tab-4{text-align: right;}
+
+#tab-2{
+    width: 60%;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+@media screen and (max-width: 1330px){
+    #tab-2 {
+        width: 82%;
+        margin-left: 9%;
+      }
+}
+
+
+
+.arrows:hover, .linkovi:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+*{
+    letter-spacing: normal;
+    letter-spacing: 0.5px; 
+}
+ 
+
+
+@media screen and (max-width: 890px){
+    *{
+        font-size: 15px;
+    }
+    .para{
+        width: 330px;
+    }
+}
+
+
+
+
+.m-all{
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.m-main{ 
+    display: grid;
+    grid-template-rows: 20px 8fr 20px;
+}
+.m-para{
+    width: 70%; 
+}
+@media screen and (max-width: 600px){
+    .m-para{
+        width: 80%; 
+    }
+}
+#ver-mobile h3, #ver-mobile a{
+    text-align: center;
+}
+#t0{ 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+#t0-L{display: flex; justify-content: start;}
+#t0-C{display: flex; justify-content: center;}
+#t0-R{display: flex; justify-content: end;} 
+
+.m-tab-D{ 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#t1{display: flex; justify-content: start;}
+#t2{display: flex; justify-content: end;}
+
+#m-email, #m-insta{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.m-para-okolo{
+    width: 100%;
+    height: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/ 
+#ver-desktop{
+    display: block;
+}
+#ver-mobile{
+    display: none;
+}
+@media screen and (max-width: 790px){
+    #ver-desktop{
+        display: none;
+    }
+    #ver-mobile{
+        display: block;
+    }
+}
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/ 
+/*-------DESKTOP------mobile-------------------------------------------------------------------------*/
