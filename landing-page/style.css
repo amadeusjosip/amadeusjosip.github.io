@@ -110,7 +110,7 @@ main{
 .m-all{
     width: 100vw;
     height: 100vh;
-    height: 100dvh;
+    height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,16 +136,13 @@ main{
     grid-template-columns: repeat(3, 1fr);
 }
 #t0-L{display: flex; justify-content: start;}
-#t0-C{display: flex; justify-content: center;}
+#t0-C{display: flex; justify-content: space-around;}
 #t0-R{display: flex; justify-content: end;} 
 
 .m-tab-D{ 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-#t1{display: flex; justify-content: start;}
-#t2{display: flex; justify-content: end;}
-
+    display: flex;
+    justify-content: space-between;
+} 
 #m-email, #m-insta{ 
     display: flex;
     justify-content: center;
