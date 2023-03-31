@@ -109,12 +109,12 @@ main{
 
 .m-all{
     width: 100vw;
-    height: 100vh;
-    height: 100svh;
+    height: 100vh; 
     display: flex;
     align-items: center;
     justify-content: center;
 }
+#visina{height: 100vh;}
 
 .m-main{ 
     display: grid;
