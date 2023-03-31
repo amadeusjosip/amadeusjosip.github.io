@@ -134,10 +134,8 @@ main{
 #t0{ 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-}
-#t0-L{display: flex; justify-content: start;}
-#t0-C{display: flex; justify-content: space-around;}
-#t0-R{display: flex; justify-content: end;} 
+    text-align: center;
+}  
 
 .m-tab-D{ 
     display: flex;
