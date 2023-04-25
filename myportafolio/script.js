@@ -1,9 +1,5 @@
 window.onbeforeunload = function() {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-  });
+    window.scrollTo(0, 0);
 };
 
 var avatar = document.getElementById("avatar");   
@@ -487,4 +483,24 @@ const obsA1 = new IntersectionObserver((entries) => {
 
 const indA1 = document.querySelectorAll('.itemA1');
 indA1.forEach((el) => obsA1.observe(el));
+
+
+
+
+/*reveal images animacija mobile*/
+const sT = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scrollTrans');
+        }
+        else{
+            entry.target.classList.remove('scrollTrans');
+        }
+ 
+    });
+}); 
+
+const indST = document.querySelectorAll('.slikaTrans');
+indST.forEach((el) => sT.observe(el));
 
