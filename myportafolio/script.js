@@ -316,3 +316,171 @@ function lijevoG(br){
 }
 
   
+
+
+
+/*-------ANIMACIJA NA SCROLL------------------*/
+const obs01 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scroll01GR');
+        }
+        else{
+            entry.target.classList.remove('scroll01GR');
+        }
+ 
+    });
+}); 
+
+const ind01 = document.querySelectorAll('.item01R');
+ind01.forEach((el) => obs01.observe(el));
+
+
+
+
+const obs02 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scroll01GR');
+        }
+        else{
+            entry.target.classList.remove('scroll01GR');
+        }
+ 
+    });
+}); 
+
+const ind02 = document.querySelectorAll('.item01G');
+ind02.forEach((el) => obs02.observe(el));
+
+
+
+
+const obs03 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scroll02GR');
+        }
+        else{
+            entry.target.classList.remove('scroll02GR');
+        }
+ 
+    });
+}); 
+
+const ind03 = document.querySelectorAll('.item02R');
+ind03.forEach((el) => obs03.observe(el));
+
+
+
+
+const obs04 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scroll02GR');
+        }
+        else{
+            entry.target.classList.remove('scroll02GR');
+        }
+ 
+    });
+}); 
+
+const ind04 = document.querySelectorAll('.item02G');
+ind04.forEach((el) => obs04.observe(el));
+
+/*---contact scroll animacije*/
+
+const obsK1 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scrollK1234');
+        }
+        else{
+            entry.target.classList.remove('scrollK1234');
+        }
+ 
+    });
+}); 
+
+const indK1 = document.querySelectorAll('.itemK1');
+indK1.forEach((el) => obsK1.observe(el));
+
+
+const obsK2 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scrollK1234');
+        }
+        else{
+            entry.target.classList.remove('scrollK1234');
+        }
+ 
+    });
+}); 
+
+const indK2 = document.querySelectorAll('.itemK2');
+indK2.forEach((el) => obsK2.observe(el));
+
+
+
+
+const obsK3 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scrollK1234');
+        }
+        else{
+            entry.target.classList.remove('scrollK1234');
+        }
+ 
+    });
+}); 
+
+const indK3 = document.querySelectorAll('.itemK3');
+indK3.forEach((el) => obsK3.observe(el));
+
+
+
+
+const obsK4 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scrollK1234');
+        }
+        else{
+            entry.target.classList.remove('scrollK1234');
+        }
+ 
+    });
+}); 
+
+const indK4 = document.querySelectorAll('.itemK4');
+indK4.forEach((el) => obsK4.observe(el));
+
+
+/*avatar animacija mobile*/
+const obsA1 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry) 
+        if(entry.isIntersecting){
+            entry.target.classList.add('scrollA1');
+        }
+        else{
+            entry.target.classList.remove('scrollA1');
+        }
+ 
+    });
+}); 
+
+const indA1 = document.querySelectorAll('.itemA1');
+indA1.forEach((el) => obsA1.observe(el));
+
