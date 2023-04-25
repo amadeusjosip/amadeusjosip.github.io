@@ -23,7 +23,7 @@ section:nth-child(1){
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #033;
+    background-color: dodgerblue;
 }
 
 section:nth-child(2){
@@ -32,7 +32,7 @@ section:nth-child(2){
     position: absolute;
     top: 90vh;
     left: 0;
-    background-color: #088;
+    background-color: aquamarine;
 }
 
 section:nth-child(3){
@@ -41,7 +41,7 @@ section:nth-child(3){
     position: absolute;
     top: 180vh;
     left: 0;
-    background-color: #333;
+    background-color: blue;
 }
 
 section{
@@ -49,22 +49,22 @@ section{
     align-items: center;
     justify-content: center;
 }
+ 
+h1{
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+}
 
-div{
-    width: 35vw;
-    height: 35vw;
+.kvadrat{
+    background-color: black;
+    width: 25vw;
+    height: 25vw;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-h1{
-    font-size: 30px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: black;
-}
-
-.kvadrat{background-color: white;}
 
 
 
@@ -96,14 +96,22 @@ h1{
 
 
 
-.scrollani {
-    height: 30%;
+
+
+
+
+
+
+
+
+.kvadrat {
+    height: 15vw;
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
     -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 .scrollani {
-    height: 70%;
+    height: 25vw;
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
     -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
