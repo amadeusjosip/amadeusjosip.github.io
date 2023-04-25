@@ -96,27 +96,14 @@ h1{
 
 
 
-
-
-
-
-
-
-
-
-
-.kvadrat{
-    transform: scaleY(50%);
-    -webkit-transform: scaleY(50%);
-
+.scrollani {
+    height: 30%;
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
     -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
-.scrollani{
-    transform: scaleY(100%);
-    -webkit-transform: scaleY(100%);
-
+.scrollani {
+    height: 70%;
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
     -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
