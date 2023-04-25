@@ -736,11 +736,11 @@ main div:nth-child(1) h3{
 
 
 .slikaTrans{ 
-    opacity: 0;
+    transform: scaleY(50%) translateY(-10px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 .scrollTrans{ 
-    opacity: 1;
+    transform: scaleY(100%) translateY(0px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
