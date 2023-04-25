@@ -675,31 +675,7 @@ main div:nth-child(1) h3{
 }
 
 
-@-webkit-keyframes revealimg {
-    0%{
-        -webkit-transform: scaleY(50%) translateY(10px); 
-    }
-    100%{
-        -webkit-transform: scaleY(100%) translateY(0px); 
-    }
-}
-
-@keyframes revealimg {
-    0%{
-        transform: scaleY(50%) translateY(10px); 
-    }
-    100%{
-        transform: scaleY(100%) translateY(0px); 
-    }
-}
-
-#slikaR1, #slikaR2, #slikaR3, #slikaR4, #slikaR5, 
-#slikaG1, #slikaG2, #slikaG3, #slikaG4, #slikaG5
-{
-    animation: revealimg 0.5s;
-    -webkit-animation: revealimg 0.5s;
-}
-
+ 
 
 .item01G, .item01R{
     transform: translateX(15px);
@@ -720,15 +696,15 @@ main div:nth-child(1) h3{
 
 
 .itemK4{
-    transform: translateY(-10px);
+    transform: translateY(-25px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK3{
-    transform: translateY(-5px);
+    transform: translateY(-20px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK2{
-    transform: translateY(-5px);
+    transform: translateY(-15px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK1{
@@ -754,5 +730,17 @@ main div:nth-child(1) h3{
 .scrollA1{ 
     transform: scale(100%);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); 
+    transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+}
+
+
+
+.slikaTrans{ 
+    transform: scaleY(50%) translateY(-10px);
+    transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+}
+
+.scrollTrans{ 
+    transform: scaleY(100%) translateY(0px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
