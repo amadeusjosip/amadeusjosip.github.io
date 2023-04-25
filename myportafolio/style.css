@@ -397,6 +397,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(1) div section:nth-child(2){
     width: 100%;
@@ -413,6 +414,7 @@ main div:nth-child(1) h3{
     align-items: center;
     flex-direction: row;
     justify-content: space-between; 
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(1) div h3{
     color: var(--bijela); 
@@ -454,6 +456,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between;
     background-color: var(--svjetlo-smeda);
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(2) div section:nth-child(2){
     width: 90%;
@@ -472,6 +475,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between; 
     background-color: var(--svjetlo-smeda);
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(2) div h3{
     color: var(--crna);
@@ -513,6 +517,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between;
     background-color: var(--smeda);
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(3) div section:nth-child(2){
     width: 90%;
@@ -531,6 +536,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between; 
     background-color: var(--smeda); 
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(3) div h3{
     color: var(--bijela);
@@ -577,6 +583,7 @@ main div:nth-child(1) h3{
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(4) section div:nth-child(1) h3{
     font-size: 7vw;
@@ -594,6 +601,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between; 
     align-items: end;
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(4) section div:nth-child(2) a{
     color: var(--crna);
@@ -722,14 +730,12 @@ main div:nth-child(1) h3{
 
 
 .itemA1{ 
-    transform: scale(120%);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%); 
+    transform: scaleY(50%) translateY(-10px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 .scrollA1{ 
-    transform: scale(100%);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); 
+    transform: scaleY(100%) translateY(0px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
