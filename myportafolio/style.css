@@ -696,19 +696,19 @@ main div:nth-child(1) h3{
 
 
 .itemK4{
-    transform: translateY(-25px);
+    transform: translateY(-6px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK3{
-    transform: translateY(-20px);
+    transform: translateY(6px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK2{
-    transform: translateY(-15px);
+    transform: translateY(6px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK1{
-    transform: translateY(-10px);
+    transform: translateY(-6px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
@@ -736,11 +736,11 @@ main div:nth-child(1) h3{
 
 
 .slikaTrans{ 
-    transform: scaleY(50%) translateY(-10px);
+    opacity: 0;
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 .scrollTrans{ 
-    transform: scaleY(100%) translateY(0px);
+    opacity: 1;
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
