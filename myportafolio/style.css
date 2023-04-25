@@ -421,11 +421,8 @@ main div:nth-child(1) h3{
     color: #eee;
     font-size: 7vw;
 }
-#version-mobile div:nth-child(1) div section:nth-child(2) img{
-    height: 100%;
-    width: auto;
-    object-fit: cover;
-}
+
+
 
 
 
@@ -480,11 +477,6 @@ main div:nth-child(1) h3{
 #version-mobile div:nth-child(2) div h3{
     color: var(--crna);
     font-size: 7vw;
-}
-#version-mobile div:nth-child(2) div section:nth-child(2) img{
-    width: 100%;
-    height: auto;
-    object-fit: cover; 
 }
 
 
@@ -544,13 +536,7 @@ main div:nth-child(1) h3{
     font-size: 7vw;
     overflow: hidden;
 }
-#version-mobile div:nth-child(3) div section:nth-child(2) img{
-    width: 100%;
-    height: auto;
-    object-fit: cover; 
-}
-
-
+ 
 
 
 
@@ -571,6 +557,7 @@ main div:nth-child(1) h3{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-y: hidden;
 }
 
 #version-mobile div:nth-child(4) section div:nth-child(1){
@@ -601,7 +588,6 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between; 
     align-items: end;
-    overflow-y: hidden;
 }
 #version-mobile div:nth-child(4) section div:nth-child(2) a{
     color: var(--crna);
@@ -628,11 +614,11 @@ main div:nth-child(1) h3{
         clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
     }
     50%{ 
-        background-color: var(--svjetlo-smeda);
+        background-color: var(--bijela);
         clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
     }
     100%{ 
-        background-color: var(--svjetlo-smeda);
+        background-color: var(--bijela);
         clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
     }
 }
@@ -656,19 +642,19 @@ main div:nth-child(1) h3{
         transform: translateY(-8vh);
         color: var(--smeda);
         letter-spacing: 5.5vw;
-        font-size: 6vw;
+        font-size: 3vw;
     }
     50%{ 
         transform: translateY(0vh);
         color: var(--smeda);
         letter-spacing: 3.3vw;
-        font-size: 6vw;
+        font-size: 8vw;
     }
     100%{  
         transform: translateY(0vh);
         color: var(--smeda);
         letter-spacing: normal;
-        font-size: 6vw;
+        font-size: 8vw;
     }
 }
 #loading h5{
@@ -676,7 +662,7 @@ main div:nth-child(1) h3{
     color: var(--smeda);
     animation: loadH5 2.8s cubic-bezier(0.8, 0, 0.2, 1); 
     letter-spacing: normal;
-    font-size: 6vw;
+    font-size: 8vw;
 }
 
 
@@ -704,19 +690,19 @@ main div:nth-child(1) h3{
 
 
 .itemK4{
-    transform: translateY(-6px);
+    transform: translateY(-25px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK3{
-    transform: translateY(6px);
+    transform: translateY(-20px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK2{
-    transform: translateY(6px);
+    transform: translateY(-15px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK1{
-    transform: translateY(-6px);
+    transform: translateY(-10px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
@@ -730,43 +716,33 @@ main div:nth-child(1) h3{
 
 
 .itemA1{ 
-    opacity: 0;
-    transform: scaleY(80%) translateY(-10px);
-    -webkit-transform: scaleY(80%) translateY(-10px);
-    -ms-transform: scaleY(80%) translateY(-10px);
-    transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    height: 70%;
+    width: auto;
+    object-fit: cover;
+    transition: 0.5s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
-.scrollA1{ 
-    opacity: 1;
-    transform: scaleY(100%) translateY(0px);
-    -webkit-transform: scaleY(100%) translateY(0px);
-    -ms-transform: scaleY(100%) translateY(0px);
-    transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+.scrollA1{
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    transition: 0.5s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 
 
-.slikaTrans{ 
-    opacity: 0;
-    transform: scaleY(50%) translateY(-10px);
-    -webkit-transform: scaleY(50%) translateY(-10px);
-    -ms-transform: scaleY(50%) translateY(-10px);
-    transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+.slikaTrans{
+    width: 70%;
+    height: auto;
+    object-fit: cover; 
+    transition: 0.5s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
-.scrollTrans{ 
-    opacity: 1;
-    transform: scaleY(100%) translateY(0px);
-    -webkit-transform: scaleY(100%) translateY(0px);
-    -ms-transform: scaleY(100%) translateY(0px);
-    transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+.scrollTrans{
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+    transition: 0.5s cubic-bezier(0.82, 0, 0.18, 1);
 }
+
+
