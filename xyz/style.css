@@ -41,7 +41,7 @@ section:nth-child(3){
     position: absolute;
     top: 180vh;
     left: 0;
-    background-color: #0aa;
+    background-color: #333;
 }
 
 section{
@@ -66,9 +66,49 @@ h1{
 
 .kvadrat{background-color: white;}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .kvadrat{
     transform: scaleY(50%);
     -webkit-transform: scaleY(50%);
+
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
     -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
@@ -76,6 +116,7 @@ h1{
 .scrollani{
     transform: scaleY(100%);
     -webkit-transform: scaleY(100%);
+
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
     -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
