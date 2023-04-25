@@ -397,6 +397,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     align-items: center;
     justify-content: space-between; 
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(1) div section:nth-child(2){
     width: 100%;
@@ -413,6 +414,7 @@ main div:nth-child(1) h3{
     align-items: center;
     flex-direction: row;
     justify-content: space-between; 
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(1) div h3{
     color: var(--bijela); 
@@ -454,6 +456,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between;
     background-color: var(--svjetlo-smeda);
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(2) div section:nth-child(2){
     width: 90%;
@@ -472,6 +475,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between; 
     background-color: var(--svjetlo-smeda);
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(2) div h3{
     color: var(--crna);
@@ -513,6 +517,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between;
     background-color: var(--smeda);
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(3) div section:nth-child(2){
     width: 90%;
@@ -531,6 +536,7 @@ main div:nth-child(1) h3{
     flex-direction: row;
     justify-content: space-between; 
     background-color: var(--smeda); 
+    overflow-y: hidden;
 }
 #version-mobile div:nth-child(3) div h3{
     color: var(--bijela);
@@ -561,7 +567,7 @@ main div:nth-child(1) h3{
 
 #version-mobile div:nth-child(4) section{
     width: 90%;
-    height: 70%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
