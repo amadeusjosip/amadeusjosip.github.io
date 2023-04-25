@@ -720,15 +720,15 @@ main div:nth-child(1) h3{
 
 
 .itemK4{
-    transform: translateY(-25px);
+    transform: translateY(-10px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK3{
-    transform: translateY(-20px);
+    transform: translateY(-5px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK2{
-    transform: translateY(-15px);
+    transform: translateY(-5px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 .itemK1{
