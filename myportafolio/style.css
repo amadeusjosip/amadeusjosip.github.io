@@ -735,6 +735,8 @@ main div:nth-child(1) h3{
     -webkit-transform: scaleY(80%) translateY(-10px);
     -ms-transform: scaleY(80%) translateY(-10px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 .scrollA1{ 
@@ -743,20 +745,28 @@ main div:nth-child(1) h3{
     -webkit-transform: scaleY(100%) translateY(0px);
     -ms-transform: scaleY(100%) translateY(0px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 
 
 .slikaTrans{ 
+    opacity: 0;
     transform: scaleY(50%) translateY(-10px);
     -webkit-transform: scaleY(50%) translateY(-10px);
     -ms-transform: scaleY(50%) translateY(-10px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 .scrollTrans{ 
+    opacity: 1;
     transform: scaleY(100%) translateY(0px);
     -webkit-transform: scaleY(100%) translateY(0px);
     -ms-transform: scaleY(100%) translateY(0px);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
