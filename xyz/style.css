@@ -23,7 +23,7 @@ section:nth-child(1){
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #f0f;
+    background-color: #033;
 }
 
 section:nth-child(2){
@@ -32,7 +32,7 @@ section:nth-child(2){
     position: absolute;
     top: 90vh;
     left: 0;
-    background-color: #808;
+    background-color: #088;
 }
 
 section:nth-child(3){
@@ -41,7 +41,7 @@ section:nth-child(3){
     position: absolute;
     top: 180vh;
     left: 0;
-    background-color: #303;
+    background-color: #0aa;
 }
 
 section{
@@ -53,7 +53,6 @@ section{
 div{
     width: 35vw;
     height: 35vw;
-    background-color: pink;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,22 +64,18 @@ h1{
     color: black;
 }
 
+.kvadrat{background-color: white;}
+
 .kvadrat{
-    opacity: 0;
-    transform: scaleY(50%) translateY(-10px);
-    -webkit-transform: scaleY(50%) translateY(-10px);
-    -ms-transform: scaleY(50%) translateY(-10px);
+    transform: scaleY(50%);
+    -webkit-transform: scaleY(50%);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
     -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
 
 .scrollani{
-    opacity: 1;
-    transform: scaleY(100%) translateY(0px);
-    -webkit-transform: scaleY(100%) translateY(0px);
-    -ms-transform: scaleY(100%) translateY(0px);
+    transform: scaleY(100%);
+    -webkit-transform: scaleY(100%);
     transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
     -webkit-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
-    -ms-transition: 0.8s cubic-bezier(0.82, 0, 0.18, 1);
 }
