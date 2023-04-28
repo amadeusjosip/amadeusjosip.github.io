@@ -6,7 +6,6 @@ function preload() {
 }
 let canvas;
 
-var ok = -5;
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight, WEBGL);
@@ -27,7 +26,6 @@ let imgIndex = 0; // index of current image to display
 let imgList = []; // array to store images
 
  
-let selectedImg;
 
 function draw() {
   // calculate distance traveled by mouse
@@ -61,16 +59,6 @@ function draw() {
     let rekt = rects[i];
     let img = imgList[rekt.imgIndex];
     image(img, rekt.x - width/2, rekt.y - height/2, 200, 300);
-    
-  
-  } 
-   
-  if (mouseIsPressed) {
-    background(0,0,255);
-    fill(255, 255,255);
-    rect(0, 0, 300, 300);
   }
 
-
 }
- 
