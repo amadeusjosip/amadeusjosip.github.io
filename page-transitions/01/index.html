@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Web Page</title>
+    <style>
+      /* Add some basic styles to the page */
+      body {
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      #pageONE {
+        background-color: green;
+        width: 40%;
+        transition: 0.5s;
+      }
+
+      #pageONE.fade-out {
+        background-color: black;
+        transition: 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pageONE">
+      <p>This is my page. If you want to contact me, click <a href="color.html" id="contact-link">here</a>.</p>
+    </div>
+
+    <script>
+      var link = document.getElementById('contact-link');
+
+      link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+
+        var pageOne = document.getElementById('pageONE');
+        pageOne.classList.add('fade-out'); // Add fade-out class to start fade-out animation
+
+        setTimeout(function() {
+          window.location.href = 'color.html'; // Navigate to other page after fade-out animation is complete
+        }, 500); // Wait 500ms for fade-out animation to complete
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!--color.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Other Page</title>
+    <style>
+      /* Add some basic styles to the page */
+      body {
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      @keyframes aaa {
+        0%{
+          opacity: 0;
+        }
+        100%{
+          opacity: 100;
+        }
+        
+      }
+      #pageTWO{
+        background-color: red;
+        width: 30%;
+        animation: aaa 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+
+
+
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pageTWO">
+      <p>This is the other page. You can reach us at:</p>
+      <ul>
+        <li>Email: info@example.com</li>
+        <li>Phone: 555-1234</li>
+      </ul>
+      <p>Want to go back?</p>
+      <a href="/index.html" id="home-link">Home</a>
+    </div>
+  </body>
+</html>

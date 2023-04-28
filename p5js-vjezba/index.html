@@ -9,26 +9,29 @@
     <script src="p5.js"></script> 
     <script src="script.js"></script>
 </head>
-<body>
+<body id="bodi">
 
 
-<div>
+<div id="myDiv">
     <section>
         <div id="vid">
-            <p>Mario is a 33-year-old photographer from Zagreb, Croatia with a unique style. His dreamy photos on Instagram capture the imagination of his followers, showcasing his talents as a visionary artist.</p>
-            <div><a href="#">Email ↗</a><a target="_blank" href="https://www.google.com/?hl=hr">Instagram ↗</a></div>
-            <p>Site design & development by <span><a target="_blank" href="https://www.google.com/?hl=hr">Josip Amadeus</a></span></p>
-            <p>©2023 Josip Amadeus. All rights reserved.</p>
         </div>
     </section>
     <section>
-        <div><a target="_blank" href="https://www.google.com/?hl=hr">Mario Pucic</a></div>
-        <div><div><a target="_blank" href="https://www.google.com/?hl=hr">About</a></div><div><a target="_blank" href="https://www.google.com/?hl=hr">Gallery</a></div><div><a target="_blank" href="https://www.google.com/?hl=hr">Contact</a></div></div>
-        <div><a target="_blank" href="https://www.google.com/?hl=hr">(+385)98/7654-321</a></div>
+        <div><a href="#">Mario Pucic</a></div>
+        <div><div><a id="tabby" href="/about">About</a></div><div><a href="#">Contact</a></div><div><a href="#" id="selekted">Gallery</a></div></div>
+        <div><a id="boja" href="#">(+385)98/7654-321</a></div>
         <div><a href="mailto:mario.pucic@gmail.com">mario.pucic@gmail.com</a></div> 
-    </section>
+    </section>    
 </div>
 
+<section id="tajni" style="display: none; z-index: -3;">
+    <img id="myImage" src="assets/slike/a04.jpg">
+</section>
+
+
+
+<script src="mouseKliked.js"></script>
  
 </body>
 </html>

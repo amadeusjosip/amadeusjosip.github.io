@@ -28,8 +28,20 @@ let imgList = []; // array to store images
 
  
 let selectedImg;
+var vr = 0;
+
+
+/*za novi layer podaci*/
+var zadnjeZapamceni;
+var zastavicaZaLayer = -2;
+var localVr = 0;
+/*za novi layer podaci*/
+
+
+
 
 function draw() {
+  vr+=2;
   // calculate distance traveled by mouse
   let dx = mouseX - lastX;
   let dy = mouseY - lastY;
@@ -61,16 +73,20 @@ function draw() {
     let rekt = rects[i];
     let img = imgList[rekt.imgIndex];
     image(img, rekt.x - width/2, rekt.y - height/2, 200, 300);
-    
+    zadnjeZapamceni = imgList[rekt.imgIndex];
   
+     
   } 
-   
-  if (mouseIsPressed) {
-    background(0,0,255);
-    fill(255, 255,255);
-    rect(0, 0, 300, 300);
-  }
+    
+  push();
+  translate(0, 0);
+  rectMode(CENTER);
+  noFill();
+  strokeWeight(20);
+  stroke(255, 255, 255);
+  rect(0, 0, width, height);
+  pop();
 
 
-}
- 
+
+} 

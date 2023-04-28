@@ -1,0 +1,174 @@
+:root{
+  --portion: 6%;
+}
+
+@font-face {
+  font-family: mojFont;
+  src: url(../assets/fontovi/fontB7.ttf);
+} 
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: mojFont;
+}
+
+body{
+  background-color: rgb(201, 38, 65);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+div{
+  width: calc(100vw - 14px);
+  height: calc(100vh - 14px);
+  display: flex;
+  flex-direction: column; 
+}
+
+section:nth-child(1){
+  height: calc(100% - var(--portion)); 
+}
+
+section:nth-child(1) div{
+  width: 30%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+section:nth-child(1) div div{
+  width: 100%;
+  height: fit-content;    
+  display: flex;
+  flex-direction: column;
+}
+section:nth-child(1) div div a:nth-child(1){ 
+  height: 50%;
+  display: flex;
+  align-items: end;
+}
+section:nth-child(1) div div a:nth-child(2){ 
+  height: 50%;
+  display: flex;
+  align-items: start;
+}
+
+p{
+  text-align: left;
+}
+
+
+
+
+section:nth-child(2){
+  height: var(--portion); 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+}
+
+
+/*footer basically*/
+section:nth-child(2) div{ 
+  height: fit-content;
+  display: flex;
+}
+
+section:nth-child(2) div:nth-child(1){ 
+  flex-direction: row;
+  justify-content: start;
+}
+
+section:nth-child(2) div:nth-child(2){ 
+  flex-direction: row;
+  justify-content: space-around;
+}
+  section:nth-child(2) div:nth-child(2) div{ 
+      width: 100%;
+      justify-content: center;
+  }
+  section:nth-child(2) div:nth-child(2) div:nth-child(1){ 
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+  }
+  section:nth-child(2) div:nth-child(2) div:nth-child(2){ 
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  }
+  section:nth-child(2) div:nth-child(2) div:nth-child(3){ 
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+  }
+
+section:nth-child(2) div:nth-child(3){ 
+  flex-direction: row;
+  justify-content: center;
+}
+
+section:nth-child(2) div:nth-child(4){ 
+  flex-direction: row;
+  justify-content: end;
+}
+/*end of footer-----------*/
+
+a, p{
+  color: black;
+  font-size: 21px;
+  font-size: 1.2vw;
+}
+a{
+  text-decoration: none;
+  font-weight: normal;
+  transition: 0.3s cubic-bezier(0.75, 0, 0.25, 1);
+}
+a:hover{
+  font-weight: bold;
+  transition: 0.3s cubic-bezier(0.75, 0, 0.25, 1);
+}
+span{
+  text-decoration: underline;
+}
+
+#vid{
+  color: white; 
+} 
+
+div section:nth-child(2) div{
+  background-color: white;
+}
+
+
+
+/*tajni----------------*/
+#tajni{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 96vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(0px);
+}
+#tajni img{
+  height: 80%;
+  width: auto;
+}
+
+
+
+ #selekted{
+  text-decoration: line-through;
+ }
