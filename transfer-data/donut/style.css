@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    font-size: 6.3vw;
+}
+
+body{
+    background-color: pink;
+    height: 100svh;
+    height: 100vh;
+}
+
+
+div{
+    height: 20%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+div h3{
+    padding: 0 2vw;
+}
+
+img{
+    height: 80%;
+    width: auto;
+}
+
+section{
+    height: 80%;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3:hover{
+    cursor: pointer;
+    color: blue;
+}
