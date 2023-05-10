@@ -1,7 +1,6 @@
 const original = document.getElementById("original");
 const secret = document.getElementById("secret");
 const button = document.querySelector("button");
-
 var br = 0;
 
 button.onclick = function(){
@@ -15,5 +14,3 @@ button.onclick = function(){
     }
     br++;
 }
-
- 
