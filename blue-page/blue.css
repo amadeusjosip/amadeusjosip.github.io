@@ -1,0 +1,9 @@
+body{
+    height: 70vh;
+    background-color: blue;
+    color: white;
+}
+a{
+    text-decoration: none;
+    color: none;
+}
