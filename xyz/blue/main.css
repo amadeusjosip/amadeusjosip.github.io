@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: font-1-0as-3;
+    src: url(../../assets/fontovi/fontB7.ttf);
+}
+
+body{
+    font-family: font-1-0as-3;
+    height: 100vh;
+    background-color: #021daa;
+    color: #eeeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+ 
+p, h1, h3{font-weight: normal;}
+
+h1{
+    text-align: center;
+    font-size: 90px;
+}
+#seen{
+    margin-left: 28%;
+    width: 44%;
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+}
+#seen2{
+    margin-left: 20%;
+    width: 60%;
+    text-align: center;
+    font-size: 18px;
+    display: none;
+    grid-template-rows: repeat(3, 1fr); 
+} 
+#seen3{
+    margin-left: 20%;
+    width: 60%;
+    text-align: center;
+    font-size: 18px;
+    display: none;
+    grid-template-rows: repeat(3, 1fr); 
+} 
+#centar{ 
+    height: auto;
+}
+#crta{
+    position: absolute;
+    top: 52vh;
+    left: 20vw;
+    width: 60vw; 
+    height: 1px;
+    background-color: #eeeaea;
+}
+
+#below{
+    position: absolute;
+    bottom: 2%;
+    width: 100%;
+    text-align: center;
+}
+
+section{
+    width: 45%;
+    height: fit-content; 
+    position: absolute;
+}
+a{
+    text-decoration: none;
+    color: #eeeaea;
+    font-size: 18px;
+}
+
+
+/*------------------links in the corners---------------*/
+#UP-LEFT{
+    left: 1%;
+    top: 2%;
+    text-align: left;
+}
+#UP-RIGHT{
+    right: 1%;
+    top: 2%;
+    text-align: right;
+}
+#DOWN-LEFT{
+    left: 1%;
+    bottom: 2%;
+    text-align: left;
+}
+#DOWN-RIGHT{
+    right: 1%;
+    bottom: 2%;
+    text-align: right;
+}
+
+#MIDDLE{
+    width: fit-content;
+    top: 2%;
+    left: calc(50%);
+    transform: translateX(-50%);
+}
+
+
+
