@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: normal;
+}
+ 
+body{
+    height: 100vh;
+    background-color: pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section{
+    width: calc(100% - 280px);
+    height: calc(100% - 140px);
+    background-color: red;
+    display: grid;
+    grid-template-rows: 65% 30% auto;
+}
+
+/*section 1------------------------------------*/                
+section div:nth-child(1){
+    background-color: brown;
+    display: grid;
+    grid-template-columns: 18% 18% auto;
+}
+                section div:nth-child(1) div:nth-child(1){
+                    background-color: peru;
+                }
+                section div:nth-child(1) div:nth-child(2){
+                    background-color: tomato;
+                }
+                section div:nth-child(1) div:nth-child(3){
+                    background-color: saddlebrown;
+                }
+/*section 2------------------------------------*/                
+section div:nth-child(2){
+    background-color: blue;
+    display: grid;
+    grid-template-columns: 27% auto;
+}
+                section div:nth-child(2) div:nth-child(1){
+                    background-color: teal;
+                }
+                section div:nth-child(2) div:nth-child(2){
+                    background-color: turquoise;
+                }
+/*section 3------------------------------------*/                
+section div:nth-child(3){
+    background-color: green;
+    display: grid;
+    grid-template-columns: 13.5% 13.5% 13.5% auto;
+}
+                section div:nth-child(3) div:nth-child(1){
+                    background-color: greenyellow;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                }
+                section div:nth-child(3) div:nth-child(2){
+                    background-color: olive;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                }
+                section div:nth-child(3) div:nth-child(3){
+                    background-color: olivedrab;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                }
+                section div:nth-child(3) div:nth-child(4){
+                    background-color: lawngreen;
+                    display: flex;
+                    justify-content: end;
+                    align-items: center;
+                }
