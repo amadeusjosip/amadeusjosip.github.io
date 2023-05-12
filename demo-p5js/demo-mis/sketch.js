@@ -9,7 +9,7 @@ var pg;
 var pg2;
 var font;
 function preload(){
-  font = loadFont("../assets/fontovi/font1.ttf");
+  font = loadFont("../../assets/fontovi/font1.ttf");
    blurShader = loadShader('assets/blur.vert', 'assets/blur.frag');
 }
 

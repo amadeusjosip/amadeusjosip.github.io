@@ -1,3 +1,9 @@
+:root{
+    --rub: 10px;
+    --plava: #325897;
+    --bijela: #e9e1cc;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -5,13 +11,9 @@
     font-family: Helvetica;
     font-size: 1.4vw;
     font-weight: normal;
-    color: white;
+    color: var(--bijela);
 }
- 
-:root{
-    --rub: 10px;
-    --plava: #021daa;
-}
+
 
 body{
     height: 100vh;
@@ -102,7 +104,7 @@ section div:nth-child(1) div:nth-child(3){
     position: absolute;
     top: 0px;
     left: 0px; 
-    color: white;
+    color: var(--bijela);
     z-index: 36;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 } 
@@ -113,7 +115,7 @@ section div:nth-child(1) div:nth-child(3){
     position: absolute;
     top: 0px;
     left: 0px; 
-    color: white;
+    color: var(--bijela);
     z-index: 35;
 } 
 #original h3{
@@ -152,5 +154,9 @@ section div:nth-child(1) div:nth-child(1) section{
 }
 
 section div:nth-child(1) div:nth-child(1) section h3{  
-    color: white;
+    color: var(--bijela);
+}
+
+section div:nth-child(2) div:nth-child(1) h3{
+    width: 25vw;
 }

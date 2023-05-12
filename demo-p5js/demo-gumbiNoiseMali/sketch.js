@@ -1,6 +1,6 @@
 var font;
 function preload(){
-  font = loadFont("../assets/fontovi/font3.ttf");   
+  font = loadFont("../../assets/fontovi/font3.ttf");   
 }
 
 function windowResized(){
