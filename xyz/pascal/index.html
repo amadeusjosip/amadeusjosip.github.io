@@ -1,0 +1,78 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9f5ec">
+  <title>Sum Summit — Inverse Pascal Puzzle</title>
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="mark" aria-hidden="true">Σ</div>
+        <div><h1>Sum Summit</h1><p class="eyebrow">An inverse Pascal puzzle</p></div>
+      </div>
+      <div class="top-actions">
+        <label class="select-wrap">
+          <span class="sr-only">Difficulty</span>
+          <select id="difficulty" aria-label="Difficulty">
+            <option value="4">Little climb · 4 rows</option>
+            <option value="5" selected>Big climb · 5 rows</option>
+            <option value="6">Super climb · 6 rows</option>
+          </select>
+        </label>
+        <button class="btn btn-primary" id="new-puzzle" type="button">↻ New puzzle</button>
+      </div>
+    </header>
+    <main>
+      <section class="game" aria-labelledby="game-title">
+        <div class="instruction">
+          <h2 id="game-title">Can you reach the summit?</h2>
+          <p>Fill every empty tile. <span class="mini-rule">Each tile = <span>the two below</span> added together.</span></p>
+        </div>
+        <div class="puzzle-wrap">
+          <div class="pyramid" id="pyramid" aria-label="Number pyramid puzzle"></div>
+          <div class="round-over" id="round-over" role="dialog" aria-modal="true" aria-labelledby="round-title" aria-describedby="round-note">
+            <div class="round-icon" id="round-icon" aria-hidden="true">★</div>
+            <h3 id="round-title">Summit reached!</h3>
+            <p id="round-note">Every number is right.</p>
+            <button class="btn btn-primary round-new" id="round-new" type="button">↻ New puzzle</button>
+          </div>
+        </div>
+        <div class="message" id="message" role="status" aria-live="polite">Take your time—you've got this.</div>
+        <div class="game-actions">
+          <button class="btn btn-primary" id="check" type="button">Check answers</button>
+          <button class="btn btn-ghost" id="hint" type="button">Give me a hint</button>
+          <button class="btn btn-ghost" id="clear" type="button">Clear my answers</button>
+        </div>
+      </section>
+      <aside aria-label="Puzzle help and progress">
+        <section>
+          <h2 class="side-title">How it works</h2>
+          <div class="rule-card">
+            <div class="rule-demo" aria-label="Four plus three equals seven">
+              <div class="demo-top">7</div>
+              <div class="demo-bottom"><span>4</span><span>3</span></div>
+              <div class="demo-equation">4 + 3 = 7</div>
+            </div>
+            <p>Look at any two neighbors. Their sum belongs in the tile just above them.</p>
+          </div>
+        </section>
+        <section>
+          <h2 class="side-title">This round</h2>
+          <div class="stats">
+            <div class="stat"><strong id="filled-count">0</strong><span>tiles filled</span></div>
+            <div class="stat"><strong id="streak-count">0</strong><span>puzzles solved</span></div>
+          </div>
+        </section>
+        <p class="tip"><b>Smart start:</b> If you know a top tile and one tile below it, subtract to find the other one.</p>
+      </aside>
+    </main>
+  </div>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+  <script src="script.js?v=5"></script>
+</body>
+</html>
