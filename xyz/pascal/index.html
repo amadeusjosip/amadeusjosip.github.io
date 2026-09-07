@@ -1,78 +1,333 @@
-
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="hr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f9f5ec">
-  <title>Sum Summit — Inverse Pascal Puzzle</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piramida</title>
+<style>
+  :root{
+    --black:#1a1a1a;
+    --dark:#4d4d4d;
+    --light:#e2e2e2;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    height:100%;
+    background:var(--white);
+    color:var(--black);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  #flash{
+    position:fixed;
+    inset:0;
+    background:#c0392b;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .12s ease;
+    z-index:50;
+  }
+  #flash.on{opacity:.55;}
+
+  .wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:28px;
+    padding:24px;
+  }
+
+  button{
+    font-family:inherit;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.02em;
+    padding:10px 22px;
+    border:2px solid var(--black);
+    background:var(--black);
+    color:var(--white);
+    border-radius:8px;
+    cursor:pointer;
+  }
+  button:hover{background:var(--dark);}
+  button:active{transform:translateY(1px);}
+
+  .pyramid{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .row{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+  }
+  .cell{
+    width:56px;
+    height:56px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:600;
+  }
+  .cell.given{
+    background:var(--light);
+    color:var(--dark);
+    border:2px solid var(--light);
+  }
+  .cell input{
+    width:100%;
+    height:100%;
+    text-align:center;
+    font-size:18px;
+    font-weight:600;
+    font-family:inherit;
+    color:var(--black);
+    background:var(--white);
+    border:2px solid var(--dark);
+    border-radius:8px;
+    -moz-appearance:textfield;
+  }
+  .cell input::-webkit-outer-spin-button,
+  .cell input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+  }
+  .cell input:focus{
+    outline:none;
+    border-color:var(--black);
+  }
+
+  #confetti-canvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:60;
+  }
+
+  @media (max-width:480px){
+    .cell{width:42px;height:42px;font-size:15px;}
+    .cell input{font-size:15px;}
+    .row{gap:6px;}
+    .pyramid{gap:6px;}
+  }
+</style>
 </head>
 <body>
-  <div class="app">
-    <header>
-      <div class="brand">
-        <div class="mark" aria-hidden="true">Σ</div>
-        <div><h1>Sum Summit</h1><p class="eyebrow">An inverse Pascal puzzle</p></div>
-      </div>
-      <div class="top-actions">
-        <label class="select-wrap">
-          <span class="sr-only">Difficulty</span>
-          <select id="difficulty" aria-label="Difficulty">
-            <option value="4">Little climb · 4 rows</option>
-            <option value="5" selected>Big climb · 5 rows</option>
-            <option value="6">Super climb · 6 rows</option>
-          </select>
-        </label>
-        <button class="btn btn-primary" id="new-puzzle" type="button">↻ New puzzle</button>
-      </div>
-    </header>
-    <main>
-      <section class="game" aria-labelledby="game-title">
-        <div class="instruction">
-          <h2 id="game-title">Can you reach the summit?</h2>
-          <p>Fill every empty tile. <span class="mini-rule">Each tile = <span>the two below</span> added together.</span></p>
-        </div>
-        <div class="puzzle-wrap">
-          <div class="pyramid" id="pyramid" aria-label="Number pyramid puzzle"></div>
-          <div class="round-over" id="round-over" role="dialog" aria-modal="true" aria-labelledby="round-title" aria-describedby="round-note">
-            <div class="round-icon" id="round-icon" aria-hidden="true">★</div>
-            <h3 id="round-title">Summit reached!</h3>
-            <p id="round-note">Every number is right.</p>
-            <button class="btn btn-primary round-new" id="round-new" type="button">↻ New puzzle</button>
-          </div>
-        </div>
-        <div class="message" id="message" role="status" aria-live="polite">Take your time—you've got this.</div>
-        <div class="game-actions">
-          <button class="btn btn-primary" id="check" type="button">Check answers</button>
-          <button class="btn btn-ghost" id="hint" type="button">Give me a hint</button>
-          <button class="btn btn-ghost" id="clear" type="button">Clear my answers</button>
-        </div>
-      </section>
-      <aside aria-label="Puzzle help and progress">
-        <section>
-          <h2 class="side-title">How it works</h2>
-          <div class="rule-card">
-            <div class="rule-demo" aria-label="Four plus three equals seven">
-              <div class="demo-top">7</div>
-              <div class="demo-bottom"><span>4</span><span>3</span></div>
-              <div class="demo-equation">4 + 3 = 7</div>
-            </div>
-            <p>Look at any two neighbors. Their sum belongs in the tile just above them.</p>
-          </div>
-        </section>
-        <section>
-          <h2 class="side-title">This round</h2>
-          <div class="stats">
-            <div class="stat"><strong id="filled-count">0</strong><span>tiles filled</span></div>
-            <div class="stat"><strong id="streak-count">0</strong><span>puzzles solved</span></div>
-          </div>
-        </section>
-        <p class="tip"><b>Smart start:</b> If you know a top tile and one tile below it, subtract to find the other one.</p>
-      </aside>
-    </main>
-  </div>
-  <div class="confetti" id="confetti" aria-hidden="true"></div>
-  <script src="script.js"></script>
+
+<div id="flash"></div>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="wrap">
+  <div class="pyramid" id="pyramid"></div>
+  <button id="newBtn">Nova igra</button>
+</div>
+
+<script>
+const ROWS = 6;
+const pyramidEl = document.getElementById('pyramid');
+const newBtn = document.getElementById('newBtn');
+const flashEl = document.getElementById('flash');
+
+let solution = [];   // solution[row][i]
+let hidden = [];     // hidden[row][i] -> bool
+let inputs = [];     // references to input elements, or null
+
+function randInt(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function generatePuzzle(){
+  solution = [];
+  hidden = [];
+
+  // bottom row: random base numbers
+  const bottom = [];
+  for(let i = 0; i < ROWS; i++) bottom.push(randInt(1, 9));
+  solution[ROWS - 1] = bottom;
+
+  // build upward: each cell = sum of two below
+  for(let r = ROWS - 2; r >= 0; r--){
+    const row = [];
+    const below = solution[r + 1];
+    for(let i = 0; i <= r; i++){
+      row.push(below[i] + below[i + 1]);
+    }
+    solution[r] = row;
+  }
+
+  // decide which cells are hidden
+  for(let r = 0; r < ROWS; r++){
+    const row = [];
+    for(let i = 0; i <= r; i++){
+      if(r === ROWS - 1){
+        row.push(false); // bottom row always given
+      } else if(r === 0){
+        row.push(true);  // top is always the goal, always hidden
+      } else {
+        row.push(Math.random() < 0.55);
+      }
+    }
+    hidden[r] = row;
+  }
+}
+
+function renderPyramid(){
+  pyramidEl.innerHTML = '';
+  inputs = [];
+
+  for(let r = 0; r < ROWS; r++){
+    const rowEl = document.createElement('div');
+    rowEl.className = 'row';
+    inputs[r] = [];
+
+    for(let i = 0; i <= r; i++){
+      const cellEl = document.createElement('div');
+
+      if(hidden[r][i]){
+        cellEl.className = 'cell';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.inputMode = 'numeric';
+        input.maxLength = 3;
+        input.addEventListener('input', () => {
+          input.value = input.value.replace(/[^0-9]/g, '');
+          checkIfComplete();
+        });
+        cellEl.appendChild(input);
+        inputs[r][i] = input;
+      } else {
+        cellEl.className = 'cell given';
+        cellEl.textContent = solution[r][i];
+        inputs[r][i] = null;
+      }
+
+      rowEl.appendChild(cellEl);
+    }
+
+    pyramidEl.appendChild(rowEl);
+  }
+}
+
+function checkIfComplete(){
+  let allFilled = true;
+
+  for(let r = 0; r < ROWS; r++){
+    for(let i = 0; i <= r; i++){
+      const input = inputs[r][i];
+      if(input && input.value.trim() === ''){
+        allFilled = false;
+      }
+    }
+  }
+
+  if(!allFilled) return;
+
+  let allCorrect = true;
+  for(let r = 0; r < ROWS; r++){
+    for(let i = 0; i <= r; i++){
+      const input = inputs[r][i];
+      if(input && parseInt(input.value, 10) !== solution[r][i]){
+        allCorrect = false;
+      }
+    }
+  }
+
+  if(allCorrect){
+    launchConfetti();
+  } else {
+    flashRed();
+  }
+}
+
+function flashRed(){
+  flashEl.classList.add('on');
+  setTimeout(() => flashEl.classList.remove('on'), 1000);
+}
+
+function newPuzzle(){
+  generatePuzzle();
+  renderPyramid();
+}
+
+newBtn.addEventListener('click', newPuzzle);
+
+newPuzzle();
+
+/* ---- confetti ---- */
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let confettiRunning = false;
+
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const confettiColors = ['#1a1a1a', '#4d4d4d', '#e2e2e2', '#ffffff'];
+
+function launchConfetti(){
+  particles = [];
+  const count = 160;
+  for(let i = 0; i < count; i++){
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 14,
+      vy: (Math.random() - 1.6) * 14,
+      size: randInt(4, 9),
+      color: confettiColors[randInt(0, confettiColors.length - 1)],
+      rotation: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.3,
+      life: 0
+    });
+  }
+  if(!confettiRunning){
+    confettiRunning = true;
+    requestAnimationFrame(animateConfetti);
+  }
+}
+
+function animateConfetti(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let stillAlive = false;
+
+  for(const p of particles){
+    p.vy += 0.35; // gravity
+    p.x += p.vx;
+    p.y += p.vy;
+    p.rotation += p.spin;
+    p.life++;
+
+    if(p.y < canvas.height + 20 && p.life < 220){
+      stillAlive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+    }
+  }
+
+  if(stillAlive){
+    requestAnimationFrame(animateConfetti);
+  } else {
+    confettiRunning = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+</script>
+
 </body>
 </html>
