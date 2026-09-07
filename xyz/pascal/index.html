@@ -6,54 +6,71 @@
 <title>Piramida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f7f2ec;
-    --surface:#ffffff;
-    --ink:#4b4856;
-    --muted:#a9a5b5;
+    --ink:#4a3b32;
 
-    --pink:#f7cdd9;
-    --pink-deep:#f2a9bd;
-    --blue:#c9e6f2;
-    --blue-deep:#9cd0e8;
-    --yellow:#fbeab6;
-    --yellow-deep:#f4d883;
-    --lavender:#e3d9f3;
-    --lavender-deep:#c9b6ec;
+    --coral:#ff8a65;
+    --coral-dark:#e0673f;
+    --turquoise:#4ecdc4;
+    --turquoise-dark:#2fa79d;
+    --sunny:#ffd93d;
+    --sunny-dark:#eab308;
+    --grass:#8bc34a;
+    --grass-dark:#6b9e36;
+    --sky:#4fc3f7;
+    --sky-dark:#2b9fd9;
+    --purple:#b388ff;
+    --purple-dark:#9163e8;
+    --pink:#ff7aa2;
+    --pink-dark:#e85d87;
 
-    --green-deep:#8fce93;
-    --red-deep:#ef8f83;
-
-    --shadow: 0 6px 16px rgba(75,72,86,0.12);
-    --shadow-sm: 0 3px 8px rgba(75,72,86,0.10);
+    --panel:#ffffff;
   }
 
   *{box-sizing:border-box;}
   html,body{
     margin:0;
     min-height:100%;
-    background:var(--bg);
     color:var(--ink);
-    font-family:'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family:'Baloo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background:
+      radial-gradient(circle at 12% 18%, #fff2c8 0%, transparent 42%),
+      radial-gradient(circle at 88% 12%, #c9f0ff 0%, transparent 40%),
+      radial-gradient(circle at 85% 88%, #ffd6e6 0%, transparent 45%),
+      radial-gradient(circle at 10% 85%, #d9f7d0 0%, transparent 42%),
+      linear-gradient(160deg, #fff6e6 0%, #eaf7ff 100%);
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
   }
 
+  /* floating decorative blobs */
+  .blob{
+    position:fixed;
+    border-radius:50%;
+    opacity:.55;
+    filter:blur(1px);
+    z-index:0;
+  }
+  .blob1{width:120px;height:120px;background:var(--sunny);top:8%;left:6%;}
+  .blob2{width:70px;height:70px;background:var(--pink);bottom:12%;left:10%;}
+  .blob3{width:100px;height:100px;background:var(--sky);top:10%;right:8%;}
+  .blob4{width:60px;height:60px;background:var(--grass);bottom:8%;right:10%;}
+
   #flash{
     position:fixed;
     inset:0;
-    background:var(--green-deep);
+    background:var(--grass-dark);
     opacity:0;
     pointer-events:none;
     transition:opacity .18s ease;
     z-index:50;
   }
-  #flash.on{opacity:.45;}
-  #flash.wrong{background:var(--red-deep);}
+  #flash.on{opacity:.4;}
+  #flash.wrong{background:var(--pink-dark);}
 
   #confetti-canvas{
     position:fixed;
@@ -63,55 +80,74 @@
   }
 
   .stage{
+    position:relative;
+    z-index:1;
     display:flex;
-    align-items:center;
-    gap:36px;
+    align-items:flex-start;
+    gap:28px;
     padding:24px;
   }
 
+  .panel{
+    background:var(--panel);
+    border:5px solid #fff;
+    border-radius:32px;
+    box-shadow:0 10px 0 rgba(74,59,50,0.10), 0 16px 28px rgba(74,59,50,0.14);
+    padding:22px 20px;
+  }
+
+  /* side panel */
   .side-panel{
     display:flex;
     flex-direction:column;
-    gap:10px;
-    background:var(--surface);
-    padding:14px 10px;
-    border-radius:20px;
-    box-shadow:var(--shadow);
+    align-items:center;
+    gap:12px;
+    margin-top:44px;
   }
   .side-label{
-    font-size:11px;
+    font-size:12px;
     font-weight:700;
-    letter-spacing:.08em;
+    letter-spacing:.06em;
     text-transform:uppercase;
-    color:var(--muted);
-    text-align:center;
+    color:var(--ink);
+    opacity:.55;
     margin-bottom:2px;
   }
   .row-btn{
-    width:44px;
-    height:44px;
-    border-radius:14px;
-    border:none;
-    background:var(--lavender);
-    color:var(--ink);
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:4px solid #fff;
+    background:var(--purple);
+    color:#fff;
     font-family:inherit;
-    font-size:16px;
-    font-weight:700;
+    font-size:18px;
+    font-weight:800;
     cursor:pointer;
-    box-shadow:var(--shadow-sm);
-    transition:transform .12s ease, background .15s ease;
+    box-shadow:0 5px 0 var(--purple-dark);
+    transition:transform .1s ease, box-shadow .1s ease;
   }
   .row-btn:hover{transform:translateY(-2px);}
+  .row-btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--purple-dark);}
   .row-btn.active{
-    background:var(--lavender-deep);
-    color:#382b52;
+    background:var(--pink);
+    box-shadow:0 5px 0 var(--pink-dark);
+    transform:scale(1.08);
   }
 
+  /* main */
   .main{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:26px;
+    gap:20px;
+  }
+
+  .title{
+    font-size:26px;
+    font-weight:800;
+    margin:0 0 4px 0;
+    text-align:center;
   }
 
   .pyramid{
@@ -125,33 +161,34 @@
     gap:9px;
   }
   .cell{
-    width:56px;
-    height:56px;
+    width:54px;
+    height:54px;
     border-radius:16px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:18px;
-    font-weight:700;
+    font-size:19px;
+    font-weight:800;
   }
   .cell.given{
-    background:var(--blue);
-    color:#2c5568;
-    box-shadow:var(--shadow-sm);
+    background:var(--sunny);
+    color:#7a5c00;
+    border:4px solid #fff;
+    box-shadow:0 4px 0 var(--sunny-dark);
   }
   .cell input{
     width:100%;
     height:100%;
     text-align:center;
-    font-size:18px;
-    font-weight:700;
+    font-size:19px;
+    font-weight:800;
     font-family:inherit;
     color:var(--ink);
-    background:var(--surface);
-    border:2px solid var(--pink);
+    background:#f4fbfb;
+    border:4px solid var(--turquoise);
     border-radius:16px;
-    box-shadow:var(--shadow-sm);
-    transition:border-color .15s ease, box-shadow .15s ease;
+    box-shadow:0 4px 0 var(--turquoise-dark);
+    transition:border-color .12s ease, box-shadow .12s ease, transform .12s ease;
     -moz-appearance:textfield;
   }
   .cell input::-webkit-outer-spin-button,
@@ -161,41 +198,72 @@
   }
   .cell input:focus{
     outline:none;
-    border-color:var(--pink-deep);
-    box-shadow:0 0 0 4px rgba(242,169,189,0.28);
+    border-color:var(--purple);
+    box-shadow:0 4px 0 var(--purple-dark);
   }
 
-  .new-btn{
+  .pyramid.shake{
+    animation:shake .4s ease;
+  }
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-8px);}
+    40%{transform:translateX(7px);}
+    60%{transform:translateX(-5px);}
+    80%{transform:translateX(4px);}
+  }
+
+  .btn-row{
+    display:flex;
+    gap:14px;
+    margin-top:4px;
+  }
+
+  .btn{
     font-family:inherit;
     font-size:15px;
     font-weight:700;
-    letter-spacing:.02em;
-    padding:12px 26px;
-    border:none;
-    background:var(--yellow);
-    color:#5c4a12;
-    border-radius:16px;
+    letter-spacing:.01em;
+    padding:13px 22px;
+    border:4px solid #fff;
+    border-radius:18px;
     cursor:pointer;
-    box-shadow:var(--shadow-sm);
-    transition:transform .12s ease, background .15s ease;
+    color:#fff;
+    transition:transform .1s ease, box-shadow .1s ease;
   }
-  .new-btn:hover{
-    background:var(--yellow-deep);
-    transform:translateY(-2px);
-  }
-  .new-btn:active{transform:translateY(0);}
+  .btn:active{transform:translateY(3px);}
 
-  @media (max-width:520px){
-    .stage{flex-direction:column;gap:20px;}
-    .side-panel{flex-direction:row;}
-    .cell{width:42px;height:42px;font-size:15px;border-radius:12px;}
-    .cell input{font-size:15px;border-radius:12px;}
+  .btn-check{
+    background:var(--grass);
+    box-shadow:0 6px 0 var(--grass-dark);
+  }
+  .btn-check:active{box-shadow:0 3px 0 var(--grass-dark);}
+
+  .btn-new{
+    background:var(--coral);
+    box-shadow:0 6px 0 var(--coral-dark);
+  }
+  .btn-new:active{box-shadow:0 3px 0 var(--coral-dark);}
+
+  @media (max-width:560px){
+    .stage{flex-direction:column;align-items:center;gap:18px;padding:16px;}
+    .side-panel{flex-direction:row;margin-top:0;}
+    .panel{padding:16px 12px;border-radius:26px;}
+    .cell{width:40px;height:40px;font-size:14px;border-radius:12px;}
+    .cell input{font-size:14px;border-radius:12px;}
     .row{gap:6px;}
     .pyramid{gap:6px;}
+    .btn{padding:11px 16px;font-size:13px;}
+    .btn-row{flex-wrap:wrap;justify-content:center;}
   }
 </style>
 </head>
 <body>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+<div class="blob blob4"></div>
 
 <div id="flash"></div>
 <canvas id="confetti-canvas"></canvas>
@@ -208,15 +276,20 @@
     <button class="row-btn" data-rows="6">6</button>
   </div>
 
-  <div class="main">
+  <div class="panel main">
+    <h1 class="title">🔺 Piramida</h1>
     <div class="pyramid" id="pyramid"></div>
-    <button class="new-btn" id="newBtn">New puzzle</button>
+    <div class="btn-row">
+      <button class="btn btn-check" id="checkBtn">Provjeri odgovore</button>
+      <button class="btn btn-new" id="newBtn">Nova igra</button>
+    </div>
   </div>
 </div>
 
 <script>
 const pyramidEl = document.getElementById('pyramid');
 const newBtn = document.getElementById('newBtn');
+const checkBtn = document.getElementById('checkBtn');
 const flashEl = document.getElementById('flash');
 const rowButtons = document.querySelectorAll('.row-btn');
 
@@ -224,7 +297,7 @@ let currentRows = 6;
 let solution = [];
 let hidden = [];
 let inputs = [];
-let locked = false;
+let busy = false;
 
 function randInt(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -256,16 +329,12 @@ function generatePuzzle(rows){
     solution[r] = row;
   }
 
+  // minimal reveal: only the bottom row is given, everything else
+  // must be worked out (still always solvable by summing upward).
   for(let r = 0; r < rows; r++){
     const row = [];
     for(let i = 0; i <= r; i++){
-      if(r === rows - 1){
-        row.push(false); // bottom row always given
-      } else if(r === 0){
-        row.push(true);  // top is always the goal
-      } else {
-        row.push(Math.random() < 0.55);
-      }
+      row.push(r !== rows - 1);
     }
     hidden[r] = row;
   }
@@ -274,7 +343,7 @@ function generatePuzzle(rows){
 function renderPyramid(){
   pyramidEl.innerHTML = '';
   inputs = [];
-  locked = false;
+  busy = false;
 
   for(let r = 0; r < currentRows; r++){
     const rowEl = document.createElement('div');
@@ -292,7 +361,6 @@ function renderPyramid(){
         input.maxLength = 3;
         input.addEventListener('input', () => {
           input.value = input.value.replace(/[^0-9]/g, '');
-          checkIfComplete();
         });
         cellEl.appendChild(input);
         inputs[r][i] = input;
@@ -309,8 +377,8 @@ function renderPyramid(){
   }
 }
 
-function checkIfComplete(){
-  if(locked) return;
+function handleCheck(){
+  if(busy) return;
 
   let allFilled = true;
   for(let r = 0; r < currentRows; r++){
@@ -321,7 +389,13 @@ function checkIfComplete(){
       }
     }
   }
-  if(!allFilled) return;
+
+  if(!allFilled){
+    pyramidEl.classList.remove('shake');
+    void pyramidEl.offsetWidth;
+    pyramidEl.classList.add('shake');
+    return;
+  }
 
   let allCorrect = true;
   for(let r = 0; r < currentRows; r++){
@@ -333,15 +407,14 @@ function checkIfComplete(){
     }
   }
 
-  locked = true;
   if(allCorrect){
+    busy = true;
     flash(false);
     launchConfetti();
+    setTimeout(() => startPuzzle(currentRows), 900);
   } else {
     flash(true);
   }
-
-  setTimeout(() => startPuzzle(currentRows), 500);
 }
 
 function flash(isWrong){
@@ -363,6 +436,7 @@ function setActiveRowButton(rows){
 }
 
 newBtn.addEventListener('click', () => startPuzzle(currentRows));
+checkBtn.addEventListener('click', handleCheck);
 rowButtons.forEach(btn => {
   btn.addEventListener('click', () => startPuzzle(parseInt(btn.dataset.rows, 10)));
 });
@@ -382,18 +456,18 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const confettiColors = ['#f7cdd9', '#c9e6f2', '#fbeab6', '#e3d9f3', '#bfe3c0'];
+const confettiColors = ['#ff8a65', '#4ecdc4', '#ffd93d', '#8bc34a', '#4fc3f7', '#b388ff', '#ff7aa2'];
 
 function launchConfetti(){
   particles = [];
-  const count = 160;
+  const count = 180;
   for(let i = 0; i < count; i++){
     particles.push({
       x: canvas.width / 2,
       y: canvas.height / 2,
-      vx: (Math.random() - 0.5) * 14,
-      vy: (Math.random() - 1.6) * 14,
-      size: randInt(4, 9),
+      vx: (Math.random() - 0.5) * 15,
+      vy: (Math.random() - 1.6) * 15,
+      size: randInt(5, 10),
       color: confettiColors[randInt(0, confettiColors.length - 1)],
       rotation: Math.random() * Math.PI * 2,
       spin: (Math.random() - 0.5) * 0.3,
