@@ -4,95 +4,154 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Piramida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --black:#1a1a1a;
-    --dark:#4d4d4d;
-    --light:#e2e2e2;
-    --white:#ffffff;
+    --bg:#f7f2ec;
+    --surface:#ffffff;
+    --ink:#4b4856;
+    --muted:#a9a5b5;
+
+    --pink:#f7cdd9;
+    --pink-deep:#f2a9bd;
+    --blue:#c9e6f2;
+    --blue-deep:#9cd0e8;
+    --yellow:#fbeab6;
+    --yellow-deep:#f4d883;
+    --lavender:#e3d9f3;
+    --lavender-deep:#c9b6ec;
+
+    --green-deep:#8fce93;
+    --red-deep:#ef8f83;
+
+    --shadow: 0 6px 16px rgba(75,72,86,0.12);
+    --shadow-sm: 0 3px 8px rgba(75,72,86,0.10);
   }
+
   *{box-sizing:border-box;}
   html,body{
     margin:0;
-    height:100%;
-    background:var(--white);
-    color:var(--black);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    min-height:100%;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
   }
+
   #flash{
     position:fixed;
     inset:0;
-    background:#c0392b;
+    background:var(--green-deep);
     opacity:0;
     pointer-events:none;
-    transition:opacity .12s ease;
+    transition:opacity .18s ease;
     z-index:50;
   }
-  #flash.on{opacity:.55;}
+  #flash.on{opacity:.45;}
+  #flash.wrong{background:var(--red-deep);}
 
-  .wrap{
+  #confetti-canvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:60;
+  }
+
+  .stage{
     display:flex;
-    flex-direction:column;
     align-items:center;
-    gap:28px;
+    gap:36px;
     padding:24px;
   }
 
-  button{
-    font-family:inherit;
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:.02em;
-    padding:10px 22px;
-    border:2px solid var(--black);
-    background:var(--black);
-    color:var(--white);
-    border-radius:8px;
-    cursor:pointer;
+  .side-panel{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    background:var(--surface);
+    padding:14px 10px;
+    border-radius:20px;
+    box-shadow:var(--shadow);
   }
-  button:hover{background:var(--dark);}
-  button:active{transform:translateY(1px);}
+  .side-label{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+    margin-bottom:2px;
+  }
+  .row-btn{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    border:none;
+    background:var(--lavender);
+    color:var(--ink);
+    font-family:inherit;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:var(--shadow-sm);
+    transition:transform .12s ease, background .15s ease;
+  }
+  .row-btn:hover{transform:translateY(-2px);}
+  .row-btn.active{
+    background:var(--lavender-deep);
+    color:#382b52;
+  }
+
+  .main{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:26px;
+  }
 
   .pyramid{
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:9px;
   }
   .row{
     display:flex;
     justify-content:center;
-    gap:8px;
+    gap:9px;
   }
   .cell{
     width:56px;
     height:56px;
-    border-radius:8px;
+    border-radius:16px;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:18px;
-    font-weight:600;
+    font-weight:700;
   }
   .cell.given{
-    background:var(--light);
-    color:var(--dark);
-    border:2px solid var(--light);
+    background:var(--blue);
+    color:#2c5568;
+    box-shadow:var(--shadow-sm);
   }
   .cell input{
     width:100%;
     height:100%;
     text-align:center;
     font-size:18px;
-    font-weight:600;
+    font-weight:700;
     font-family:inherit;
-    color:var(--black);
-    background:var(--white);
-    border:2px solid var(--dark);
-    border-radius:8px;
+    color:var(--ink);
+    background:var(--surface);
+    border:2px solid var(--pink);
+    border-radius:16px;
+    box-shadow:var(--shadow-sm);
+    transition:border-color .15s ease, box-shadow .15s ease;
     -moz-appearance:textfield;
   }
   .cell input::-webkit-outer-spin-button,
@@ -102,19 +161,35 @@
   }
   .cell input:focus{
     outline:none;
-    border-color:var(--black);
+    border-color:var(--pink-deep);
+    box-shadow:0 0 0 4px rgba(242,169,189,0.28);
   }
 
-  #confetti-canvas{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:60;
+  .new-btn{
+    font-family:inherit;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.02em;
+    padding:12px 26px;
+    border:none;
+    background:var(--yellow);
+    color:#5c4a12;
+    border-radius:16px;
+    cursor:pointer;
+    box-shadow:var(--shadow-sm);
+    transition:transform .12s ease, background .15s ease;
   }
+  .new-btn:hover{
+    background:var(--yellow-deep);
+    transform:translateY(-2px);
+  }
+  .new-btn:active{transform:translateY(0);}
 
-  @media (max-width:480px){
-    .cell{width:42px;height:42px;font-size:15px;}
-    .cell input{font-size:15px;}
+  @media (max-width:520px){
+    .stage{flex-direction:column;gap:20px;}
+    .side-panel{flex-direction:row;}
+    .cell{width:42px;height:42px;font-size:15px;border-radius:12px;}
+    .cell input{font-size:15px;border-radius:12px;}
     .row{gap:6px;}
     .pyramid{gap:6px;}
   }
@@ -125,36 +200,54 @@
 <div id="flash"></div>
 <canvas id="confetti-canvas"></canvas>
 
-<div class="wrap">
-  <div class="pyramid" id="pyramid"></div>
-  <button id="newBtn">Nova igra</button>
+<div class="stage">
+  <div class="side-panel">
+    <div class="side-label">Redci</div>
+    <button class="row-btn" data-rows="4">4</button>
+    <button class="row-btn" data-rows="5">5</button>
+    <button class="row-btn" data-rows="6">6</button>
+  </div>
+
+  <div class="main">
+    <div class="pyramid" id="pyramid"></div>
+    <button class="new-btn" id="newBtn">New puzzle</button>
+  </div>
 </div>
 
 <script>
-const ROWS = 6;
 const pyramidEl = document.getElementById('pyramid');
 const newBtn = document.getElementById('newBtn');
 const flashEl = document.getElementById('flash');
+const rowButtons = document.querySelectorAll('.row-btn');
 
-let solution = [];   // solution[row][i]
-let hidden = [];     // hidden[row][i] -> bool
-let inputs = [];     // references to input elements, or null
+let currentRows = 6;
+let solution = [];
+let hidden = [];
+let inputs = [];
+let locked = false;
 
 function randInt(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generatePuzzle(){
+// Top value is guaranteed <= 100: top = sum of C(rows-1, i) * bottom[i],
+// and the total of those coefficients is 2^(rows-1), so capping each
+// bottom cell at floor(100 / 2^(rows-1)) guarantees the worst case stays <= 100.
+function bottomCap(rows){
+  return Math.max(1, Math.floor(100 / Math.pow(2, rows - 1)));
+}
+
+function generatePuzzle(rows){
+  currentRows = rows;
   solution = [];
   hidden = [];
 
-  // bottom row: random base numbers
+  const cap = bottomCap(rows);
   const bottom = [];
-  for(let i = 0; i < ROWS; i++) bottom.push(randInt(1, 9));
-  solution[ROWS - 1] = bottom;
+  for(let i = 0; i < rows; i++) bottom.push(randInt(1, cap));
+  solution[rows - 1] = bottom;
 
-  // build upward: each cell = sum of two below
-  for(let r = ROWS - 2; r >= 0; r--){
+  for(let r = rows - 2; r >= 0; r--){
     const row = [];
     const below = solution[r + 1];
     for(let i = 0; i <= r; i++){
@@ -163,14 +256,13 @@ function generatePuzzle(){
     solution[r] = row;
   }
 
-  // decide which cells are hidden
-  for(let r = 0; r < ROWS; r++){
+  for(let r = 0; r < rows; r++){
     const row = [];
     for(let i = 0; i <= r; i++){
-      if(r === ROWS - 1){
+      if(r === rows - 1){
         row.push(false); // bottom row always given
       } else if(r === 0){
-        row.push(true);  // top is always the goal, always hidden
+        row.push(true);  // top is always the goal
       } else {
         row.push(Math.random() < 0.55);
       }
@@ -182,8 +274,9 @@ function generatePuzzle(){
 function renderPyramid(){
   pyramidEl.innerHTML = '';
   inputs = [];
+  locked = false;
 
-  for(let r = 0; r < ROWS; r++){
+  for(let r = 0; r < currentRows; r++){
     const rowEl = document.createElement('div');
     rowEl.className = 'row';
     inputs[r] = [];
@@ -217,9 +310,10 @@ function renderPyramid(){
 }
 
 function checkIfComplete(){
-  let allFilled = true;
+  if(locked) return;
 
-  for(let r = 0; r < ROWS; r++){
+  let allFilled = true;
+  for(let r = 0; r < currentRows; r++){
     for(let i = 0; i <= r; i++){
       const input = inputs[r][i];
       if(input && input.value.trim() === ''){
@@ -227,11 +321,10 @@ function checkIfComplete(){
       }
     }
   }
-
   if(!allFilled) return;
 
   let allCorrect = true;
-  for(let r = 0; r < ROWS; r++){
+  for(let r = 0; r < currentRows; r++){
     for(let i = 0; i <= r; i++){
       const input = inputs[r][i];
       if(input && parseInt(input.value, 10) !== solution[r][i]){
@@ -240,26 +333,41 @@ function checkIfComplete(){
     }
   }
 
+  locked = true;
   if(allCorrect){
+    flash(false);
     launchConfetti();
   } else {
-    flashRed();
+    flash(true);
   }
+
+  setTimeout(() => startPuzzle(currentRows), 500);
 }
 
-function flashRed(){
+function flash(isWrong){
+  flashEl.classList.toggle('wrong', isWrong);
   flashEl.classList.add('on');
-  setTimeout(() => flashEl.classList.remove('on'), 1000);
+  setTimeout(() => flashEl.classList.remove('on'), 500);
 }
 
-function newPuzzle(){
-  generatePuzzle();
+function startPuzzle(rows){
+  generatePuzzle(rows);
   renderPyramid();
+  setActiveRowButton(rows);
 }
 
-newBtn.addEventListener('click', newPuzzle);
+function setActiveRowButton(rows){
+  rowButtons.forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.rows, 10) === rows);
+  });
+}
 
-newPuzzle();
+newBtn.addEventListener('click', () => startPuzzle(currentRows));
+rowButtons.forEach(btn => {
+  btn.addEventListener('click', () => startPuzzle(parseInt(btn.dataset.rows, 10)));
+});
+
+startPuzzle(currentRows);
 
 /* ---- confetti ---- */
 const canvas = document.getElementById('confetti-canvas');
@@ -274,7 +382,7 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const confettiColors = ['#1a1a1a', '#4d4d4d', '#e2e2e2', '#ffffff'];
+const confettiColors = ['#f7cdd9', '#c9e6f2', '#fbeab6', '#e3d9f3', '#bfe3c0'];
 
 function launchConfetti(){
   particles = [];
@@ -303,7 +411,7 @@ function animateConfetti(){
   let stillAlive = false;
 
   for(const p of particles){
-    p.vy += 0.35; // gravity
+    p.vy += 0.35;
     p.x += p.vx;
     p.y += p.vy;
     p.rotation += p.spin;
