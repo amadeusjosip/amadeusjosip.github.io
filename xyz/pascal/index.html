@@ -9,24 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#221f2e;
+    --ink:#1a1a1a;
+    --muted:#9a97a3;
 
-    --green:#3ddc84;
-    --green-dark:#1fa863;
-    --blue:#4fc3f7;
-    --blue-dark:#1f9cd9;
-    --orange:#ffa94d;
-    --orange-dark:#e8841f;
-    --pink:#ff7aa8;
-    --pink-dark:#e8547f;
-    --red:#ff5f5f;
-    --red-dark:#e63e3e;
-    --yellow:#ffd93d;
-    --yellow-dark:#eab308;
-    --purple:#b388ff;
-    --purple-dark:#9163e8;
+    --panel:#e8f2ff;
+    --card:#ffffff;
 
-    --panel:#ffffff;
+    --clue:#ff8a5c;
+    --clue-text:#ffffff;
+
+    --green:#3ecf7e;
+    --red:#ff6b6b;
+
+    --border:#e3e2ea;
   }
 
   *{box-sizing:border-box;}
@@ -35,42 +30,24 @@
     min-height:100%;
     color:var(--ink);
     font-family:'Baloo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background:
-      radial-gradient(circle at 15% 20%, #fff3c4 0%, transparent 38%),
-      radial-gradient(circle at 85% 15%, #cdeeff 0%, transparent 38%),
-      radial-gradient(circle at 88% 85%, #ffd9e8 0%, transparent 40%),
-      radial-gradient(circle at 10% 88%, #d6f5e0 0%, transparent 40%),
-      #eef0fb;
+    background:#ffffff;
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
   }
 
-  /* decorative stickers floating in the background */
-  .sticker{
-    position:fixed;
-    font-size:44px;
-    opacity:.7;
-    z-index:0;
-    filter:drop-shadow(0 3px 0 rgba(34,31,46,.12));
-  }
-  .s1{top:6%;left:6%;transform:rotate(-14deg);}
-  .s2{bottom:8%;left:8%;transform:rotate(10deg);font-size:38px;}
-  .s3{top:8%;right:7%;transform:rotate(12deg);}
-  .s4{bottom:6%;right:8%;transform:rotate(-10deg);font-size:38px;}
-
   #flash{
     position:fixed;
     inset:0;
-    background:var(--green-dark);
+    background:var(--green);
     opacity:0;
     pointer-events:none;
     transition:opacity .18s ease;
     z-index:50;
   }
-  #flash.on{opacity:.4;}
-  #flash.wrong{background:var(--red-dark);}
+  #flash.on{opacity:.35;}
+  #flash.wrong{background:var(--red);}
 
   #confetti-canvas{
     position:fixed;
@@ -79,85 +56,60 @@
     z-index:60;
   }
 
-  .stage{
-    position:relative;
-    z-index:1;
-    display:flex;
-    align-items:flex-start;
-    gap:26px;
-    padding:24px;
-  }
-
   .panel{
+    position:relative;
     background:var(--panel);
-    border:5px solid var(--ink);
-    border-radius:30px;
-    box-shadow:8px 10px 0 var(--ink);
-    padding:22px 22px 24px;
+    border-radius:32px;
+    padding:20px 26px 26px;
+    box-shadow:0 20px 40px rgba(26,26,26,0.08);
   }
 
-  /* side panel */
-  .side-panel{
+  /* tiny, unobtrusive row-count toggle */
+  .row-toggle{
+    position:absolute;
+    top:16px;
+    right:16px;
     display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
-    margin-top:46px;
-    background:var(--panel);
-    border:5px solid var(--ink);
-    border-radius:26px;
-    box-shadow:6px 8px 0 var(--ink);
-    padding:14px 10px;
+    gap:2px;
+    background:rgba(255,255,255,0.7);
+    border-radius:999px;
+    padding:3px;
   }
-  .side-label{
+  .row-toggle button{
+    border:none;
+    background:transparent;
+    font-family:inherit;
     font-size:12px;
     font-weight:700;
-    letter-spacing:.05em;
-    text-transform:uppercase;
-    color:var(--ink);
-    opacity:.6;
-    margin-bottom:2px;
-  }
-  .row-btn{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    border:4px solid var(--ink);
-    background:var(--purple);
-    color:#fff;
-    font-family:inherit;
-    font-size:18px;
-    font-weight:800;
+    padding:5px 9px;
+    border-radius:999px;
+    color:var(--muted);
     cursor:pointer;
-    box-shadow:0 4px 0 var(--ink);
-    transition:transform .1s ease, box-shadow .1s ease;
+    transition:background .15s ease, color .15s ease;
   }
-  .row-btn:hover{transform:translateY(-2px);}
-  .row-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink);}
-  .row-btn.active{
-    background:var(--pink);
-    transform:scale(1.08);
+  .row-toggle button.active{
+    background:var(--ink);
+    color:#fff;
   }
 
-  /* main */
   .main{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:18px;
+    gap:16px;
   }
 
   .title{
-    display:flex;
-    justify-content:center;
-    gap:1px;
-    margin:0 0 2px 0;
-    font-size:32px;
+    margin:6px 0 0 0;
+    font-size:26px;
     font-weight:800;
+    color:var(--ink);
   }
-  .title span{
-    -webkit-text-stroke:3px var(--ink);
-    paint-order:stroke fill;
+
+  .card{
+    background:var(--card);
+    border-radius:24px;
+    padding:18px;
   }
 
   .pyramid{
@@ -171,41 +123,33 @@
     gap:8px;
   }
   .cell{
-    width:52px;
-    height:52px;
+    width:50px;
+    height:50px;
     border-radius:14px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:19px;
+    font-size:18px;
     font-weight:800;
-    border:4px solid var(--ink);
   }
   .cell.given{
-    color:#fff;
-    box-shadow:0 3px 0 var(--ink);
-    -webkit-text-stroke:1px var(--ink);
-    paint-order:stroke fill;
+    background:var(--clue);
+    color:var(--clue-text);
+    box-shadow:0 4px 10px rgba(255,138,92,0.35);
   }
-  .cell.given.c0{background:var(--green);}
-  .cell.given.c1{background:var(--blue);}
-  .cell.given.c2{background:var(--orange);}
-  .cell.given.c3{background:var(--pink);}
-  .cell.given.c4{background:var(--purple);}
 
   .cell input{
     width:100%;
     height:100%;
     text-align:center;
-    font-size:19px;
+    font-size:18px;
     font-weight:800;
     font-family:inherit;
     color:var(--ink);
-    background:#fffef7;
-    border:4px solid var(--ink);
+    background:#fafafe;
+    border:2px solid var(--border);
     border-radius:14px;
-    box-shadow:0 3px 0 var(--ink);
-    transition:box-shadow .1s ease, transform .1s ease, background .12s ease;
+    transition:border-color .12s ease, background .12s ease;
     -moz-appearance:textfield;
   }
   .cell input::-webkit-outer-spin-button,
@@ -216,7 +160,7 @@
   .cell input:focus{
     outline:none;
     background:#fff;
-    box-shadow:0 3px 0 var(--purple-dark);
+    border-color:var(--ink);
   }
 
   .pyramid.shake{
@@ -232,80 +176,64 @@
 
   .btn-row{
     display:flex;
-    gap:14px;
+    gap:10px;
     margin-top:2px;
   }
 
   .btn{
     font-family:inherit;
-    font-size:15px;
+    font-size:14px;
     font-weight:700;
     padding:12px 20px;
-    border:4px solid var(--ink);
-    border-radius:16px;
+    border-radius:999px;
     cursor:pointer;
-    color:var(--ink);
-    transition:transform .1s ease, box-shadow .1s ease;
+    border:none;
+    transition:transform .1s ease, opacity .12s ease;
   }
-  .btn:active{transform:translateY(4px);}
+  .btn:active{transform:scale(.96);}
 
   .btn-check{
-    background:var(--green);
-    box-shadow:0 5px 0 var(--ink);
+    background:var(--ink);
+    color:#fff;
   }
-  .btn-check:active{box-shadow:0 1px 0 var(--ink);}
+  .btn-check:hover{opacity:.88;}
 
   .btn-new{
-    background:var(--yellow);
-    box-shadow:0 5px 0 var(--ink);
+    background:#fff;
+    color:var(--ink);
+    border:2px solid var(--border);
   }
-  .btn-new:active{box-shadow:0 1px 0 var(--ink);}
+  .btn-new:hover{background:#f5f5fa;}
 
   @media (max-width:560px){
-    .stage{flex-direction:column;align-items:center;gap:16px;padding:14px;}
-    .side-panel{flex-direction:row;margin-top:0;}
-    .panel{padding:16px 14px 18px;border-radius:24px;}
-    .cell{width:38px;height:38px;font-size:14px;border-radius:10px;border-width:3px;}
-    .cell input{font-size:14px;border-radius:10px;border-width:3px;}
+    .panel{padding:16px 14px 20px;border-radius:26px;}
+    .card{padding:12px;border-radius:18px;}
+    .cell{width:38px;height:38px;font-size:14px;border-radius:10px;}
+    .cell input{font-size:14px;border-radius:10px;border-width:1.5px;}
     .row{gap:5px;}
     .pyramid{gap:5px;}
-    .btn{padding:10px 14px;font-size:13px;}
-    .btn-row{flex-wrap:wrap;justify-content:center;}
-    .title{font-size:24px;}
-    .sticker{font-size:30px;}
+    .btn{padding:10px 16px;font-size:13px;}
+    .title{font-size:21px;}
   }
 </style>
 </head>
 <body>
 
-<div class="sticker s1">🌈</div>
-<div class="sticker s2">⭐</div>
-<div class="sticker s3">☁️</div>
-<div class="sticker s4">🍙</div>
-
 <div id="flash"></div>
 <canvas id="confetti-canvas"></canvas>
 
-<div class="stage">
-  <div class="side-panel">
-    <div class="side-label">Redci</div>
-    <button class="row-btn" data-rows="4">4</button>
-    <button class="row-btn" data-rows="5">5</button>
-    <button class="row-btn" data-rows="6">6</button>
+<div class="panel">
+  <div class="row-toggle">
+    <button data-rows="4">4</button>
+    <button data-rows="5">5</button>
+    <button data-rows="6">6</button>
   </div>
 
-  <div class="panel main">
-    <h1 class="title">
-      <span style="color:var(--green)">P</span>
-      <span style="color:var(--blue)">i</span>
-      <span style="color:var(--orange)">r</span>
-      <span style="color:var(--pink)">a</span>
-      <span style="color:var(--purple)">m</span>
-      <span style="color:var(--green)">i</span>
-      <span style="color:var(--blue)">d</span>
-      <span style="color:var(--orange)">a</span>
-    </h1>
-    <div class="pyramid" id="pyramid"></div>
+  <div class="main">
+    <h1 class="title">Piramida</h1>
+    <div class="card">
+      <div class="pyramid" id="pyramid"></div>
+    </div>
     <div class="btn-row">
       <button class="btn btn-check" id="checkBtn">Provjeri odgovore</button>
       <button class="btn btn-new" id="newBtn">Nova igra</button>
@@ -318,7 +246,7 @@ const pyramidEl = document.getElementById('pyramid');
 const newBtn = document.getElementById('newBtn');
 const checkBtn = document.getElementById('checkBtn');
 const flashEl = document.getElementById('flash');
-const rowButtons = document.querySelectorAll('.row-btn');
+const rowButtons = document.querySelectorAll('.row-toggle button');
 
 let currentRows = 6;
 let solution = [];
@@ -337,37 +265,109 @@ function bottomCap(rows){
   return Math.max(1, Math.floor(100 / Math.pow(2, rows - 1)));
 }
 
-function generatePuzzle(rows){
-  currentRows = rows;
-  solution = [];
-  hidden = [];
-
+function buildSolution(rows){
   const cap = bottomCap(rows);
+  const sol = [];
   const bottom = [];
   for(let i = 0; i < rows; i++) bottom.push(randInt(1, cap));
-  solution[rows - 1] = bottom;
+  sol[rows - 1] = bottom;
 
   for(let r = rows - 2; r >= 0; r--){
     const row = [];
-    const below = solution[r + 1];
+    const below = sol[r + 1];
     for(let i = 0; i <= r; i++){
       row.push(below[i] + below[i + 1]);
     }
-    solution[r] = row;
+    sol[r] = row;
+  }
+  return sol;
+}
+
+// Checks whether the given reveal pattern lets every cell be deduced
+// using addition (parent = left + right) or subtraction (a child =
+// parent - the other child), applied repeatedly until nothing changes.
+function isSolvable(revealed, sol, rows){
+  const known = [];
+  for(let r = 0; r < rows; r++){
+    known[r] = [];
+    for(let i = 0; i <= r; i++){
+      known[r][i] = revealed[r][i] ? sol[r][i] : null;
+    }
   }
 
-  // minimal reveal: only the bottom row is given, everything else
-  // must be worked out (still always solvable by summing upward).
+  let changed = true;
+  while(changed){
+    changed = false;
+    for(let r = 0; r < rows - 1; r++){
+      for(let i = 0; i <= r; i++){
+        const p = known[r][i];
+        const l = known[r + 1][i];
+        const rt = known[r + 1][i + 1];
+        const knownCount = (p !== null ? 1 : 0) + (l !== null ? 1 : 0) + (rt !== null ? 1 : 0);
+        if(knownCount === 2){
+          if(p === null){ known[r][i] = l + rt; changed = true; }
+          else if(l === null){ known[r + 1][i] = p - rt; changed = true; }
+          else if(rt === null){ known[r + 1][i + 1] = p - l; changed = true; }
+        }
+      }
+    }
+  }
+
+  for(let r = 0; r < rows; r++){
+    for(let i = 0; i <= r; i++){
+      if(known[r][i] === null) return false;
+    }
+  }
+  return true;
+}
+
+// Scatters revealed ("given") cells across the whole triangle, then
+// tops up random extra reveals until the puzzle is fully solvable.
+// The top cell is always the hidden goal.
+function buildReveal(rows, sol){
+  const revealed = [];
   for(let r = 0; r < rows; r++){
     const row = [];
     for(let i = 0; i <= r; i++){
-      row.push(r !== rows - 1);
+      if(r === 0 && i === 0){
+        row.push(false);
+      } else {
+        row.push(Math.random() < 0.35);
+      }
     }
-    hidden[r] = row;
+    revealed[r] = row;
   }
+
+  while(!isSolvable(revealed, sol, rows)){
+    const hiddenCells = [];
+    for(let r = 0; r < rows; r++){
+      for(let i = 0; i <= r; i++){
+        if(!revealed[r][i] && !(r === 0 && i === 0)){
+          hiddenCells.push([r, i]);
+        }
+      }
+    }
+    if(hiddenCells.length === 0) break;
+    const [r, i] = hiddenCells[randInt(0, hiddenCells.length - 1)];
+    revealed[r][i] = true;
+  }
+
+  return revealed;
 }
 
-const giveColors = ['c0', 'c1', 'c2', 'c3', 'c4'];
+function generatePuzzle(rows){
+  currentRows = rows;
+  solution = buildSolution(rows);
+  const revealed = buildReveal(rows, solution);
+
+  hidden = [];
+  for(let r = 0; r < rows; r++){
+    hidden[r] = [];
+    for(let i = 0; i <= r; i++){
+      hidden[r][i] = !revealed[r][i];
+    }
+  }
+}
 
 function renderPyramid(){
   pyramidEl.innerHTML = '';
@@ -394,7 +394,7 @@ function renderPyramid(){
         cellEl.appendChild(input);
         inputs[r][i] = input;
       } else {
-        cellEl.className = 'cell given ' + giveColors[i % giveColors.length];
+        cellEl.className = 'cell given';
         cellEl.textContent = solution[r][i];
         inputs[r][i] = null;
       }
@@ -485,7 +485,7 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const confettiColors = ['#3ddc84', '#4fc3f7', '#ffa94d', '#ff7aa8', '#ffd93d', '#b388ff'];
+const confettiColors = ['#ff8a5c', '#3ecf7e', '#4fa8f7', '#ffd93d', '#1a1a1a'];
 
 function launchConfetti(){
   particles = [];
