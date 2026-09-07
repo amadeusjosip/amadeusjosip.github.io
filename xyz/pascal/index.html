@@ -6,25 +6,25 @@
 <title>Piramida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#4a3b32;
+    --ink:#221f2e;
 
-    --coral:#ff8a65;
-    --coral-dark:#e0673f;
-    --turquoise:#4ecdc4;
-    --turquoise-dark:#2fa79d;
-    --sunny:#ffd93d;
-    --sunny-dark:#eab308;
-    --grass:#8bc34a;
-    --grass-dark:#6b9e36;
-    --sky:#4fc3f7;
-    --sky-dark:#2b9fd9;
+    --green:#3ddc84;
+    --green-dark:#1fa863;
+    --blue:#4fc3f7;
+    --blue-dark:#1f9cd9;
+    --orange:#ffa94d;
+    --orange-dark:#e8841f;
+    --pink:#ff7aa8;
+    --pink-dark:#e8547f;
+    --red:#ff5f5f;
+    --red-dark:#e63e3e;
+    --yellow:#ffd93d;
+    --yellow-dark:#eab308;
     --purple:#b388ff;
     --purple-dark:#9163e8;
-    --pink:#ff7aa2;
-    --pink-dark:#e85d87;
 
     --panel:#ffffff;
   }
@@ -36,41 +36,41 @@
     color:var(--ink);
     font-family:'Baloo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background:
-      radial-gradient(circle at 12% 18%, #fff2c8 0%, transparent 42%),
-      radial-gradient(circle at 88% 12%, #c9f0ff 0%, transparent 40%),
-      radial-gradient(circle at 85% 88%, #ffd6e6 0%, transparent 45%),
-      radial-gradient(circle at 10% 85%, #d9f7d0 0%, transparent 42%),
-      linear-gradient(160deg, #fff6e6 0%, #eaf7ff 100%);
+      radial-gradient(circle at 15% 20%, #fff3c4 0%, transparent 38%),
+      radial-gradient(circle at 85% 15%, #cdeeff 0%, transparent 38%),
+      radial-gradient(circle at 88% 85%, #ffd9e8 0%, transparent 40%),
+      radial-gradient(circle at 10% 88%, #d6f5e0 0%, transparent 40%),
+      #eef0fb;
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
   }
 
-  /* floating decorative blobs */
-  .blob{
+  /* decorative stickers floating in the background */
+  .sticker{
     position:fixed;
-    border-radius:50%;
-    opacity:.55;
-    filter:blur(1px);
+    font-size:44px;
+    opacity:.7;
     z-index:0;
+    filter:drop-shadow(0 3px 0 rgba(34,31,46,.12));
   }
-  .blob1{width:120px;height:120px;background:var(--sunny);top:8%;left:6%;}
-  .blob2{width:70px;height:70px;background:var(--pink);bottom:12%;left:10%;}
-  .blob3{width:100px;height:100px;background:var(--sky);top:10%;right:8%;}
-  .blob4{width:60px;height:60px;background:var(--grass);bottom:8%;right:10%;}
+  .s1{top:6%;left:6%;transform:rotate(-14deg);}
+  .s2{bottom:8%;left:8%;transform:rotate(10deg);font-size:38px;}
+  .s3{top:8%;right:7%;transform:rotate(12deg);}
+  .s4{bottom:6%;right:8%;transform:rotate(-10deg);font-size:38px;}
 
   #flash{
     position:fixed;
     inset:0;
-    background:var(--grass-dark);
+    background:var(--green-dark);
     opacity:0;
     pointer-events:none;
     transition:opacity .18s ease;
     z-index:50;
   }
   #flash.on{opacity:.4;}
-  #flash.wrong{background:var(--pink-dark);}
+  #flash.wrong{background:var(--red-dark);}
 
   #confetti-canvas{
     position:fixed;
@@ -84,16 +84,16 @@
     z-index:1;
     display:flex;
     align-items:flex-start;
-    gap:28px;
+    gap:26px;
     padding:24px;
   }
 
   .panel{
     background:var(--panel);
-    border:5px solid #fff;
-    border-radius:32px;
-    box-shadow:0 10px 0 rgba(74,59,50,0.10), 0 16px 28px rgba(74,59,50,0.14);
-    padding:22px 20px;
+    border:5px solid var(--ink);
+    border-radius:30px;
+    box-shadow:8px 10px 0 var(--ink);
+    padding:22px 22px 24px;
   }
 
   /* side panel */
@@ -102,36 +102,40 @@
     flex-direction:column;
     align-items:center;
     gap:12px;
-    margin-top:44px;
+    margin-top:46px;
+    background:var(--panel);
+    border:5px solid var(--ink);
+    border-radius:26px;
+    box-shadow:6px 8px 0 var(--ink);
+    padding:14px 10px;
   }
   .side-label{
     font-size:12px;
     font-weight:700;
-    letter-spacing:.06em;
+    letter-spacing:.05em;
     text-transform:uppercase;
     color:var(--ink);
-    opacity:.55;
+    opacity:.6;
     margin-bottom:2px;
   }
   .row-btn{
-    width:48px;
-    height:48px;
+    width:46px;
+    height:46px;
     border-radius:50%;
-    border:4px solid #fff;
+    border:4px solid var(--ink);
     background:var(--purple);
     color:#fff;
     font-family:inherit;
     font-size:18px;
     font-weight:800;
     cursor:pointer;
-    box-shadow:0 5px 0 var(--purple-dark);
+    box-shadow:0 4px 0 var(--ink);
     transition:transform .1s ease, box-shadow .1s ease;
   }
   .row-btn:hover{transform:translateY(-2px);}
-  .row-btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--purple-dark);}
+  .row-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink);}
   .row-btn.active{
     background:var(--pink);
-    box-shadow:0 5px 0 var(--pink-dark);
     transform:scale(1.08);
   }
 
@@ -140,42 +144,55 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:20px;
+    gap:18px;
   }
 
   .title{
-    font-size:26px;
+    display:flex;
+    justify-content:center;
+    gap:1px;
+    margin:0 0 2px 0;
+    font-size:32px;
     font-weight:800;
-    margin:0 0 4px 0;
-    text-align:center;
+  }
+  .title span{
+    -webkit-text-stroke:3px var(--ink);
+    paint-order:stroke fill;
   }
 
   .pyramid{
     display:flex;
     flex-direction:column;
-    gap:9px;
+    gap:8px;
   }
   .row{
     display:flex;
     justify-content:center;
-    gap:9px;
+    gap:8px;
   }
   .cell{
-    width:54px;
-    height:54px;
-    border-radius:16px;
+    width:52px;
+    height:52px;
+    border-radius:14px;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:19px;
     font-weight:800;
+    border:4px solid var(--ink);
   }
   .cell.given{
-    background:var(--sunny);
-    color:#7a5c00;
-    border:4px solid #fff;
-    box-shadow:0 4px 0 var(--sunny-dark);
+    color:#fff;
+    box-shadow:0 3px 0 var(--ink);
+    -webkit-text-stroke:1px var(--ink);
+    paint-order:stroke fill;
   }
+  .cell.given.c0{background:var(--green);}
+  .cell.given.c1{background:var(--blue);}
+  .cell.given.c2{background:var(--orange);}
+  .cell.given.c3{background:var(--pink);}
+  .cell.given.c4{background:var(--purple);}
+
   .cell input{
     width:100%;
     height:100%;
@@ -184,11 +201,11 @@
     font-weight:800;
     font-family:inherit;
     color:var(--ink);
-    background:#f4fbfb;
-    border:4px solid var(--turquoise);
-    border-radius:16px;
-    box-shadow:0 4px 0 var(--turquoise-dark);
-    transition:border-color .12s ease, box-shadow .12s ease, transform .12s ease;
+    background:#fffef7;
+    border:4px solid var(--ink);
+    border-radius:14px;
+    box-shadow:0 3px 0 var(--ink);
+    transition:box-shadow .1s ease, transform .1s ease, background .12s ease;
     -moz-appearance:textfield;
   }
   .cell input::-webkit-outer-spin-button,
@@ -198,8 +215,8 @@
   }
   .cell input:focus{
     outline:none;
-    border-color:var(--purple);
-    box-shadow:0 4px 0 var(--purple-dark);
+    background:#fff;
+    box-shadow:0 3px 0 var(--purple-dark);
   }
 
   .pyramid.shake{
@@ -216,54 +233,55 @@
   .btn-row{
     display:flex;
     gap:14px;
-    margin-top:4px;
+    margin-top:2px;
   }
 
   .btn{
     font-family:inherit;
     font-size:15px;
     font-weight:700;
-    letter-spacing:.01em;
-    padding:13px 22px;
-    border:4px solid #fff;
-    border-radius:18px;
+    padding:12px 20px;
+    border:4px solid var(--ink);
+    border-radius:16px;
     cursor:pointer;
-    color:#fff;
+    color:var(--ink);
     transition:transform .1s ease, box-shadow .1s ease;
   }
-  .btn:active{transform:translateY(3px);}
+  .btn:active{transform:translateY(4px);}
 
   .btn-check{
-    background:var(--grass);
-    box-shadow:0 6px 0 var(--grass-dark);
+    background:var(--green);
+    box-shadow:0 5px 0 var(--ink);
   }
-  .btn-check:active{box-shadow:0 3px 0 var(--grass-dark);}
+  .btn-check:active{box-shadow:0 1px 0 var(--ink);}
 
   .btn-new{
-    background:var(--coral);
-    box-shadow:0 6px 0 var(--coral-dark);
+    background:var(--yellow);
+    box-shadow:0 5px 0 var(--ink);
   }
-  .btn-new:active{box-shadow:0 3px 0 var(--coral-dark);}
+  .btn-new:active{box-shadow:0 1px 0 var(--ink);}
 
   @media (max-width:560px){
-    .stage{flex-direction:column;align-items:center;gap:18px;padding:16px;}
+    .stage{flex-direction:column;align-items:center;gap:16px;padding:14px;}
     .side-panel{flex-direction:row;margin-top:0;}
-    .panel{padding:16px 12px;border-radius:26px;}
-    .cell{width:40px;height:40px;font-size:14px;border-radius:12px;}
-    .cell input{font-size:14px;border-radius:12px;}
-    .row{gap:6px;}
-    .pyramid{gap:6px;}
-    .btn{padding:11px 16px;font-size:13px;}
+    .panel{padding:16px 14px 18px;border-radius:24px;}
+    .cell{width:38px;height:38px;font-size:14px;border-radius:10px;border-width:3px;}
+    .cell input{font-size:14px;border-radius:10px;border-width:3px;}
+    .row{gap:5px;}
+    .pyramid{gap:5px;}
+    .btn{padding:10px 14px;font-size:13px;}
     .btn-row{flex-wrap:wrap;justify-content:center;}
+    .title{font-size:24px;}
+    .sticker{font-size:30px;}
   }
 </style>
 </head>
 <body>
 
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="blob blob3"></div>
-<div class="blob blob4"></div>
+<div class="sticker s1">🌈</div>
+<div class="sticker s2">⭐</div>
+<div class="sticker s3">☁️</div>
+<div class="sticker s4">🍙</div>
 
 <div id="flash"></div>
 <canvas id="confetti-canvas"></canvas>
@@ -277,7 +295,16 @@
   </div>
 
   <div class="panel main">
-    <h1 class="title">🔺 Piramida</h1>
+    <h1 class="title">
+      <span style="color:var(--green)">P</span>
+      <span style="color:var(--blue)">i</span>
+      <span style="color:var(--orange)">r</span>
+      <span style="color:var(--pink)">a</span>
+      <span style="color:var(--purple)">m</span>
+      <span style="color:var(--green)">i</span>
+      <span style="color:var(--blue)">d</span>
+      <span style="color:var(--orange)">a</span>
+    </h1>
     <div class="pyramid" id="pyramid"></div>
     <div class="btn-row">
       <button class="btn btn-check" id="checkBtn">Provjeri odgovore</button>
@@ -340,6 +367,8 @@ function generatePuzzle(rows){
   }
 }
 
+const giveColors = ['c0', 'c1', 'c2', 'c3', 'c4'];
+
 function renderPyramid(){
   pyramidEl.innerHTML = '';
   inputs = [];
@@ -365,7 +394,7 @@ function renderPyramid(){
         cellEl.appendChild(input);
         inputs[r][i] = input;
       } else {
-        cellEl.className = 'cell given';
+        cellEl.className = 'cell given ' + giveColors[i % giveColors.length];
         cellEl.textContent = solution[r][i];
         inputs[r][i] = null;
       }
@@ -456,7 +485,7 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const confettiColors = ['#ff8a65', '#4ecdc4', '#ffd93d', '#8bc34a', '#4fc3f7', '#b388ff', '#ff7aa2'];
+const confettiColors = ['#3ddc84', '#4fc3f7', '#ffa94d', '#ff7aa8', '#ffd93d', '#b388ff'];
 
 function launchConfetti(){
   particles = [];
