@@ -10,31 +10,50 @@
 <style>
   :root{
     --ink:#1a1a1a;
-    --muted:#9a97a3;
-
-    --panel:#e8f2ff;
+    --bg-yellow:#ffd83d;
     --card:#ffffff;
 
-    --clue:#ff8a5c;
-    --clue-text:#ffffff;
-
-    --green:#3ecf7e;
-    --red:#ff6b6b;
-
-    --border:#e3e2ea;
+    --green:#3ddc84;
+    --blue:#4fc3f7;
+    --orange:#ffa94d;
+    --pink:#ff7aa8;
+    --purple:#b388ff;
+    --red:#ff5f5f;
   }
 
   *{box-sizing:border-box;}
   html,body{
     margin:0;
-    min-height:100%;
+    min-height:100vh;
     color:var(--ink);
     font-family:'Baloo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background:#ffffff;
+    background:var(--bg-yellow);
     display:flex;
     align-items:center;
     justify-content:center;
-    overflow:hidden;
+    padding:22px 14px;
+  }
+
+  .sticker{
+    position:fixed;
+    width:50px;
+    height:50px;
+    background:#fff;
+    border:4px solid var(--ink);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    box-shadow:0 4px 0 var(--ink);
+    z-index:0;
+  }
+  .s1{top:5%;left:5%;transform:rotate(-12deg);}
+  .s2{top:5%;right:5%;transform:rotate(10deg);}
+  .s3{bottom:5%;left:6%;transform:rotate(8deg);width:42px;height:42px;font-size:20px;}
+  .s4{bottom:5%;right:6%;transform:rotate(-9deg);width:42px;height:42px;font-size:20px;}
+  @media (max-width:420px){
+    .sticker{display:none;}
   }
 
   #flash{
@@ -46,7 +65,7 @@
     transition:opacity .18s ease;
     z-index:50;
   }
-  #flash.on{opacity:.35;}
+  #flash.on{opacity:.4;}
   #flash.wrong{background:var(--red);}
 
   #confetti-canvas{
@@ -56,100 +75,138 @@
     z-index:60;
   }
 
-  .panel{
+  .scene{
     position:relative;
-    background:var(--panel);
-    border-radius:32px;
-    padding:20px 26px 26px;
-    box-shadow:0 20px 40px rgba(26,26,26,0.08);
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    width:100%;
+    max-width:360px;
   }
 
-  /* tiny, unobtrusive row-count toggle */
+  .title{
+    display:flex;
+    justify-content:center;
+    gap:1px;
+    font-size:clamp(28px, 8.5vw, 36px);
+    font-weight:800;
+    margin:0;
+  }
+  .title span{
+    -webkit-text-stroke:3px var(--ink);
+    paint-order:stroke fill;
+  }
+
+  .subtitle-pill{
+    background:var(--ink);
+    color:#fff;
+    font-weight:700;
+    font-size:13px;
+    padding:6px 18px;
+    border-radius:999px;
+    transform:rotate(-3deg);
+    margin:-2px 0 14px 0;
+    box-shadow:0 3px 0 rgba(0,0,0,.3);
+  }
+
+  .panel{
+    position:relative;
+    background:var(--card);
+    border:5px solid var(--ink);
+    border-radius:30px;
+    box-shadow:0 8px 0 var(--ink);
+    padding:20px 16px 20px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
   .row-toggle{
     position:absolute;
-    top:16px;
+    top:-16px;
     right:16px;
     display:flex;
     gap:2px;
-    background:rgba(255,255,255,0.7);
+    background:#fff;
+    border:3px solid var(--ink);
     border-radius:999px;
     padding:3px;
+    box-shadow:0 3px 0 var(--ink);
   }
   .row-toggle button{
     border:none;
     background:transparent;
     font-family:inherit;
     font-size:12px;
-    font-weight:700;
-    padding:5px 9px;
+    font-weight:800;
+    padding:4px 9px;
     border-radius:999px;
-    color:var(--muted);
+    color:var(--ink);
     cursor:pointer;
-    transition:background .15s ease, color .15s ease;
   }
   .row-toggle button.active{
-    background:var(--ink);
+    background:var(--purple);
     color:#fff;
   }
 
-  .main{
+  /* fixed-size box: always sized for 6 rows, regardless of currentRows */
+  .puzzle-box{
+    --cell: clamp(30px, 9.5vw, 44px);
+    --gap: 6px;
+    width: calc(var(--cell) * 6 + var(--gap) * 5);
+    height: calc(var(--cell) * 6 + var(--gap) * 5);
     display:flex;
-    flex-direction:column;
     align-items:center;
-    gap:16px;
-  }
-
-  .title{
-    margin:6px 0 0 0;
-    font-size:26px;
-    font-weight:800;
-    color:var(--ink);
-  }
-
-  .card{
-    background:var(--card);
-    border-radius:24px;
-    padding:18px;
+    justify-content:center;
+    margin-top:8px;
   }
 
   .pyramid{
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:var(--gap);
   }
   .row{
     display:flex;
     justify-content:center;
-    gap:8px;
+    gap:var(--gap);
   }
   .cell{
-    width:50px;
-    height:50px;
-    border-radius:14px;
+    width:var(--cell);
+    height:var(--cell);
+    border-radius:12px;
+    border:3px solid var(--ink);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:18px;
     font-weight:800;
+    font-size:calc(var(--cell) * 0.36);
   }
   .cell.given{
-    background:var(--clue);
-    color:var(--clue-text);
-    box-shadow:0 4px 10px rgba(255,138,92,0.35);
+    color:#fff;
+    box-shadow:0 3px 0 var(--ink);
   }
+  .cell.given.c0{background:var(--green);}
+  .cell.given.c1{background:var(--blue);}
+  .cell.given.c2{background:var(--orange);}
+  .cell.given.c3{background:var(--pink);}
+  .cell.given.c4{background:var(--purple);}
 
   .cell input{
     width:100%;
     height:100%;
     text-align:center;
-    font-size:18px;
+    font-size:calc(var(--cell) * 0.36);
     font-weight:800;
     font-family:inherit;
     color:var(--ink);
-    background:#fafafe;
-    border:2px solid var(--border);
-    border-radius:14px;
-    transition:border-color .12s ease, background .12s ease;
+    background:#fbfbff;
+    border:3px solid var(--ink);
+    border-radius:12px;
+    transition:background .12s ease, border-color .12s ease;
     -moz-appearance:textfield;
   }
   .cell input::-webkit-outer-spin-button,
@@ -160,7 +217,7 @@
   .cell input:focus{
     outline:none;
     background:#fff;
-    border-color:var(--ink);
+    border-color:var(--purple);
   }
 
   .pyramid.shake{
@@ -177,63 +234,65 @@
   .btn-row{
     display:flex;
     gap:10px;
-    margin-top:2px;
+    margin-top:16px;
+    flex-wrap:wrap;
+    justify-content:center;
   }
 
   .btn{
     font-family:inherit;
+    font-weight:800;
     font-size:14px;
-    font-weight:700;
     padding:12px 20px;
     border-radius:999px;
+    border:3px solid var(--ink);
     cursor:pointer;
-    border:none;
-    transition:transform .1s ease, opacity .12s ease;
-  }
-  .btn:active{transform:scale(.96);}
-
-  .btn-check{
-    background:var(--ink);
+    box-shadow:0 4px 0 var(--ink);
+    transition:transform .08s ease, box-shadow .08s ease;
     color:#fff;
   }
-  .btn-check:hover{opacity:.88;}
-
-  .btn-new{
-    background:#fff;
-    color:var(--ink);
-    border:2px solid var(--border);
+  .btn:active{
+    transform:translateY(3px);
+    box-shadow:0 1px 0 var(--ink);
   }
-  .btn-new:hover{background:#f5f5fa;}
-
-  @media (max-width:560px){
-    .panel{padding:16px 14px 20px;border-radius:26px;}
-    .card{padding:12px;border-radius:18px;}
-    .cell{width:38px;height:38px;font-size:14px;border-radius:10px;}
-    .cell input{font-size:14px;border-radius:10px;border-width:1.5px;}
-    .row{gap:5px;}
-    .pyramid{gap:5px;}
-    .btn{padding:10px 16px;font-size:13px;}
-    .title{font-size:21px;}
-  }
+  .btn-check{background:var(--green);}
+  .btn-new{background:var(--pink);}
 </style>
 </head>
 <body>
 
+<div class="sticker s1">🎈</div>
+<div class="sticker s2">⭐</div>
+<div class="sticker s3">🍩</div>
+<div class="sticker s4">🎮</div>
+
 <div id="flash"></div>
 <canvas id="confetti-canvas"></canvas>
 
-<div class="panel">
-  <div class="row-toggle">
-    <button data-rows="4">4</button>
-    <button data-rows="5">5</button>
-    <button data-rows="6">6</button>
-  </div>
+<div class="scene">
+  <h1 class="title">
+    <span style="color:var(--green)">P</span>
+    <span style="color:var(--blue)">i</span>
+    <span style="color:var(--orange)">r</span>
+    <span style="color:var(--pink)">a</span>
+    <span style="color:var(--purple)">m</span>
+    <span style="color:var(--green)">i</span>
+    <span style="color:var(--blue)">d</span>
+    <span style="color:var(--orange)">a</span>
+  </h1>
+  <div class="subtitle-pill">Zbrajanje</div>
 
-  <div class="main">
-    <h1 class="title">Piramida</h1>
-    <div class="card">
+  <div class="panel">
+    <div class="row-toggle">
+      <button data-rows="4">4</button>
+      <button data-rows="5">5</button>
+      <button data-rows="6">6</button>
+    </div>
+
+    <div class="puzzle-box">
       <div class="pyramid" id="pyramid"></div>
     </div>
+
     <div class="btn-row">
       <button class="btn btn-check" id="checkBtn">Provjeri odgovore</button>
       <button class="btn btn-new" id="newBtn">Nova igra</button>
@@ -369,10 +428,13 @@ function generatePuzzle(rows){
   }
 }
 
+const giveColors = ['c0', 'c1', 'c2', 'c3', 'c4'];
+
 function renderPyramid(){
   pyramidEl.innerHTML = '';
   inputs = [];
   busy = false;
+  let colorIdx = 0;
 
   for(let r = 0; r < currentRows; r++){
     const rowEl = document.createElement('div');
@@ -394,7 +456,8 @@ function renderPyramid(){
         cellEl.appendChild(input);
         inputs[r][i] = input;
       } else {
-        cellEl.className = 'cell given';
+        cellEl.className = 'cell given ' + giveColors[colorIdx % giveColors.length];
+        colorIdx++;
         cellEl.textContent = solution[r][i];
         inputs[r][i] = null;
       }
@@ -485,7 +548,7 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const confettiColors = ['#ff8a5c', '#3ecf7e', '#4fa8f7', '#ffd93d', '#1a1a1a'];
+const confettiColors = ['#3ddc84', '#4fc3f7', '#ffa94d', '#ff7aa8', '#b388ff', '#ffd83d'];
 
 function launchConfetti(){
   particles = [];
