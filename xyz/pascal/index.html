@@ -93,9 +93,10 @@
     .sticker{display:none;}
 
     .panel{
-      padding:14px 8px 10px;
+      padding:14px 5px 10px;
       border-width:4px;
       border-radius:23px;
+      height:clamp(350px, 78vh, 500px);
     }
 
     .mode-toggle{
@@ -121,8 +122,9 @@
     }
 
     .puzzle-box{
-      --cell:clamp(44px, 15.2vw, 58px);
+      --cell:clamp(39px, 12.8vw, 54px);
       --gap:4px;
+      height:285px;
     }
 
     .cell{
@@ -140,9 +142,15 @@
   @media (max-height:650px){
     .title{font-size:24px;}
     .subtitle-pill{font-size:11px;padding:4px 13px;margin-bottom:7px;}
-    .panel{padding-top:12px;}
-    .puzzle-box{--cell:clamp(40px, 13vw, 52px);}
-    .btn-row{margin-top:7px;}
+    .panel{
+      padding-top:10px;
+      height:clamp(330px, 82vh, 430px);
+    }
+    .puzzle-box{
+      --cell:clamp(35px, 11.5vw, 48px);
+      height:245px;
+    }
+    .btn-row{margin-top:5px;}
   }
 
   #flash{
@@ -211,9 +219,11 @@
     box-shadow:0 6px 0 var(--ink);
     padding:15px 10px 12px;
     width:100%;
+    height:clamp(365px, 78vh, 510px);
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:center;
   }
 
   /* mode toggle: top-left */
@@ -280,14 +290,15 @@
   /* fixed-size box: always sized for 6 rows (addition's max), regardless
      of currentRows or mode, so it never resizes on toggle */
   .puzzle-box{
-    --cell: clamp(48px, 16vw, 62px);
-    --gap: 5px;
+    --cell: clamp(42px, 13.5vw, 58px);
+    --gap: 4px;
     width:100%;
-    height:auto;
+    height:300px;
     display:flex;
     align-items:center;
     justify-content:center;
     margin-top:5px;
+    overflow:visible;
   }
 
   .pyramid{
@@ -721,8 +732,13 @@ function handleCheck(){
   for(let r = 0; r < currentRows; r++){
     for(let i = 0; i <= r; i++){
       const input = inputs[r][i];
-      if(input && parseInt(input.value, 10) !== solution[r][i]){
-        allCorrect = false;
+      if(input){
+        const userValue = Number(input.value.trim());
+        const expected = Number(solution[r][i]);
+
+        if(!Number.isFinite(userValue) || !Number.isInteger(userValue) || userValue !== expected){
+          allCorrect = false;
+        }
       }
     }
   }
