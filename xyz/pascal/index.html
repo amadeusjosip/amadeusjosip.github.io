@@ -12,6 +12,9 @@
     --ink:#1a1a1a;
     --bg-yellow:#ffd83d;
     --card:#ffffff;
+    --sky:#9ee8ff;
+    --cream:#fff4cf;
+    --grass:#8bd96b;
 
     --green:#3ddc84;
     --blue:#4fc3f7;
@@ -24,14 +27,48 @@
   *{box-sizing:border-box;}
   html,body{
     margin:0;
-    min-height:100vh;
+    width:100%;
+    height:100%;
+    min-height:100%;
+    overflow:hidden;
     color:var(--ink);
     font-family:'Baloo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background:var(--bg-yellow);
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255,255,255,.72) 0 28px, transparent 29px),
+      radial-gradient(circle at 87% 13%, rgba(255,255,255,.55) 0 38px, transparent 39px),
+      linear-gradient(#9ee8ff 0 68%, #b8e98c 68% 100%);
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:22px 14px;
+    padding:8px;
+  }
+
+  body::before,
+  body::after{
+    content:"";
+    position:fixed;
+    pointer-events:none;
+    z-index:0;
+  }
+  body::before{
+    width:150px;
+    height:70px;
+    left:-25px;
+    top:12%;
+    border-radius:50%;
+    background:#fff7df;
+    box-shadow:115px 25px 0 -8px #fff7df, 255px -10px 0 -15px #fff7df;
+    opacity:.9;
+  }
+  body::after{
+    width:100%;
+    height:34%;
+    left:0;
+    bottom:0;
+    background:
+      radial-gradient(circle at 10% 80%, #6fc85e 0 42px, transparent 43px),
+      radial-gradient(circle at 90% 82%, #78ce64 0 52px, transparent 53px);
+    opacity:.9;
   }
 
   .sticker{
@@ -54,6 +91,58 @@
   .s4{bottom:5%;right:6%;transform:rotate(-9deg);width:42px;height:42px;font-size:20px;}
   @media (max-width:420px){
     .sticker{display:none;}
+
+    .panel{
+      padding:14px 8px 10px;
+      border-width:4px;
+      border-radius:23px;
+    }
+
+    .mode-toggle{
+      top:-14px;
+      left:10px;
+      border-width:2px;
+    }
+
+    .mode-toggle button{
+      font-size:13px;
+      padding:3px 9px;
+    }
+
+    .row-toggle{
+      top:-14px;
+      right:10px;
+      border-width:2px;
+    }
+
+    .row-toggle button{
+      font-size:11px;
+      padding:3px 7px;
+    }
+
+    .puzzle-box{
+      --cell:clamp(44px, 15.2vw, 58px);
+      --gap:4px;
+    }
+
+    .cell{
+      border-width:2px;
+      box-shadow:2px 2px 0 var(--ink);
+      border-radius:9px;
+    }
+
+    .btn{
+      font-size:11px;
+      padding:7px 10px;
+    }
+  }
+
+  @media (max-height:650px){
+    .title{font-size:24px;}
+    .subtitle-pill{font-size:11px;padding:4px 13px;margin-bottom:7px;}
+    .panel{padding-top:12px;}
+    .puzzle-box{--cell:clamp(40px, 13vw, 52px);}
+    .btn-row{margin-top:7px;}
   }
 
   #flash{
@@ -81,18 +170,21 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:2px;
-    width:100%;
-    max-width:360px;
+    justify-content:center;
+    gap:0;
+    width:min(100%, 390px);
+    max-width:390px;
+    height:100%;
+    max-height:100%;
   }
 
   .title{
     display:flex;
     justify-content:center;
     gap:1px;
-    font-size:clamp(28px, 8.5vw, 36px);
+    font-size:clamp(24px, 8vw, 32px);
     font-weight:800;
-    margin:0;
+    margin:0 0 1px;
   }
   .title span{
     -webkit-text-stroke:3px var(--ink);
@@ -107,7 +199,7 @@
     padding:6px 18px;
     border-radius:999px;
     transform:rotate(-3deg);
-    margin:-2px 0 14px 0;
+    margin:-2px 0 10px 0;
     box-shadow:0 3px 0 rgba(0,0,0,.3);
   }
 
@@ -115,9 +207,9 @@
     position:relative;
     background:var(--card);
     border:5px solid var(--ink);
-    border-radius:30px;
-    box-shadow:0 8px 0 var(--ink);
-    padding:20px 16px 20px;
+    border-radius:26px;
+    box-shadow:0 6px 0 var(--ink);
+    padding:15px 10px 12px;
     width:100%;
     display:flex;
     flex-direction:column;
@@ -188,14 +280,14 @@
   /* fixed-size box: always sized for 6 rows (addition's max), regardless
      of currentRows or mode, so it never resizes on toggle */
   .puzzle-box{
-    --cell: clamp(30px, 9.5vw, 44px);
-    --gap: 6px;
-    width: calc(var(--cell) * 6 + var(--gap) * 5);
-    height: calc(var(--cell) * 6 + var(--gap) * 5);
+    --cell: clamp(48px, 16vw, 62px);
+    --gap: 5px;
+    width:100%;
+    height:auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    margin-top:8px;
+    margin-top:5px;
   }
 
   .pyramid{
@@ -214,9 +306,9 @@
   .cell{
     width:var(--cell);
     height:var(--cell);
-    border-radius:12px;
+    border-radius:11px;
     border:3px solid var(--ink);
-    box-shadow:4px 4px 0 var(--ink);
+    box-shadow:3px 3px 0 var(--ink);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -268,30 +360,32 @@
 
   .btn-row{
     display:flex;
-    gap:10px;
-    margin-top:16px;
-    flex-wrap:wrap;
+    gap:7px;
+    margin-top:10px;
+    flex-wrap:nowrap;
     justify-content:center;
+    width:100%;
   }
 
   .btn{
     font-family:inherit;
     font-weight:800;
-    font-size:14px;
-    padding:12px 20px;
+    font-size:12px;
+    padding:8px 12px;
     border-radius:999px;
-    border:3px solid var(--ink);
+    border:2px solid var(--ink);
     cursor:pointer;
-    box-shadow:0 4px 0 var(--ink);
+    box-shadow:0 3px 0 var(--ink);
     transition:transform .08s ease, box-shadow .08s ease;
     color:#fff;
+    white-space:nowrap;
   }
   .btn:active{
     transform:translateY(3px);
     box-shadow:0 1px 0 var(--ink);
   }
   .btn-check{background:var(--green);}
-  .btn-new{background:var(--pink);}
+  .btn-new{background:#fff;color:var(--ink);}
 </style>
 </head>
 <body>
@@ -455,33 +549,57 @@ function buildAddReveal(rows, sol){
 }
 
 /* ---------------- MULTIPLICATION mode (kids) ---------------- */
-// 4 rows: the middle rows can contain values such as 2, 3, 5 and 10.
-// The bottom row uses small factors so the child also has to calculate
-// many of the lower cells.
-const MUL_FACTORS = [1, 2, 3, 5];
+/*
+ * Kid-friendly 4-row multiplication:
+ * - bottom factors are small: 1, 2, 3, 4, 5, 10
+ * - every number that can be entered is <= 100
+ * - numbers are intentionally biased toward friendly results such as
+ *   4, 5, 10, 12, 15, 16, 20, 25 and 50
+ * - each generated pyramid is checked before being used
+ */
+const MUL_FACTORS = [1, 2, 3, 4, 5, 10];
 
 function buildMulSolution(){
-  const bottom = [
-    MUL_FACTORS[randInt(0, MUL_FACTORS.length - 1)],
-    MUL_FACTORS[randInt(0, MUL_FACTORS.length - 1)],
-    MUL_FACTORS[randInt(0, MUL_FACTORS.length - 1)],
-    MUL_FACTORS[randInt(0, MUL_FACTORS.length - 1)]
-  ];
+  const candidates = [];
 
-  const row2 = [
-    bottom[0] * bottom[1],
-    bottom[1] * bottom[2],
-    bottom[2] * bottom[3]
-  ];
+  // Generate many possible small-factor pyramids and keep only those
+  // whose entire pyramid stays <= 100.
+  for(let a of MUL_FACTORS){
+    for(let b of MUL_FACTORS){
+      for(let c of MUL_FACTORS){
+        for(let d of MUL_FACTORS){
+          const bottom = [a,b,c,d];
+          const row2 = [
+            bottom[0] * bottom[1],
+            bottom[1] * bottom[2],
+            bottom[2] * bottom[3]
+          ];
+          const row1 = [
+            row2[0] * row2[1],
+            row2[1] * row2[2]
+          ];
+          const top = row1[0] * row1[1];
 
-  const row1 = [
-    row2[0] * row2[1],
-    row2[1] * row2[2]
-  ];
+          const all = [...bottom, ...row2, ...row1, top];
 
-  const top = [row1[0] * row1[1]];
+          if(Math.max(...all) <= 100){
+            candidates.push([top, row1, row2, bottom]);
+          }
+        }
+      }
+    }
+  }
 
-  return [top, row1, row2, bottom];
+  // Prefer pyramids containing useful "school maths" numbers.
+  // This makes 12/15/16/20/25/50 etc. appear much more often than
+  // arbitrary results.
+  const preferred = candidates.filter(sol => {
+    const all = sol.flat();
+    return all.some(n => [12,15,16,20,25,50].includes(n));
+  });
+
+  const pool = preferred.length ? preferred : candidates;
+  return pool[randInt(0, pool.length - 1)];
 }
 
 function buildMulReveal(sol){
@@ -494,8 +612,8 @@ function buildMulReveal(sol){
   const mulOp = (a, b) => a * b;
   const mulInv = (a, b) => a / b;
 
-  // Start with everything hidden and reveal the minimum number of clues
-  // needed to make the whole pyramid solvable.
+  // Reveal enough clues for the child to solve the whole pyramid,
+  // while keeping most of the work as input.
   while(!isSolvable(revealed, sol, rows, mulOp, mulInv)){
     const hiddenCells = [];
     for(let r = 0; r < rows; r++){
@@ -505,13 +623,18 @@ function buildMulReveal(sol){
     }
     if(hiddenCells.length === 0) break;
 
-    const [r, i] = hiddenCells[randInt(0, hiddenCells.length - 1)];
+    // Prefer revealing a small bottom number as a clue.
+    const bottomHidden = hiddenCells.filter(([r]) => r === rows - 1);
+    const pool = bottomHidden.length && Math.random() < 0.65
+      ? bottomHidden
+      : hiddenCells;
+
+    const [r, i] = pool[randInt(0, pool.length - 1)];
     revealed[r][i] = true;
   }
 
   return revealed;
 }
-
 
 /* ---------------- generation / rendering ---------------- */
 function generatePuzzle(mode, rows){
@@ -554,6 +677,9 @@ function renderPyramid(){
         input.maxLength = 3;
         input.addEventListener('input', () => {
           input.value = input.value.replace(/[^0-9]/g, '');
+          if(input.value !== '' && Number(input.value) > 100){
+            input.value = '100';
+          }
         });
         cellEl.appendChild(input);
         inputs[r][i] = input;
