@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -25,12 +26,11 @@
   }
 
   *{box-sizing:border-box;}
-  html,body{
+  html{ min-height:100%; background:var(--sky); }
+  body{
     margin:0;
     width:100%;
-    height:100%;
-    min-height:100%;
-    overflow:hidden;
+    min-height:100svh;
     color:var(--ink);
     font-family:'Baloo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background:
@@ -40,7 +40,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:8px;
+    padding:24px 12px 32px;
   }
 
   body::before,
@@ -89,70 +89,6 @@
   .s2{top:5%;right:5%;transform:rotate(10deg);}
   .s3{bottom:5%;left:6%;transform:rotate(8deg);width:42px;height:42px;font-size:20px;}
   .s4{bottom:5%;right:6%;transform:rotate(-9deg);width:42px;height:42px;font-size:20px;}
-  @media (max-width:420px){
-    .sticker{display:none;}
-
-    .panel{
-      padding:14px 5px 10px;
-      border-width:4px;
-      border-radius:23px;
-      height:clamp(350px, 78vh, 500px);
-    }
-
-    .mode-toggle{
-      top:-14px;
-      left:10px;
-      border-width:2px;
-    }
-
-    .mode-toggle button{
-      font-size:13px;
-      padding:3px 9px;
-    }
-
-    .row-toggle{
-      top:-14px;
-      right:10px;
-      border-width:2px;
-    }
-
-    .row-toggle button{
-      font-size:11px;
-      padding:3px 7px;
-    }
-
-    .puzzle-box{
-      --cell:clamp(39px, 12.8vw, 54px);
-      --gap:4px;
-      height:285px;
-    }
-
-    .cell{
-      border-width:2px;
-      box-shadow:2px 2px 0 var(--ink);
-      border-radius:9px;
-    }
-
-    .btn{
-      font-size:11px;
-      padding:7px 10px;
-    }
-  }
-
-  @media (max-height:650px){
-    .title{font-size:24px;}
-    .subtitle-pill{font-size:11px;padding:4px 13px;margin-bottom:7px;}
-    .panel{
-      padding-top:10px;
-      height:clamp(330px, 82vh, 430px);
-    }
-    .puzzle-box{
-      --cell:clamp(35px, 11.5vw, 48px);
-      height:245px;
-    }
-    .btn-row{margin-top:5px;}
-  }
-
   #flash{
     position:fixed;
     inset:0;
@@ -182,8 +118,7 @@
     gap:0;
     width:min(100%, 390px);
     max-width:390px;
-    height:100%;
-    max-height:100%;
+    flex-shrink:0;
   }
 
   .title{
@@ -217,9 +152,10 @@
     border:5px solid var(--ink);
     border-radius:26px;
     box-shadow:0 6px 0 var(--ink);
-    padding:15px 10px 12px;
+    padding:30px 10px 18px;
+    margin-top:12px;
+    gap:18px;
     width:100%;
-    height:clamp(365px, 78vh, 510px);
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -239,7 +175,9 @@
     padding:3px;
     box-shadow:0 3px 0 var(--ink);
   }
-  .mode-toggle button{
+  .mode-toggle{cursor:pointer;font-family:inherit;}
+  .mode-toggle:focus-visible{outline:3px solid var(--blue);outline-offset:5px;}
+  .mode-toggle span{
     border:none;
     background:transparent;
     font-family:inherit;
@@ -250,7 +188,7 @@
     color:var(--ink);
     cursor:pointer;
   }
-  .mode-toggle button.active{
+  .mode-toggle span.active{
     background:var(--orange);
     color:#fff;
   }
@@ -287,24 +225,29 @@
     display:none;
   }
 
-  /* fixed-size box: always sized for 6 rows (addition's max), regardless
-     of currentRows or mode, so it never resizes on toggle */
+  /* Size cells from the available panel width. Reserve six rows so the
+     controls stay below the pyramid and mode switches keep a steady layout. */
   .puzzle-box{
-    --cell: clamp(42px, 13.5vw, 58px);
-    --gap: 4px;
+    --gap:4px;
+    container-type:inline-size;
     width:100%;
-    height:300px;
+    padding-inline:4px;
     display:flex;
-    align-items:center;
     justify-content:center;
-    margin-top:5px;
-    overflow:visible;
   }
 
   .pyramid{
+    --base-cell:min(58px, calc((100cqw - 24px) / 6));
+    --cell:var(--base-cell);
     display:flex;
     flex-direction:column;
+    justify-content:center;
     gap:var(--gap);
+    min-height:calc(var(--base-cell) * 6 + var(--gap) * 5);
+    flex-shrink:0;
+  }
+  .pyramid[data-mode="mul"]{
+    --cell:calc(var(--base-cell) * 1.2);
   }
   .row{
     display:flex;
@@ -372,8 +315,8 @@
   .btn-row{
     display:flex;
     gap:7px;
-    margin-top:10px;
-    flex-wrap:nowrap;
+    margin-top:0;
+    flex-wrap:wrap;
     justify-content:center;
     width:100%;
   }
@@ -397,6 +340,21 @@
   }
   .btn-check{background:var(--green);}
   .btn-new{background:#fff;color:var(--ink);}
+  @media (max-width:420px){
+    .sticker{display:none;}
+    .panel{padding:28px 8px 16px;border-width:4px;border-radius:23px;}
+    .mode-toggle{top:-14px;left:10px;border-width:2px;}
+    .mode-toggle span{font-size:13px;padding:3px 9px;}
+    .row-toggle{top:-14px;right:10px;border-width:2px;}
+    .row-toggle button{font-size:11px;padding:3px 7px;}
+    .cell{border-width:2px;box-shadow:2px 2px 0 var(--ink);border-radius:9px;}
+    .btn{font-size:11px;padding:7px 10px;}
+  }
+  @media (max-height:650px){
+    body{padding-block:16px 24px;}
+    .title{font-size:24px;}
+    .subtitle-pill{font-size:11px;padding:4px 13px;}
+  }
 </style>
 </head>
 <body>
@@ -423,10 +381,10 @@
   <div class="subtitle-pill" id="subtitlePill">Zbrajanje</div>
 
   <div class="panel">
-    <div class="mode-toggle">
-      <button data-mode="add">+</button>
-      <button data-mode="mul">✕</button>
-    </div>
+    <button type="button" class="mode-toggle" id="modeToggle" role="switch" aria-label="Množenje" aria-checked="false">
+      <span data-mode="add" aria-hidden="true">+</span>
+      <span data-mode="mul" aria-hidden="true">✕</span>
+    </button>
 
     <div class="row-toggle" id="rowToggle">
       <button data-rows="4">4</button>
@@ -451,7 +409,8 @@ const newBtn = document.getElementById('newBtn');
 const checkBtn = document.getElementById('checkBtn');
 const flashEl = document.getElementById('flash');
 const rowButtons = document.querySelectorAll('.row-toggle button');
-const modeButtons = document.querySelectorAll('.mode-toggle button');
+const modeToggleEl = document.getElementById('modeToggle');
+const modeButtons = document.querySelectorAll('.mode-toggle span');
 const rowToggleEl = document.getElementById('rowToggle');
 const subtitlePill = document.getElementById('subtitlePill');
 
@@ -594,7 +553,7 @@ function buildMulSolution(){
           const all = [...bottom, ...row2, ...row1, top];
 
           if(Math.max(...all) <= 100){
-            candidates.push([top, row1, row2, bottom]);
+            candidates.push([[top], row1, row2, bottom]);
           }
         }
       }
@@ -667,6 +626,7 @@ function generatePuzzle(mode, rows){
 const giveColors = ['c0', 'c1', 'c2', 'c3', 'c4'];
 
 function renderPyramid(){
+  pyramidEl.dataset.mode = currentMode;
   pyramidEl.innerHTML = '';
   inputs = [];
   busy = false;
@@ -769,6 +729,7 @@ function startPuzzle(mode, rows){
 }
 
 function setActiveModeButton(mode){
+  modeToggleEl.setAttribute('aria-checked', String(mode === 'mul'));
   modeButtons.forEach(btn => {
     btn.classList.toggle('active', btn.dataset.mode === mode);
   });
@@ -785,12 +746,9 @@ checkBtn.addEventListener('click', handleCheck);
 rowButtons.forEach(btn => {
   btn.addEventListener('click', () => startPuzzle('add', parseInt(btn.dataset.rows, 10)));
 });
-modeButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const mode = btn.dataset.mode;
-    const rows = mode === 'add' ? (currentMode === 'add' ? currentRows : 6) : 4;
-    startPuzzle(mode, rows);
-  });
+modeToggleEl.addEventListener('click', () => {
+  const mode = currentMode === 'add' ? 'mul' : 'add';
+  startPuzzle(mode, mode === 'add' ? 6 : 4);
 });
 
 startPuzzle(currentMode, currentRows);
@@ -863,5 +821,5 @@ function animateConfetti(){
 }
 </script>
 
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a386972e8af228d0',t:'MTc4ODk2MTA3Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
