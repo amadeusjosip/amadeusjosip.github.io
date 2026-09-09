@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -27,13 +28,13 @@
   }
 
   body.dark{
-    --ink:#f5f7ff;
-    --card:#252a3a;
+    --ink:#ebc907;
+    --card:#151515;
     --sky:#17243b;
-    --cream:#2f3447;
-    --grass:#263d2b;
+    --cream:#17243b;
+    --grass:#17243b;
     --panel-border:#0d1020;
-    --cell-bg:#353b52;
+    --cell-bg:#212121;   
   }
 
   *{box-sizing:border-box;}
@@ -82,7 +83,7 @@
       radial-gradient(ellipse 82px 38px at 81% 35%, #fff7df 0 99%, transparent 100%),
       radial-gradient(ellipse 58px 29px at 89% 62%, #fff7df 0 99%, transparent 100%);
     background-size:50% 100%;
-    animation:cloudLoop 34s linear infinite;
+    animation:cloudLoop 14s linear infinite;
     will-change:transform;
   }
 
@@ -161,7 +162,7 @@
     display:flex;
     justify-content:center;
     gap:1px;
-    font-size:clamp(24px, 8vw, 32px);
+    font-size:clamp(24px, 8vw, 50px);
     font-weight:800;
     margin:0 0 1px;
   }
@@ -174,12 +175,12 @@
     background:var(--ink);
     color:#fff;
     font-weight:700;
-    font-size:13px;
+    font-size:21px;
     padding:6px 18px;
     border-radius:999px;
-    transform:rotate(-3deg);
-    margin:-2px 0 10px 0;
-    box-shadow:0 3px 0 rgba(0,0,0,.3);
+    transform:rotate(0deg);
+    margin:-8px 0 1px 0;
+    box-shadow:0 3px 0 rgba(0,0,0,.28);
   }
 
   .panel{
@@ -902,7 +903,7 @@ function startPuzzle(mode, rows){
   setActiveModeButton(mode);
   setActiveRowButton(rows);
   rowToggleEl.classList.toggle('hidden', mode !== 'add');
-  subtitlePill.textContent = mode === 'add' ? 'Zbrajanje' : 'Množenje ✕';
+  subtitlePill.textContent = mode === 'add' ? 'Zbrajanje' : 'Množenje';
 }
 
 function setActiveModeButton(mode){
