@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -28,15 +26,44 @@
     --cell-bg:#fbfbff;
   }
 
-  body.dark{
-    --ink:#ebc907;
-    --card:#151515;
-    --sky:#17243b;
-    --cream:#17243b;
-    --grass:#17243b;
-    --panel-border:#0d1020;
-    --cell-bg:#212121;   
+  /* ---------------- THEME 2 · Svemir (Space) ---------------- */
+  body[data-theme="2"]{
+    --ink:#f2f2ff;
+    --card:#1b1440;
+    --sky:#0b0c2a;
+    --cream:#241a55;
+    --grass:#140c33;
+    --green:#39ff14;
+    --blue:#00e5ff;
+    --orange:#ffb238;
+    --pink:#ff36e0;
+    --purple:#8a5cff;
+    --red:#ff4d6d;
+    --panel-border:#00e5ff;
+    --cell-bg:#241a55;
   }
+
+  /* ---------------- THEME 3 · Blokovi (Blocky world) ---------------- */
+  body[data-theme="3"]{
+    --ink:#3b2412;
+    --card:#fff8e6;
+    --sky:#8fd3ff;
+    --cream:#ffe9a8;
+    --grass:#6bc93e;
+    --green:#2fae63;
+    --blue:#2f8fd6;
+    --orange:#ff9d2e;
+    --pink:#ff6fae;
+    --purple:#a56bff;
+    --red:#e6522c;
+    --panel-border:#3b2412;
+    --cell-bg:#fff2cf;
+  }
+  body[data-theme="3"] .cell{border-radius:4px;}
+  body[data-theme="3"] .panel{border-radius:12px;}
+  body[data-theme="3"] .btn{border-radius:8px;}
+  body[data-theme="3"] .subtitle-pill{border-radius:8px;}
+  body[data-theme="2"] .panel{box-shadow:0 6px 0 var(--ink), 0 0 22px rgba(0,229,255,.45);}
 
   *{box-sizing:border-box;}
   html{ min-height:100%; background:var(--sky); }
@@ -105,8 +132,77 @@
     to{transform:translateX(-50%);}
   }
 
+  @keyframes twinkle{
+    from{opacity:.45;}
+    to{opacity:1;}
+  }
+  @keyframes blockySway{
+    0%,100%{transform:translateX(0);}
+    50%{transform:translateX(-26px);}
+  }
+
+  /* Theme 2 · Svemir: swap the clouds for a starfield that twinkles. */
+  body[data-theme="2"]::before{
+    height:100%;
+    top:0;
+    opacity:.9;
+    background:
+      radial-gradient(circle 2px at 6% 20%, #fff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 14% 65%, #fff 95%, transparent 100%),
+      radial-gradient(circle 2px at 22% 35%, #cdefff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 30% 80%, #fff 95%, transparent 100%),
+      radial-gradient(circle 2px at 38% 15%, #fff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 46% 55%, #cdefff 95%, transparent 100%),
+      radial-gradient(circle 2px at 54% 25%, #fff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 62% 70%, #fff 95%, transparent 100%),
+      radial-gradient(circle 2px at 70% 40%, #cdefff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 78% 10%, #fff 95%, transparent 100%),
+      radial-gradient(circle 2px at 86% 60%, #fff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 94% 30%, #cdefff 95%, transparent 100%);
+    background-size:50% 100%;
+    animation:cloudLoop 55s linear infinite, twinkle 2.4s ease-in-out infinite alternate;
+  }
+  body[data-theme="2"]::after{
+    height:40%;
+    opacity:.85;
+    background:
+      radial-gradient(circle at 15% 85%, #3a2a7a 0 90px, transparent 91px),
+      radial-gradient(circle at 88% 88%, #241a55 0 70px, transparent 71px);
+  }
+
+  /* Theme 3 · Blokovi: chunky rectangular "pixel" clouds that sway, and
+     little square bushes along a solid ground strip. */
+  body[data-theme="3"]::before{
+    top:10%;
+    height:90px;
+    opacity:1;
+    background:
+      linear-gradient(#fff 0 0) 2% 40%/46px 22px no-repeat,
+      linear-gradient(#fff 0 0) 6% 55%/22px 22px no-repeat,
+      linear-gradient(#fff 0 0) 10% 30%/22px 22px no-repeat,
+      linear-gradient(#fff 0 0) 30% 45%/50px 20px no-repeat,
+      linear-gradient(#fff 0 0) 34% 60%/20px 20px no-repeat,
+      linear-gradient(#fff 0 0) 60% 35%/46px 22px no-repeat,
+      linear-gradient(#fff 0 0) 64% 50%/22px 22px no-repeat,
+      linear-gradient(#fff 0 0) 84% 40%/50px 20px no-repeat,
+      linear-gradient(#fff 0 0) 88% 55%/20px 20px no-repeat;
+    animation:blockySway 6s ease-in-out infinite;
+  }
+  body[data-theme="3"]::after{
+    height:30%;
+    opacity:1;
+    background:
+      linear-gradient(var(--grass) 0 0) 0 100%/100% 60px no-repeat,
+      linear-gradient(#5aa832 0 0) 8% 70%/40px 40px no-repeat,
+      linear-gradient(#5aa832 0 0) 20% 78%/30px 30px no-repeat,
+      linear-gradient(#5aa832 0 0) 75% 72%/36px 36px no-repeat,
+      linear-gradient(#5aa832 0 0) 88% 80%/26px 26px no-repeat;
+  }
+
   @media (prefers-reduced-motion:reduce){
     body::before{animation:none;}
+    body[data-theme="2"]::before{animation:none;}
+    body[data-theme="3"]::before{animation:none;}
   }
 
   .sticker{
@@ -144,6 +240,84 @@
     inset:0;
     pointer-events:none;
     z-index:60;
+  }
+
+  .theme-fx{
+    position:fixed;
+    font-size:32px;
+    pointer-events:none;
+    z-index:0;
+    display:none;
+  }
+  body[data-theme="2"] .theme-fx{
+    display:block;
+    top:16%;
+    left:-10vw;
+    animation:cometFly 9s linear infinite;
+  }
+  body[data-theme="3"] .theme-fx{
+    display:block;
+    top:8%;
+    right:6%;
+    animation:blockSpin 3.4s ease-in-out infinite;
+  }
+  @keyframes cometFly{
+    0%{transform:translate(0,0) rotate(35deg);opacity:0;}
+    6%{opacity:1;}
+    48%{transform:translate(120vw,55vh) rotate(35deg);opacity:1;}
+    54%{opacity:0;}
+    100%{transform:translate(120vw,55vh) rotate(35deg);opacity:0;}
+  }
+  @keyframes blockSpin{
+    0%,100%{transform:rotate(-8deg) translateY(0);}
+    50%{transform:rotate(8deg) translateY(-10px);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .theme-fx{animation:none !important;}
+  }
+
+  .stats-bar{
+    display:flex;
+    gap:8px;
+    margin:2px 0 4px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .stats-bar span{
+    background:var(--card);
+    border:2px solid var(--ink);
+    border-radius:999px;
+    padding:4px 12px;
+    font-size:12px;
+    font-weight:800;
+    box-shadow:2px 2px 0 var(--ink);
+    color:var(--ink);
+  }
+
+  .result-banner{
+    position:fixed;
+    top:18%;
+    left:50%;
+    transform:translate(-50%,-12px);
+    background:var(--card);
+    border:4px solid var(--ink);
+    border-radius:18px;
+    box-shadow:0 5px 0 var(--ink);
+    padding:14px 24px;
+    font-weight:800;
+    font-size:19px;
+    text-align:center;
+    line-height:1.5;
+    color:var(--ink);
+    z-index:70;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    white-space:nowrap;
+  }
+  .result-banner.show{
+    opacity:1;
+    transform:translate(-50%,0);
   }
 
   .scene{
@@ -470,9 +644,11 @@
 <div class="sticker s2">⭐</div>
 <div class="sticker s3">🍩</div>
 <div class="sticker s4">🎮</div>
+<div class="theme-fx" id="themeFx" aria-hidden="true"></div>
 
 <div id="flash"></div>
 <canvas id="confetti-canvas"></canvas>
+<div class="result-banner" id="resultBanner"></div>
 
 <div class="scene">
   <h1 class="title">
@@ -486,6 +662,10 @@
     <span style="color:var(--orange)">a</span>
   </h1>
   <div class="subtitle-pill" id="subtitlePill">Zbrajanje</div>
+  <div class="stats-bar">
+    <span id="timerDisplay">⏱️ 0.00s</span>
+    <span id="recordDisplay">🏆 Rekord: —</span>
+  </div>
 
   <div class="panel">
     <button type="button" class="mode-toggle" id="modeToggle" role="switch" aria-label="Množenje" aria-checked="false">
@@ -493,7 +673,7 @@
       <span data-mode="mul" aria-hidden="true">✕</span>
     </button>
 
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Prebaci na noćni način" title="Dan / noć">☀️</button>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Promijeni temu" title="Tema">☀️</button>
 
     <button type="button" class="theme-toggle music-toggle" id="musicToggle" aria-label="Uključi glazbu" aria-pressed="false" title="Glazba">🔇</button>
     <audio id="bgMusic" loop preload="none" src="music.mp3"></audio>
@@ -527,6 +707,11 @@ const rowToggleEl = document.getElementById('rowToggle');
 const subtitlePill = document.getElementById('subtitlePill');
 const themeToggle = document.getElementById('themeToggle');
 const musicToggle = document.getElementById('musicToggle');
+const timerDisplayEl = document.getElementById('timerDisplay');
+const recordDisplayEl = document.getElementById('recordDisplay');
+const resultBannerEl = document.getElementById('resultBanner');
+const themeFx = document.getElementById('themeFx');
+const stickerEls = document.querySelectorAll('.sticker');
 
 let currentMode = 'add';
 let currentRows = 6;
@@ -848,10 +1033,23 @@ function handleCheck(){
 
   if(allCorrect){
     busy = true;
+    const elapsed = stopTimer();
+    const existingRecord = getRecord(currentMode, currentRows);
+    const isNewRecord = existingRecord === null || elapsed < existingRecord;
+    if(isNewRecord){
+      setRecord(currentMode, currentRows, elapsed);
+      updateRecordDisplay(currentMode, currentRows);
+    }
+    const stars = getStars(currentMode, currentRows, elapsed);
+    showResultBanner(stars, elapsed, isNewRecord);
+    playWin();
+    vibrate(isNewRecord ? [70, 50, 70, 50, 140] : 120);
     flash(false);
-    launchConfetti();
-    setTimeout(() => startPuzzle(currentMode, currentRows), 900);
+    launchConfetti(isNewRecord);
+    setTimeout(() => startPuzzle(currentMode, currentRows), 1500);
   } else {
+    playWrong();
+    vibrate(200);
     flash(true);
   }
 }
@@ -891,22 +1089,158 @@ function flash(isWrong){
 }
 
 
-function applyTheme(isDark){
-  document.body.classList.toggle('dark', isDark);
-  themeToggle.textContent = isDark ? '🌙' : '☀️';
-  themeToggle.setAttribute(
-    'aria-label',
-    isDark ? 'Prebaci na dnevni način' : 'Prebaci na noćni način'
-  );
+/* ---------------- sound effects (synthesized, separate from bg music) ---------------- */
+let sfxCtx = null;
+function getSfxCtx(){
+  if(!sfxCtx){
+    sfxCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if(sfxCtx.state === 'suspended'){
+    sfxCtx.resume();
+  }
+  return sfxCtx;
 }
 
-const savedTheme = localStorage.getItem('piramidaTheme') === 'dark';
+function beep(freq, duration, type, gain, delay){
+  const ctx = getSfxCtx();
+  const osc = ctx.createOscillator();
+  const g = ctx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  osc.connect(g);
+  g.connect(ctx.destination);
+  const start = ctx.currentTime + (delay || 0);
+  g.gain.setValueAtTime(0, start);
+  g.gain.linearRampToValueAtTime(gain, start + 0.01);
+  g.gain.exponentialRampToValueAtTime(0.001, start + duration);
+  osc.start(start);
+  osc.stop(start + duration + 0.02);
+}
+
+function playClick(){ beep(680, 0.07, 'square', 0.12); }
+function playTick(){ beep(920, 0.045, 'square', 0.06); }
+function playWrong(){ beep(180, 0.18, 'sawtooth', 0.1); }
+function playWin(){
+  beep(523.25, 0.13, 'sine', 0.16, 0);
+  beep(659.25, 0.13, 'sine', 0.16, 0.11);
+  beep(783.99, 0.22, 'sine', 0.18, 0.22);
+}
+
+function vibrate(pattern){
+  if(navigator.vibrate){
+    navigator.vibrate(pattern);
+  }
+}
+
+/* ---------------- timer + per-mode records (localStorage) ---------------- */
+let timerStart = null;
+let timerInterval = null;
+let lastTickSecond = -1;
+
+function formatTime(seconds){
+  return seconds.toFixed(2) + 's';
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+  timerStart = performance.now();
+  lastTickSecond = -1;
+  timerDisplayEl.textContent = '⏱️ 0.00s';
+  timerInterval = setInterval(updateTimerDisplay, 40);
+}
+
+function stopTimer(){
+  clearInterval(timerInterval);
+  return (performance.now() - timerStart) / 1000;
+}
+
+function updateTimerDisplay(){
+  const elapsed = (performance.now() - timerStart) / 1000;
+  timerDisplayEl.textContent = '⏱️ ' + formatTime(elapsed);
+  const wholeSecond = Math.floor(elapsed);
+  if(wholeSecond !== lastTickSecond && elapsed > 0.3){
+    lastTickSecond = wholeSecond;
+    playTick();
+  }
+}
+
+function recordKey(mode, rows){
+  return 'piramidaRecord_' + mode + '_' + rows;
+}
+
+function getRecord(mode, rows){
+  const raw = localStorage.getItem(recordKey(mode, rows));
+  return raw ? parseFloat(raw) : null;
+}
+
+function setRecord(mode, rows, seconds){
+  localStorage.setItem(recordKey(mode, rows), seconds.toFixed(2));
+}
+
+function updateRecordDisplay(mode, rows){
+  const record = getRecord(mode, rows);
+  recordDisplayEl.textContent = record !== null
+    ? '🏆 Rekord: ' + formatTime(record)
+    : '🏆 Rekord: —';
+}
+
+const STAR_THRESHOLDS = {
+  add_4: [8, 15],
+  add_5: [12, 20],
+  add_6: [18, 28],
+  mul_4: [10, 18]
+};
+
+function getStars(mode, rows, seconds){
+  const thresholds = STAR_THRESHOLDS[mode + '_' + rows] || [12, 22];
+  if(seconds <= thresholds[0]) return 3;
+  if(seconds <= thresholds[1]) return 2;
+  return 1;
+}
+
+function showResultBanner(stars, seconds, isNewRecord){
+  const starsText = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
+  resultBannerEl.innerHTML =
+    (isNewRecord ? '🏆 NOVI REKORD!<br>' : '') +
+    starsText + '<br>' +
+    formatTime(seconds);
+  resultBannerEl.classList.add('show');
+  clearTimeout(showResultBanner._t);
+  showResultBanner._t = setTimeout(() => {
+    resultBannerEl.classList.remove('show');
+  }, 1500);
+}
+
+/* ---------------- themes (Tema 1 / 2 / 3) ---------------- */
+const THEME_ORDER = ['1', '2', '3'];
+const THEME_ICONS = { '1': '☀️', '2': '🚀', '3': '🧱' };
+const THEME_LABELS = { '1': 'Tema 1 · Sunčani dan', '2': 'Tema 2 · Svemir', '3': 'Tema 3 · Blokovi' };
+const THEME_FX = { '1': '', '2': '☄️', '3': '🧱' };
+const THEME_STICKERS = {
+  '1': ['🎈', '⭐', '🍩', '🎮'],
+  '2': ['🚀', '🛸', '🌟', '👾'],
+  '3': ['🧱', '🌳', '🐷', '⛏️']
+};
+
+function applyTheme(themeId){
+  document.body.dataset.theme = themeId;
+  themeToggle.textContent = THEME_ICONS[themeId];
+  themeToggle.title = THEME_LABELS[themeId];
+  themeToggle.setAttribute('aria-label', 'Promijeni temu (trenutno: ' + THEME_LABELS[themeId] + ')');
+  themeFx.textContent = THEME_FX[themeId];
+  stickerEls.forEach((el, i) => { el.textContent = THEME_STICKERS[themeId][i]; });
+}
+
+let savedTheme = localStorage.getItem('piramidaTheme');
+if(!THEME_ORDER.includes(savedTheme)) savedTheme = '1';
 applyTheme(savedTheme);
 
 themeToggle.addEventListener('click', () => {
-  const isDark = !document.body.classList.contains('dark');
-  applyTheme(isDark);
-  localStorage.setItem('piramidaTheme', isDark ? 'dark' : 'light');
+  playClick();
+  const current = document.body.dataset.theme;
+  const next = THEME_ORDER[(THEME_ORDER.indexOf(current) + 1) % THEME_ORDER.length];
+  applyTheme(next);
+  localStorage.setItem('piramidaTheme', next);
 });
 
 /* ---------------- background music (local audio file) ---------------- */
@@ -940,6 +1274,9 @@ function startPuzzle(mode, rows){
   setActiveRowButton(rows);
   rowToggleEl.classList.toggle('hidden', mode !== 'add');
   subtitlePill.textContent = mode === 'add' ? 'Zbrajanje' : 'Množenje';
+  resultBannerEl.classList.remove('show');
+  updateRecordDisplay(currentMode, currentRows);
+  startTimer();
 }
 
 function setActiveModeButton(mode){
@@ -955,12 +1292,13 @@ function setActiveRowButton(rows){
   });
 }
 
-newBtn.addEventListener('click', () => startPuzzle(currentMode, currentRows));
-checkBtn.addEventListener('click', handleCheck);
+newBtn.addEventListener('click', () => { playClick(); startPuzzle(currentMode, currentRows); });
+checkBtn.addEventListener('click', () => { playClick(); handleCheck(); });
 rowButtons.forEach(btn => {
-  btn.addEventListener('click', () => startPuzzle('add', parseInt(btn.dataset.rows, 10)));
+  btn.addEventListener('click', () => { playClick(); startPuzzle('add', parseInt(btn.dataset.rows, 10)); });
 });
 modeToggleEl.addEventListener('click', () => {
+  playClick();
   const mode = currentMode === 'add' ? 'mul' : 'add';
   startPuzzle(mode, mode === 'add' ? 6 : 4);
 });
@@ -982,16 +1320,17 @@ window.addEventListener('resize', resizeCanvas);
 
 const confettiColors = ['#3ddc84', '#4fc3f7', '#ffa94d', '#ff7aa8', '#b388ff', '#ffd83d'];
 
-function launchConfetti(){
+function launchConfetti(big){
   particles = [];
-  const count = 180;
+  const count = big ? 320 : 180;
+  const spread = big ? 22 : 15;
   for(let i = 0; i < count; i++){
     particles.push({
       x: canvas.width / 2,
       y: canvas.height / 2,
-      vx: (Math.random() - 0.5) * 15,
-      vy: (Math.random() - 1.6) * 15,
-      size: randInt(5, 10),
+      vx: (Math.random() - 0.5) * spread,
+      vy: (Math.random() - 1.6) * spread,
+      size: randInt(5, big ? 12 : 10),
       color: confettiColors[randInt(0, confettiColors.length - 1)],
       rotation: Math.random() * Math.PI * 2,
       spin: (Math.random() - 0.5) * 0.3,
