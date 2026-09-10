@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -411,6 +412,12 @@
     outline-offset:4px;
   }
 
+  /* Music toggle sits on the opposite corner from the theme toggle. */
+  .music-toggle{
+    right:auto;
+    left:12px;
+  }
+
   /* Very subtle horizontal floating motion for background stickers. */
   .sticker{will-change:transform;}
   .s1{animation:floatS1 4.8s ease-in-out infinite;}
@@ -448,6 +455,7 @@
     .cell{border-width:2px;box-shadow:2px 2px 0 var(--ink);border-radius:9px;}
     .btn{font-size:11px;padding:7px 10px;}
     .theme-toggle{width:30px;height:30px;font-size:15px;right:9px;bottom:8px;}
+    .music-toggle{right:auto;left:9px;}
   }
   @media (max-height:650px){
     body{padding-block:16px 24px;}
@@ -487,6 +495,9 @@
 
     <button type="button" class="theme-toggle" id="themeToggle" aria-label="Prebaci na noćni način" title="Dan / noć">☀️</button>
 
+    <button type="button" class="theme-toggle music-toggle" id="musicToggle" aria-label="Uključi glazbu" aria-pressed="false" title="Glazba">🔇</button>
+    <div id="yt-music-player" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;"></div>
+
     <div class="row-toggle" id="rowToggle">
       <button data-rows="4">4</button>
       <button data-rows="5">5</button>
@@ -515,6 +526,7 @@ const modeButtons = document.querySelectorAll('.mode-toggle span');
 const rowToggleEl = document.getElementById('rowToggle');
 const subtitlePill = document.getElementById('subtitlePill');
 const themeToggle = document.getElementById('themeToggle');
+const musicToggle = document.getElementById('musicToggle');
 
 let currentMode = 'add';
 let currentRows = 6;
@@ -895,6 +907,68 @@ themeToggle.addEventListener('click', () => {
   const isDark = !document.body.classList.contains('dark');
   applyTheme(isDark);
   localStorage.setItem('piramidaTheme', isDark ? 'dark' : 'light');
+});
+
+/* ---------------- background music (YouTube, hidden) ---------------- */
+const MUSIC_VIDEO_ID = 'Y3jq_WIHP9k';
+
+let ytPlayer = null;
+let musicOn = false;          // starts OFF, as requested
+let musicWantsPlay = false;   // true if the user pressed ON before the player finished loading
+
+function setMusicButton(isOn){
+  musicToggle.textContent = isOn ? '🔊' : '🔇';
+  musicToggle.setAttribute('aria-pressed', String(isOn));
+  musicToggle.setAttribute('aria-label', isOn ? 'Isključi glazbu' : 'Uključi glazbu');
+}
+setMusicButton(musicOn);
+
+function loadYouTubeAPI(){
+  if(window.YT && window.YT.Player) return;
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+}
+
+window.onYouTubeIframeAPIReady = function(){
+  ytPlayer = new YT.Player('yt-music-player', {
+    height: '1',
+    width: '1',
+    videoId: MUSIC_VIDEO_ID,
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+      disablekb: 1,
+      fs: 0,
+      modestbranding: 1,
+      playsinline: 1,
+      loop: 1,
+      playlist: MUSIC_VIDEO_ID // required by YouTube so a single video can loop
+    },
+    events: {
+      onReady: () => {
+        if(musicWantsPlay) ytPlayer.playVideo();
+      }
+    }
+  });
+};
+
+musicToggle.addEventListener('click', () => {
+  musicOn = !musicOn;
+  setMusicButton(musicOn);
+
+  if(!ytPlayer){
+    // First click: kick off loading the API/player, remember what the user wants.
+    musicWantsPlay = musicOn;
+    loadYouTubeAPI();
+    return;
+  }
+
+  if(musicOn){
+    ytPlayer.playVideo();
+  } else {
+    ytPlayer.pauseVideo();
+  }
 });
 
 function startPuzzle(mode, rows){
