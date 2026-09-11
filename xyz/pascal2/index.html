@@ -26,44 +26,41 @@
     --cell-bg:#fbfbff;
   }
 
-  /* ---------------- THEME 2 · Svemir (Space) ---------------- */
+   /* ---------------- THEME 2 · Svemir (Space) ---------------- */
   body[data-theme="2"]{
-    --ink:#f2f2ff;
-    --card:#1b1440;
+    --ink:#3b77d1;
+    --card:#100b29;
     --sky:#0b0c2a;
     --cream:#241a55;
     --grass:#140c33;
-    --green:#39ff14;
-    --blue:#00e5ff;
+    --green:#27c40a;
+    --blue:#00b9cf;
     --orange:#ffb238;
     --pink:#ff36e0;
     --purple:#8a5cff;
     --red:#ff4d6d;
-    --panel-border:#00e5ff;
-    --cell-bg:#241a55;
+    --panel-border:#150e36;
+    --cell-bg:#160e38;
   }
 
-  /* ---------------- THEME 3 · Blokovi (Blocky world) ---------------- */
+  /* ---------------- THEME 3 · Ocean (podvodni svijet) ---------------- */
   body[data-theme="3"]{
-    --ink:#3b2412;
-    --card:#fff8e6;
-    --sky:#8fd3ff;
-    --cream:#ffe9a8;
-    --grass:#6bc93e;
-    --green:#2fae63;
-    --blue:#2f8fd6;
-    --orange:#ff9d2e;
-    --pink:#ff6fae;
-    --purple:#a56bff;
-    --red:#e6522c;
-    --panel-border:#3b2412;
-    --cell-bg:#fff2cf;
+    --ink:#04313f;
+    --card:#eafdff;
+    --sky:#0f7fb0;
+    --cream:#bdf3ff;
+    --grass:#d9c27a;
+    --green:#1fb37a;
+    --blue:#1e90c9;
+    --orange:#ff8c42;
+    --pink:#ff5f96;
+    --purple:#6a5acd;
+    --red:#ff5449;
+    --panel-border:#04313f;
+    --cell-bg:#d7f7ff;
   }
-  body[data-theme="3"] .cell{border-radius:4px;}
-  body[data-theme="3"] .panel{border-radius:12px;}
-  body[data-theme="3"] .btn{border-radius:8px;}
-  body[data-theme="3"] .subtitle-pill{border-radius:8px;}
   body[data-theme="2"] .panel{box-shadow:0 6px 0 var(--ink), 0 0 22px rgba(0,229,255,.45);}
+  body[data-theme="3"] .panel{box-shadow:0 6px 0 var(--ink), 0 0 20px rgba(30,144,201,.35);}
 
   *{box-sizing:border-box;}
   html{ min-height:100%; background:var(--sky); }
@@ -136,9 +133,9 @@
     from{opacity:.45;}
     to{opacity:1;}
   }
-  @keyframes blockySway{
-    0%,100%{transform:translateX(0);}
-    50%{transform:translateX(-26px);}
+  @keyframes bubbleRise{
+    from{background-position:15px 10px, 60px 90px, 20px 130px, 100px 40px;}
+    to{background-position:15px -150px, 60px -70px, 20px -30px, 100px -120px;}
   }
 
   /* Theme 2 · Svemir: swap the clouds for a starfield that twinkles. */
@@ -170,33 +167,30 @@
       radial-gradient(circle at 88% 88%, #241a55 0 70px, transparent 71px);
   }
 
-  /* Theme 3 · Blokovi: chunky rectangular "pixel" clouds that sway, and
-     little square bushes along a solid ground strip. */
+  /* Theme 3 · Ocean: bubbles rising endlessly from the seabed, plus a
+     sandy floor with coral silhouettes instead of grass/clouds. */
   body[data-theme="3"]::before{
-    top:10%;
-    height:90px;
-    opacity:1;
-    background:
-      linear-gradient(#fff 0 0) 2% 40%/46px 22px no-repeat,
-      linear-gradient(#fff 0 0) 6% 55%/22px 22px no-repeat,
-      linear-gradient(#fff 0 0) 10% 30%/22px 22px no-repeat,
-      linear-gradient(#fff 0 0) 30% 45%/50px 20px no-repeat,
-      linear-gradient(#fff 0 0) 34% 60%/20px 20px no-repeat,
-      linear-gradient(#fff 0 0) 60% 35%/46px 22px no-repeat,
-      linear-gradient(#fff 0 0) 64% 50%/22px 22px no-repeat,
-      linear-gradient(#fff 0 0) 84% 40%/50px 20px no-repeat,
-      linear-gradient(#fff 0 0) 88% 55%/20px 20px no-repeat;
-    animation:blockySway 6s ease-in-out infinite;
+    top:-20%;
+    height:140%;
+    opacity:.55;
+    background-image:
+      radial-gradient(circle 5px, rgba(255,255,255,.9) 95%, transparent 100%),
+      radial-gradient(circle 3px, rgba(255,255,255,.75) 95%, transparent 100%),
+      radial-gradient(circle 6px, rgba(255,255,255,.65) 95%, transparent 100%),
+      radial-gradient(circle 4px, rgba(255,255,255,.8) 95%, transparent 100%);
+    background-repeat:repeat;
+    background-size:90px 160px, 120px 160px, 150px 160px, 180px 160px;
+    background-position:15px 10px, 60px 90px, 20px 130px, 100px 40px;
+    animation:bubbleRise 9s linear infinite;
   }
   body[data-theme="3"]::after{
-    height:30%;
+    height:32%;
     opacity:1;
     background:
-      linear-gradient(var(--grass) 0 0) 0 100%/100% 60px no-repeat,
-      linear-gradient(#5aa832 0 0) 8% 70%/40px 40px no-repeat,
-      linear-gradient(#5aa832 0 0) 20% 78%/30px 30px no-repeat,
-      linear-gradient(#5aa832 0 0) 75% 72%/36px 36px no-repeat,
-      linear-gradient(#5aa832 0 0) 88% 80%/26px 26px no-repeat;
+      radial-gradient(circle at 12% 82%, #ff8c42 0 34px, transparent 35px),
+      radial-gradient(circle at 24% 88%, #ff5f96 0 26px, transparent 27px),
+      radial-gradient(circle at 80% 84%, #6a5acd 0 30px, transparent 31px),
+      radial-gradient(circle at 91% 90%, #1fb37a 0 24px, transparent 25px);
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -205,24 +199,6 @@
     body[data-theme="3"]::before{animation:none;}
   }
 
-  .sticker{
-    position:fixed;
-    width:50px;
-    height:50px;
-    background:#fff;
-    border:4px solid var(--ink);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:24px;
-    box-shadow:0 4px 0 var(--ink);
-    z-index:0;
-  }
-  .s1{top:5%;left:5%;transform:rotate(-12deg);}
-  .s2{top:5%;right:5%;transform:rotate(10deg);}
-  .s3{bottom:5%;left:6%;transform:rotate(8deg);width:42px;height:42px;font-size:20px;}
-  .s4{bottom:5%;right:6%;transform:rotate(-9deg);width:42px;height:42px;font-size:20px;}
   #flash{
     position:fixed;
     inset:0;
@@ -257,20 +233,23 @@
   }
   body[data-theme="3"] .theme-fx{
     display:block;
-    top:8%;
-    right:6%;
-    animation:blockSpin 3.4s ease-in-out infinite;
+    top:32%;
+    left:0;
+    animation:fishSwim 13s linear infinite;
   }
   @keyframes cometFly{
     0%{transform:translate(0,0) rotate(35deg);opacity:0;}
     6%{opacity:1;}
-    48%{transform:translate(120vw,55vh) rotate(35deg);opacity:1;}
+    48%{transform:translate(120vw,55vh) rotate(95deg);opacity:1;}
     54%{opacity:0;}
     100%{transform:translate(120vw,55vh) rotate(35deg);opacity:0;}
   }
-  @keyframes blockSpin{
-    0%,100%{transform:rotate(-8deg) translateY(0);}
-    50%{transform:rotate(8deg) translateY(-10px);}
+  @keyframes fishSwim{
+    0%{transform:translate(-10vw,0) scaleX(1);}
+    47%{transform:translate(105vw,14vh) scaleX(1);}
+    50%{transform:translate(105vw,14vh) scaleX(-1);}
+    97%{transform:translate(-10vw,26vh) scaleX(-1);}
+    100%{transform:translate(-10vw,26vh) scaleX(1);}
   }
   @media (prefers-reduced-motion:reduce){
     .theme-fx{animation:none !important;}
@@ -292,6 +271,16 @@
     font-weight:800;
     box-shadow:2px 2px 0 var(--ink);
     color:var(--ink);
+    font-variant-numeric:tabular-nums;
+    text-align:center;
+  }
+  #timerDisplay{
+    display:inline-block;
+    min-width:88px;
+  }
+  #recordDisplay{
+    display:inline-block;
+    min-width:118px;
   }
 
   .result-banner{
@@ -313,11 +302,16 @@
     opacity:0;
     pointer-events:none;
     transition:opacity .25s ease, transform .25s ease;
-    white-space:nowrap;
+    max-width:88vw;
   }
   .result-banner.show{
     opacity:1;
     transform:translate(-50%,0);
+    pointer-events:auto;
+  }
+  .result-banner .next-btn{
+    margin-top:10px;
+    font-size:14px;
   }
 
   .scene{
@@ -531,6 +525,7 @@
     display:flex;
     gap:7px;
     margin-top:0;
+    margin-bottom:2px;
     flex-wrap:wrap;
     justify-content:center;
     width:100%;
@@ -554,6 +549,7 @@
     box-shadow:0 1px 0 var(--ink);
   }
   .btn-check{background:var(--green);}
+  .btn-return{background:var(--red);}
   .btn-new{background:var(--card);color:var(--ink);}
 
   /* Light / dark mode */
@@ -592,35 +588,7 @@
     left:12px;
   }
 
-  /* Very subtle horizontal floating motion for background stickers. */
-  .sticker{will-change:transform;}
-  .s1{animation:floatS1 4.8s ease-in-out infinite;}
-  .s2{animation:floatS2 5.6s ease-in-out infinite;}
-  .s3{animation:floatS3 5.1s ease-in-out infinite;}
-  .s4{animation:floatS4 4.4s ease-in-out infinite;}
-
-  @keyframes floatS1{
-    0%,100%{transform:translateX(-2px) rotate(-12deg);}
-    50%{transform:translateX(3px) rotate(-12deg);}
-  }
-  @keyframes floatS2{
-    0%,100%{transform:translateX(2px) rotate(10deg);}
-    50%{transform:translateX(-3px) rotate(10deg);}
-  }
-  @keyframes floatS3{
-    0%,100%{transform:translateX(1px) rotate(8deg);}
-    50%{transform:translateX(-3px) rotate(8deg);}
-  }
-  @keyframes floatS4{
-    0%,100%{transform:translateX(-2px) rotate(-9deg);}
-    50%{transform:translateX(3px) rotate(-9deg);}
-  }
-
-  @media (prefers-reduced-motion:reduce){
-    .sticker{animation:none;}
-  }
   @media (max-width:420px){
-    .sticker{display:none;}
     .panel{padding:28px 8px 16px;border-width:4px;border-radius:23px;}
     .mode-toggle{top:-14px;left:10px;border-width:2px;}
     .mode-toggle span{font-size:13px;padding:3px 9px;}
@@ -640,10 +608,6 @@
 </head>
 <body>
 
-<div class="sticker s1">🎈</div>
-<div class="sticker s2">⭐</div>
-<div class="sticker s3">🍩</div>
-<div class="sticker s4">🎮</div>
 <div class="theme-fx" id="themeFx" aria-hidden="true"></div>
 
 <div id="flash"></div>
@@ -684,13 +648,13 @@
       <button data-rows="6">6</button>
     </div>
 
-    <div class="puzzle-box">
-      <div class="pyramid" id="pyramid"></div>
-    </div>
-
     <div class="btn-row">
       <button class="btn btn-check" id="checkBtn">Provjeri</button>
       <button class="btn btn-new" id="newBtn">Mix</button>
+    </div>
+
+    <div class="puzzle-box">
+      <div class="pyramid" id="pyramid"></div>
     </div>
   </div>
 </div>
@@ -711,7 +675,6 @@ const timerDisplayEl = document.getElementById('timerDisplay');
 const recordDisplayEl = document.getElementById('recordDisplay');
 const resultBannerEl = document.getElementById('resultBanner');
 const themeFx = document.getElementById('themeFx');
-const stickerEls = document.querySelectorAll('.sticker');
 
 let currentMode = 'add';
 let currentRows = 6;
@@ -1046,7 +1009,6 @@ function handleCheck(){
     vibrate(isNewRecord ? [70, 50, 70, 50, 140] : 120);
     flash(false);
     launchConfetti(isNewRecord);
-    setTimeout(() => startPuzzle(currentMode, currentRows), 1500);
   } else {
     playWrong();
     vibrate(200);
@@ -1076,8 +1038,8 @@ function flash(isWrong){
   const steps = [
     [0,    true],
     [250,  false],
-    [500,  true],
-    [750,  false]
+    [300,  true],
+    [550,  false]
   ];
 
   steps.forEach(([delay, on]) => {
@@ -1118,7 +1080,6 @@ function beep(freq, duration, type, gain, delay){
 }
 
 function playClick(){ beep(680, 0.07, 'square', 0.12); }
-function playTick(){ beep(920, 0.045, 'square', 0.06); }
 function playWrong(){ beep(180, 0.18, 'sawtooth', 0.1); }
 function playWin(){
   beep(523.25, 0.13, 'sine', 0.16, 0);
@@ -1135,7 +1096,6 @@ function vibrate(pattern){
 /* ---------------- timer + per-mode records (localStorage) ---------------- */
 let timerStart = null;
 let timerInterval = null;
-let lastTickSecond = -1;
 
 function formatTime(seconds){
   return seconds.toFixed(2) + 's';
@@ -1144,7 +1104,6 @@ function formatTime(seconds){
 function startTimer(){
   clearInterval(timerInterval);
   timerStart = performance.now();
-  lastTickSecond = -1;
   timerDisplayEl.textContent = '⏱️ 0.00s';
   timerInterval = setInterval(updateTimerDisplay, 40);
 }
@@ -1157,11 +1116,6 @@ function stopTimer(){
 function updateTimerDisplay(){
   const elapsed = (performance.now() - timerStart) / 1000;
   timerDisplayEl.textContent = '⏱️ ' + formatTime(elapsed);
-  const wholeSecond = Math.floor(elapsed);
-  if(wholeSecond !== lastTickSecond && elapsed > 0.3){
-    lastTickSecond = wholeSecond;
-    playTick();
-  }
 }
 
 function recordKey(mode, rows){
@@ -1203,24 +1157,21 @@ function showResultBanner(stars, seconds, isNewRecord){
   resultBannerEl.innerHTML =
     (isNewRecord ? '🏆 NOVI REKORD!<br>' : '') +
     starsText + '<br>' +
-    formatTime(seconds);
+    formatTime(seconds) +
+    '<br><button type="button" class="btn btn-check next-btn btn-return" id="nextRoundBtn">↺ Nova partija</button>';
   resultBannerEl.classList.add('show');
-  clearTimeout(showResultBanner._t);
-  showResultBanner._t = setTimeout(() => {
+  document.getElementById('nextRoundBtn').addEventListener('click', () => {
+    playClick();
     resultBannerEl.classList.remove('show');
-  }, 1500);
+    startPuzzle(currentMode, currentRows);
+  });
 }
 
 /* ---------------- themes (Tema 1 / 2 / 3) ---------------- */
 const THEME_ORDER = ['1', '2', '3'];
-const THEME_ICONS = { '1': '☀️', '2': '🚀', '3': '🧱' };
-const THEME_LABELS = { '1': 'Tema 1 · Sunčani dan', '2': 'Tema 2 · Svemir', '3': 'Tema 3 · Blokovi' };
-const THEME_FX = { '1': '', '2': '☄️', '3': '🧱' };
-const THEME_STICKERS = {
-  '1': ['🎈', '⭐', '🍩', '🎮'],
-  '2': ['🚀', '🛸', '🌟', '👾'],
-  '3': ['🧱', '🌳', '🐷', '⛏️']
-};
+const THEME_ICONS = { '1': '🏔️', '2': '🚀', '3': '🐠' };
+const THEME_LABELS = { '1': 'Tema 1 · Sunčani dan', '2': 'Tema 2 · Svemir', '3': 'Tema 3 · Ocean' };
+const THEME_FX = { '1': '', '2': '🚀', '3': '🐠' };
 
 function applyTheme(themeId){
   document.body.dataset.theme = themeId;
@@ -1228,7 +1179,6 @@ function applyTheme(themeId){
   themeToggle.title = THEME_LABELS[themeId];
   themeToggle.setAttribute('aria-label', 'Promijeni temu (trenutno: ' + THEME_LABELS[themeId] + ')');
   themeFx.textContent = THEME_FX[themeId];
-  stickerEls.forEach((el, i) => { el.textContent = THEME_STICKERS[themeId][i]; });
 }
 
 let savedTheme = localStorage.getItem('piramidaTheme');
