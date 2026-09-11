@@ -11,7 +11,7 @@
   :root{
     --ink:#1a1a1a;
     --bg-yellow:#ffd83d;
-    --card:#ffffff;
+    --card:#f8f8f8;
     --sky:#9ee8ff;
     --cream:#fff4cf;
     --grass:#8bd96b;
@@ -78,6 +78,12 @@
     align-items:center;
     justify-content:center;
     padding:24px 12px 32px;
+  display:flex;
+  align-items:flex-start;   
+  justify-content:center;
+  padding: 10px 12px 32px; 
+    
+}
   }
 
   body::before,
@@ -239,10 +245,10 @@
   .fx3{top:52%; font-size:24px; animation-duration:14s; animation-delay:9s;}
 
   @keyframes flyAcross{
-    0%{transform:translate(0,0);opacity:0;}
+    0%{transform:translate(0,0) rotate(0deg);opacity:0;}
     6%{opacity:1;}
     94%{opacity:1;}
-    100%{transform:translate(130vw,0);opacity:0;}
+    100%{transform:translate(130vw,0) rotate(150deg);opacity:0;}
   }
   @media (prefers-reduced-motion:reduce){
     .theme-fx{animation:none !important;}
@@ -341,7 +347,7 @@
     padding:6px 18px;
     border-radius:999px;
     transform:rotate(0deg);
-    margin:-8px 0 1px 0;
+    margin: -5px 0 10px 0;
     box-shadow:0 3px 0 rgba(0,0,0,.28);
   }
 
@@ -352,8 +358,8 @@
     border:5px solid var(--ink);
     border-radius:26px;
     box-shadow:0 6px 0 var(--ink);
-    padding:30px 10px 30px;
-    margin-top:12px;
+    padding:20px 10px 50px;
+    margin-top:10px;
     gap:6px;
     width:100%;
     display:flex;
@@ -1166,12 +1172,12 @@ function showResultBanner(stars, seconds, isNewRecord){
 
 /* ---------------- themes (Tema 1 / 2 / 3) ---------------- */
 const THEME_ORDER = ['1', '2', '3'];
-const THEME_ICONS = { '1': '🏔️', '2': '🚀', '3': '🐠' };
+const THEME_ICONS = { '1': '🏔️', '2': '🌙', '3': '🌊' };
 const THEME_LABELS = { '1': 'Tema 1 · Sunčani dan', '2': 'Tema 2 · Svemir', '3': 'Tema 3 · Ocean' };
 const THEME_FX = {
   '1': ['🐦', '🐤', '🕊️'],
-  '2': ['🚀', '🛸', '☄️'],
-  '3': ['🐠', '🐟', '🐡']
+  '2': ['🚀', '🛸', '👨‍🚀'],
+  '3': ['🐠', '🦀', '🐬']
 };
 
 function applyTheme(themeId){
