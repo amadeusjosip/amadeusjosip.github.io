@@ -1,22 +1,1337 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>practice-02</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BROJEVI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --bg-yellow:#ffd83d;
+    --card:#f8f8f8;
+    --sky:#9ee8ff;
+    --cream:#fff4cf;
+    --grass:#8bd96b;
+
+    --green:#3ddc84;
+    --blue:#4fc3f7;
+    --orange:#ffa94d;
+    --pink:#ff7aa8;
+    --purple:#b388ff;
+    --red:#ff5f5f;
+    --panel-border:#1a1a1a;
+    --cell-bg:#fbfbff;
+  }
+
+   /* ---------------- THEME 2 · Svemir (Space) ---------------- */
+  body[data-theme="2"]{
+    --ink:#2d88e3;
+    --card:#100b29;
+    --sky:#0b0c2a;
+    --cream:#241a55;
+    --grass:#140c33;
+    --green:#3eeb1e;
+    --blue:#194abd;
+    --boya:#ffe014;
+    --orange:#e6b230;
+    --pink:#ff36e0;
+    --purple:#e6b230;
+    --red:#ff4d6d;
+    --panel-border:#150e36;
+    --cell-bg:#09051c;
+  }
+
+  /* ---------------- THEME 3 · Ocean (podvodni svijet) ---------------- */
+  body[data-theme="3"]{
+    --ink:#04313f;
+    --card:#eafdff;
+    --sky:#0f7fb0;
+    --cream:#bdf3ff;
+    --grass:#d9c27a;
+    --green:#1fb37a;
+    --blue:#1e90c9;
+    --orange:#ff8c42;
+    --pink:#ff5f96;
+    --purple:#6a5acd;
+    --red:#ff5449;
+    --panel-border:#04313f;
+    --cell-bg:#d7f7ff;
+  }
+  body[data-theme="2"] .panel{box-shadow:0 6px 0 var(--ink), 0 0 22px rgba(0,229,255,.45);}
+  body[data-theme="3"] .panel{box-shadow:0 6px 0 var(--ink), 0 0 20px rgba(30,144,201,.35);}
+
+  *{box-sizing:border-box;}
+  html{ min-height:100%; background:var(--sky); }
+  body{
+    margin:0;
+    width:100%;
+    min-height:100svh;
+    color:var(--ink);
+    font-family:'Baloo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255,255,255,.72) 0 28px, transparent 29px),
+      radial-gradient(circle at 87% 13%, rgba(255,255,255,.55) 0 38px, transparent 39px),
+      linear-gradient(var(--sky) 0 68%, var(--grass) 68% 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 12px 32px;
+  display:flex;
+  align-items:flex-start;   
+  justify-content:center;
+  padding: 10px 12px 32px; 
+    
+}
+  }
+
+  body::before,
+  body::after{
+    content:"";
+    position:fixed;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* Seamless cloud loop: two identical cloud groups sit side-by-side.
+     The animation moves exactly one group-width, so the reset is invisible. */
+  body::before{
+    width:200%;
+    height:110px;
+    left:0;
+    top:12%;
+    opacity:.9;
+    background:
+      radial-gradient(ellipse 75px 36px at 4% 45%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 55px 29px at 12% 25%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 68px 32px at 18% 56%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 82px 38px at 31% 34%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 58px 30px at 39% 60%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 75px 35px at 53% 42%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 55px 28px at 61% 24%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 70px 34px at 68% 57%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 82px 38px at 81% 35%, #fff7df 0 99%, transparent 100%),
+      radial-gradient(ellipse 58px 29px at 89% 62%, #fff7df 0 99%, transparent 100%);
+    background-size:50% 100%;
+    animation:cloudLoop 14s linear infinite;
+    will-change:transform;
+  }
+
+  /* Soft lower background decoration stays static. */
+  body::after{
+    width:100%;
+    height:34%;
+    left:0;
+    bottom:0;
+    background:
+      radial-gradient(circle at 10% 80%, #6fc85e 0 42px, transparent 43px),
+      radial-gradient(circle at 90% 82%, #78ce64 0 52px, transparent 53px);
+    opacity:.9;
+  }
+
+  @keyframes cloudLoop{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  @keyframes twinkle{
+    from{opacity:.45;}
+    to{opacity:1;}
+  }
+  @keyframes bubbleRise{
+    from{background-position:15px 10px, 60px 90px, 20px 130px, 100px 40px;}
+    to{background-position:15px -150px, 60px -70px, 20px -30px, 100px -120px;}
+  }
+
+  /* Theme 2 · Svemir: swap the clouds for a starfield that twinkles. */
+  body[data-theme="2"]::before{
+    height:100%;
+    top:0;
+    opacity:0.9;
+    background:
+      radial-gradient(circle 2px at 6% 20%, #fff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 14% 65%, #fff 95%, transparent 100%),
+      radial-gradient(circle 2px at 22% 35%, #cdefff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 30% 80%, #fff 95%, transparent 100%),
+      radial-gradient(circle 2px at 38% 15%, #fff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 46% 55%, #cdefff 95%, transparent 100%),
+      radial-gradient(circle 2px at 54% 25%, #fff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 62% 70%, #fff 95%, transparent 100%),
+      radial-gradient(circle 2px at 70% 40%, #cdefff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 78% 10%, #fff 95%, transparent 100%),
+      radial-gradient(circle 2px at 86% 60%, #fff 95%, transparent 100%),
+      radial-gradient(circle 1.5px at 94% 30%, #cdefff 95%, transparent 100%);
+    background-size:50% 100%;
+    animation:cloudLoop 55s linear infinite, twinkle 2.4s ease-in-out infinite alternate;
+  }
+  body[data-theme="2"]::after{
+    height:40%;
+    opacity:0.85;
+    background:
+      radial-gradient(circle at 15% 85%, #3a2a7a 0 90px, transparent 91px),
+      radial-gradient(circle at 88% 88%, #241a55 0 70px, transparent 71px);
+  }
+
+  /* Theme 3 · Ocean: bubbles rising endlessly from the seabed, plus a
+     sandy floor with coral silhouettes instead of grass/clouds. */
+  body[data-theme="3"]::before{
+    top:-20%;
+    height:140%;
+    opacity:.55;
+    background-image:
+      radial-gradient(circle 5px, rgba(255,255,255,.9) 95%, transparent 100%),
+      radial-gradient(circle 3px, rgba(255,255,255,.75) 95%, transparent 100%),
+      radial-gradient(circle 6px, rgba(255,255,255,.65) 95%, transparent 100%),
+      radial-gradient(circle 4px, rgba(255,255,255,.8) 95%, transparent 100%);
+    background-repeat:repeat;
+    background-size:90px 160px, 120px 160px, 150px 160px, 180px 160px;
+    background-position:15px 10px, 60px 90px, 20px 130px, 100px 40px;
+    animation:bubbleRise 9s linear infinite;
+  }
+  body[data-theme="3"]::after{
+    height:32%;
+    opacity:1;
+    background:
+      radial-gradient(circle at 12% 82%, #ff8c42 0 34px, transparent 35px),
+      radial-gradient(circle at 24% 88%, #ff5f96 0 26px, transparent 27px),
+      radial-gradient(circle at 80% 84%, #6a5acd 0 30px, transparent 31px),
+      radial-gradient(circle at 91% 90%, #1fb37a 0 24px, transparent 25px);
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    body::before{animation:none;}
+    body[data-theme="2"]::before{animation:none;}
+    body[data-theme="3"]::before{animation:none;}
+  }
+
+  #flash{
+    position:fixed;
+    inset:0;
+    background:var(--green);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease;
+    z-index:50;
+  }
+  #flash.on{opacity:.4;}
+  #flash.wrong{background:var(--red);}
+
+  #confetti-canvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:60;
+  }
+
+  .theme-fx{
+    position:fixed;
+    left:-15vw;
+    font-size:28px;
+    pointer-events:none;
+    z-index:0;
+    display:none;
+    animation-name:flyAcross;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+  }
+  body[data-theme="1"] .theme-fx,
+  body[data-theme="2"] .theme-fx,
+  body[data-theme="3"] .theme-fx{
+    display:block;
+  }
+  .fx1{top:9%;  font-size:26px; animation-duration:12s; animation-delay:0s;}
+  .fx2{top:30%; font-size:22px; animation-duration:16s; animation-delay:5s;}
+  .fx3{top:52%; font-size:24px; animation-duration:14s; animation-delay:9s;}
+
+  @keyframes flyAcross{
+    0%{transform:translate(0,0) rotate(0deg);opacity:0;}
+    6%{opacity:1;}
+    94%{opacity:1;}
+    100%{transform:translate(130vw,0) rotate(150deg);opacity:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .theme-fx{animation:none !important;}
+  }
+
+  .stats-bar{
+    display:flex;
+    gap:8px;
+    margin:2px 0 4px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .stats-bar span{
+    background:var(--card);
+    border:2px solid var(--ink);
+    border-radius:999px;
+    padding:4px 12px;
+    font-size:12px;
+    font-weight:800;
+    box-shadow:2px 2px 0 var(--ink);
+    color:var(--ink);
+    font-variant-numeric:tabular-nums;
+    text-align:center;
+  }
+  #timerDisplay{
+    display:inline-block;
+    min-width:88px;
+  }
+  #recordDisplay{
+    display:inline-block;
+    min-width:118px;
+  }
+
+  .result-banner{
+    position:fixed;
+    top:18%;
+    left:50%;
+    transform:translate(-50%,-12px);
+    background:var(--card);
+    border:4px solid var(--ink);
+    border-radius:18px;
+    box-shadow:0 5px 0 var(--ink);
+    padding:14px 24px;
+    font-weight:800;
+    font-size:19px;
+    text-align:center;
+    line-height:1.5;
+    color:var(--ink);
+    z-index:70;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    max-width:88vw;
+  }
+  .result-banner.show{
+    opacity:1;
+    transform:translate(-50%,0);
+    pointer-events:auto;
+  }
+  .result-banner .next-btn{
+    margin-top:10px;
+    font-size:14px;
+  }
+
+  .scene{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    width:min(100%, 450px);
+    max-width:450px;
+    flex-shrink:0;
+  }
+
+  .title{
+    display:flex;
+    justify-content:center;
+    gap:1px;
+    font-size:clamp(24px, 8vw, 50px);
+    font-weight:800;
+    margin:0 0 1px;
+  }
+  .title span{
+    -webkit-text-stroke:3px var(--ink);
+    paint-order:stroke fill;
+  }
+
+  .subtitle-pill{
+    background:var(--ink);
+    color:#fff;
+    font-weight:700;
+    font-size:21px;
+    padding:6px 18px;
+    border-radius:999px;
+    transform:rotate(0deg);
+    margin: -5px 0 10px 0;
+    box-shadow:0 3px 0 rgba(0,0,0,.28);
+  }
+
+  .panel{
+    position:relative;
+    background:var(--card);
+    opacity:.9;
+    border:5px solid var(--ink);
+    border-radius:26px;
+    box-shadow:0 6px 0 var(--ink);
+    padding:20px 10px 50px;
+    margin-top:10px;
+    gap:6px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  #bgMusic{display:none;}
+
+  /* mode toggle: top-left */
+  .mode-toggle{
+    position:absolute;
+    top:-16px;
+    left:16px;
+    display:flex;
+    gap:2px;
+    background:var(--card);
+    border:3px solid var(--ink);
+    border-radius:999px;
+    padding:3px;
+    box-shadow:0 3px 0 var(--ink);
+  }
+  .mode-toggle{cursor:pointer;font-family:inherit;}
+  .mode-toggle:focus-visible{outline:3px solid var(--blue);outline-offset:5px;}
+  .mode-toggle span{
+    border:none;
+    background:transparent;
+    font-family:inherit;
+    font-size:15px;
+    font-weight:800;
+    padding:4px 11px;
+    border-radius:999px;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .mode-toggle span.active{
+    background:var(--orange);
+    color:#fff;
+  }
+
+  /* row-count toggle: top-right (addition mode only) */
+  .row-toggle{
+    position:absolute;
+    top:-16px;
+    right:16px;
+    display:flex;
+    gap:2px;
+    background:var(--card);
+    border:3px solid var(--ink);
+    border-radius:999px;
+    padding:3px;
+    box-shadow:0 3px 0 var(--ink);
+  }
+  .row-toggle button{
+    border:none;
+    background:transparent;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:800;
+    padding:4px 9px;
+    border-radius:999px;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .row-toggle button.active{
+    background:var(--purple);
+    color:#fff;
+  }
+  .row-toggle.hidden{
+    display:none;
+  }
+
+  /* Size cells from the available panel width. Reserve six rows so the
+     controls stay below the pyramid and mode switches keep a steady layout. */
+  .puzzle-box{
+    --gap:4px;
+    container-type:inline-size;
+    width:100%;
+    padding-inline:4px;
+    display:flex;
+    justify-content:center;
+  }
+
+  .pyramid{
+    --base-cell:min(58px, calc((100cqw - 24px) / 6));
+    --cell:var(--base-cell);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:var(--gap);
+    min-height:calc(var(--base-cell) * 6 + var(--gap) * 5);
+    flex-shrink:0;
+  }
+  /* Addition: 4 rows = same size as multiplication, 5 rows = in-between,
+     6 rows = current/smallest size. */
+  .pyramid[data-mode="add"][data-rows="4"]{--cell:calc(var(--base-cell) * 1.2);}
+  .pyramid[data-mode="add"][data-rows="5"]{--cell:calc(var(--base-cell) * 1.1);}
+  .pyramid[data-mode="add"][data-rows="6"]{--cell:var(--base-cell);}
+  .pyramid[data-mode="mul"]{--cell:calc(var(--base-cell) * 1.2);}
+  .row{
+    display:flex;
+    justify-content:center;
+    gap:var(--gap);
+  }
+
+  /* cell frame matches the panel's style: thick black border + hard
+     offset shadow (bottom-right) for a consistent 3D "sticker" feel */
+  .cell{
+    width:var(--cell);
+    height:var(--cell);
+    border-radius:11px;
+    border:3px solid var(--ink);
+    box-shadow:3px 3px 0 var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:calc(var(--cell) * 0.34);
+    background:var(--cell-bg);
+  }
+  .cell.given{color:#fff;}
+  .cell.given.c0{background:var(--green);}
+  .cell.given.c1{background:var(--blue);}
+  .cell.given.c2{background:var(--orange);}
+  .cell.given.c3{background:var(--pink);}
+  .cell.given.c4{background:var(--purple);}
+
+  .cell input{
+    width:100%;
+    height:100%;
+    text-align:center;
+    font-size:calc(var(--cell) * 0.34);
+    font-weight:800;
+    font-family:inherit;
+    color:var(--boya);
+    background:transparent;
+    border:none;
+    -moz-appearance:textfield;
+  }
+  .cell input::-webkit-outer-spin-button,
+  .cell input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+  }
+  .cell:has(input:focus){
+    border-color:var(--purple);
+  }
+  .cell input:focus{
+    outline:none;
+  }
+
+  .pyramid.shake{
+    animation:shake .4s ease;
+  }
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-8px);}
+    40%{transform:translateX(7px);}
+    60%{transform:translateX(-5px);}
+    80%{transform:translateX(4px);}
+  }
+
+  .btn-row{
+    display:flex;
+    gap:7px;
+    margin-top:0;
+    margin-bottom:2px;
+    flex-wrap:wrap;
+    justify-content:center;
+    width:100%;
+  }
+
+  .btn{
+    font-family:inherit;
+    font-weight:800;
+    font-size:12px;
+    padding:8px 12px;
+    border-radius:999px;
+    border:2px solid var(--ink);
+    cursor:pointer;
+    box-shadow:0 3px 0 var(--ink);
+    transition:transform .08s ease, box-shadow .08s ease;
+    color:#fff;
+    white-space:nowrap;
+  }
+  .btn:active{
+    transform:translateY(3px);
+    box-shadow:0 1px 0 var(--ink);
+  }
+  .btn-check{background:var(--green);}
+  .btn-return{background:var(--red);}
+  .btn-new{background:var(--card);color:var(--ink);}
+
+  /* Light / dark mode */
+  .theme-toggle{
+    position:absolute;
+    right:12px;
+    bottom:10px;
+    width:34px;
+    height:34px;
+    border:2px solid var(--ink);
+    border-radius:50%;
+    background:var(--card);
+    color:var(--ink);
+    font-family:inherit;
+    font-size:17px;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:2px 2px 0 var(--ink);
+    transition:transform .08s ease, box-shadow .08s ease, background .2s ease;
+  }
+  .theme-toggle:active{
+    transform:translateY(2px);
+    box-shadow:1px 1px 0 var(--ink);
+  }
+  .theme-toggle:focus-visible{
+    outline:3px solid var(--blue);
+    outline-offset:4px;
+  }
+
+  /* Music toggle sits on the opposite corner from the theme toggle. */
+  .music-toggle{
+    right:auto;
+    left:12px;
+  }
+
+  @media (max-width:420px){
+    .panel{padding:28px 8px 26px;border-width:4px;border-radius:23px;}
+    .mode-toggle{top:-14px;left:10px;border-width:2px;}
+    .mode-toggle span{font-size:13px;padding:3px 9px;}
+    .row-toggle{top:-14px;right:10px;border-width:2px;}
+    .row-toggle button{font-size:11px;padding:3px 7px;}
+    .cell{border-width:2px;box-shadow:2px 2px 0 var(--ink);border-radius:9px;}
+    .btn{font-size:11px;padding:7px 10px;}
+    .theme-toggle{width:30px;height:30px;font-size:15px;right:9px;bottom:8px;}
+    .music-toggle{right:auto;left:9px;}
+  }
+  @media (max-height:650px){
+    body{padding-block:16px 24px;}
+    .title{font-size:24px;}
+    .subtitle-pill{font-size:11px;padding:4px 13px;}
+  }
+</style>
 </head>
 <body>
 
-    <section> 
-        <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit</h3>
-        <h3>Lorem ipsum dolor sit amet consectetur</h3>
-    </section>
+<div class="theme-fx fx1" aria-hidden="true"></div>
+<div class="theme-fx fx2" aria-hidden="true"></div>
+<div class="theme-fx fx3" aria-hidden="true"></div>
 
-    <div id="slika">
-        <img src="https://source.unsplash.com/random/?night">
+<div id="flash"></div>
+<canvas id="confetti-canvas"></canvas>
+<div class="result-banner" id="resultBanner"></div>
+
+<div class="scene">
+  <h1 class="title">
+    <span style="color:var(--green)">P</span>
+    <span style="color:var(--blue)">i</span>
+    <span style="color:var(--orange)">r</span>
+    <span style="color:var(--pink)">a</span>
+    <span style="color:var(--purple)">m</span>
+    <span style="color:var(--green)">i</span>
+    <span style="color:var(--blue)">d</span>
+    <span style="color:var(--orange)">a</span>
+  </h1>
+  <div class="subtitle-pill" id="subtitlePill">Zbrajanje</div>
+  <div class="stats-bar">
+    <span id="timerDisplay">⏱️ 0.00s</span>
+    <span id="recordDisplay">🏆 Rekord: —</span>
+  </div>
+
+  <div class="panel">
+    <button type="button" class="mode-toggle" id="modeToggle" role="switch" aria-label="Množenje" aria-checked="false">
+      <span data-mode="add" aria-hidden="true">+</span>
+      <span data-mode="mul" aria-hidden="true">✕</span>
+    </button>
+
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Promijeni temu" title="Tema">☀️</button>
+
+    <button type="button" class="theme-toggle music-toggle" id="musicToggle" aria-label="Uključi glazbu" aria-pressed="false" title="Glazba">🔇</button>
+    <audio id="bgMusic" loop preload="none" src="music.mp3"></audio>
+
+    <div class="row-toggle" id="rowToggle">
+      <button data-rows="4">4</button>
+      <button data-rows="5">5</button>
+      <button data-rows="6">6</button>
     </div>
-     
-</body>
+
+    <div class="btn-row">
+      <button class="btn btn-check" id="checkBtn">Provjeri</button>
+      <button class="btn btn-new" id="newBtn">Mix</button>
+    </div>
+
+    <div class="puzzle-box">
+      <div class="pyramid" id="pyramid"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const pyramidEl = document.getElementById('pyramid');
+const newBtn = document.getElementById('newBtn');
+const checkBtn = document.getElementById('checkBtn');
+const flashEl = document.getElementById('flash');
+const rowButtons = document.querySelectorAll('.row-toggle button');
+const modeToggleEl = document.getElementById('modeToggle');
+const modeButtons = document.querySelectorAll('.mode-toggle span');
+const rowToggleEl = document.getElementById('rowToggle');
+const subtitlePill = document.getElementById('subtitlePill');
+const themeToggle = document.getElementById('themeToggle');
+const musicToggle = document.getElementById('musicToggle');
+const timerDisplayEl = document.getElementById('timerDisplay');
+const recordDisplayEl = document.getElementById('recordDisplay');
+const resultBannerEl = document.getElementById('resultBanner');
+const themeFxEls = document.querySelectorAll('.theme-fx');
+
+let currentMode = 'add';
+let currentRows = 6;
+let solution = [];
+let hidden = [];
+let inputs = [];
+let busy = false;
+
+function randInt(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/* ---------------- shared solvability check ---------------- */
+// Checks whether the given reveal pattern lets every cell be deduced by
+// repeatedly applying: parent = left OP right, or a child = parent
+// (inverse OP) the other child, until nothing changes.
+function isSolvable(revealed, sol, rows, op, inv){
+  const known = [];
+  for(let r = 0; r < rows; r++){
+    known[r] = [];
+    for(let i = 0; i <= r; i++){
+      known[r][i] = revealed[r][i] ? sol[r][i] : null;
+    }
+  }
+
+  let changed = true;
+  while(changed){
+    changed = false;
+    for(let r = 0; r < rows - 1; r++){
+      for(let i = 0; i <= r; i++){
+        const p = known[r][i];
+        const l = known[r + 1][i];
+        const rt = known[r + 1][i + 1];
+        const knownCount = (p !== null ? 1 : 0) + (l !== null ? 1 : 0) + (rt !== null ? 1 : 0);
+        if(knownCount === 2){
+          if(p === null){ known[r][i] = op(l, rt); changed = true; }
+          else if(l === null){ known[r + 1][i] = inv(p, rt); changed = true; }
+          else if(rt === null){ known[r + 1][i + 1] = inv(p, l); changed = true; }
+        }
+      }
+    }
+  }
+
+  for(let r = 0; r < rows; r++){
+    for(let i = 0; i <= r; i++){
+      if(known[r][i] === null) return false;
+    }
+  }
+  return true;
+}
+
+/* ---------------- ADDITION mode ---------------- */
+// Top value is guaranteed <= 100: top = sum of C(rows-1, i) * bottom[i],
+// and the total of those coefficients is 2^(rows-1), so capping each
+// bottom cell at floor(100 / 2^(rows-1)) guarantees the worst case stays <= 100.
+function addBottomCap(rows){
+  return Math.max(1, Math.floor(100 / Math.pow(2, rows - 1)));
+}
+
+function buildAddSolution(rows){
+  const cap = addBottomCap(rows);
+  const sol = [];
+  const bottom = [];
+  for(let i = 0; i < rows; i++) bottom.push(randInt(1, cap));
+  sol[rows - 1] = bottom;
+
+  for(let r = rows - 2; r >= 0; r--){
+    const row = [];
+    const below = sol[r + 1];
+    for(let i = 0; i <= r; i++){
+      row.push(below[i] + below[i + 1]);
+    }
+    sol[r] = row;
+  }
+  return sol;
+}
+
+// Starts with every cell hidden (top included) and reveals random cells,
+// one at a time, only as needed until the puzzle becomes fully solvable —
+// this keeps the number of clues as close to the minimum as possible.
+// The top cell has no special treatment: it may or may not end up revealed.
+function buildAddReveal(rows, sol){
+  const revealed = [];
+  for(let r = 0; r < rows; r++){
+    revealed[r] = new Array(r + 1).fill(false);
+  }
+
+  const addOp = (a, b) => a + b;
+  const addInv = (a, b) => a - b;
+
+  while(!isSolvable(revealed, sol, rows, addOp, addInv)){
+    const hiddenCells = [];
+    for(let r = 0; r < rows; r++){
+      for(let i = 0; i <= r; i++){
+        if(!revealed[r][i]) hiddenCells.push([r, i]);
+      }
+    }
+    if(hiddenCells.length === 0) break;
+    const [r, i] = hiddenCells[randInt(0, hiddenCells.length - 1)];
+    revealed[r][i] = true;
+  }
+
+  return revealed;
+}
+
+/* ---------------- MULTIPLICATION mode (kids) ---------------- */
+/*
+ * Kid-friendly 4-row multiplication:
+ * - bottom factors are small: 1, 2, 3, 4, 5, 10
+ * - every number that can be entered is <= 100
+ * - numbers are intentionally biased toward friendly results such as
+ *   4, 5, 10, 12, 15, 16, 20, 25 and 50
+ * - each generated pyramid is checked before being used
+ */
+const MUL_FACTORS = [1, 2, 3, 4, 5, 10];
+
+/*
+ * Kid-friendly multiplication rules.
+ * The LEFT number determines which right-hand factors are allowed.
+ * This deliberately favors easy facts and avoids pairs such as 8×6.
+ */
+function friendlyFactors(left){
+  if([1, 2, 3, 5, 10].includes(left)) return [1, 2, 3, 4, 5, 10];
+  if([4].includes(left)) return [1, 2, 3, 4, 5];
+  if([6, 8].includes(left)) return [1, 2, 10];
+  if([9, 12, 15, 16, 18, 20, 24, 25, 30, 40, 50].includes(left)) return [1, 2];
+  if(left > 50) return [1];
+  return [1, 2];
+}
+
+function isFriendlyPair(left, right){
+  return friendlyFactors(left).includes(right);
+}
+
+function buildMulSolution(){
+  const candidates = [];
+
+  // Only 4 bottom values are random. Every multiplication above them
+  // must obey the kid-friendly left-factor rule.
+  for(const a of MUL_FACTORS){
+    for(const b of MUL_FACTORS){
+      for(const c of MUL_FACTORS){
+        for(const d of MUL_FACTORS){
+          const bottom = [a,b,c,d];
+
+          if(!isFriendlyPair(bottom[0], bottom[1])) continue;
+          if(!isFriendlyPair(bottom[1], bottom[2])) continue;
+          if(!isFriendlyPair(bottom[2], bottom[3])) continue;
+
+          const row2 = [
+            bottom[0] * bottom[1],
+            bottom[1] * bottom[2],
+            bottom[2] * bottom[3]
+          ];
+
+          if(!isFriendlyPair(row2[0], row2[1])) continue;
+          if(!isFriendlyPair(row2[1], row2[2])) continue;
+
+          const row1 = [
+            row2[0] * row2[1],
+            row2[1] * row2[2]
+          ];
+
+          if(!isFriendlyPair(row1[0], row1[1])) continue;
+
+          const top = row1[0] * row1[1];
+          const all = [...bottom, ...row2, ...row1, top];
+
+          if(Math.max(...all) <= 100){
+            candidates.push([[top], row1, row2, bottom]);
+          }
+        }
+      }
+    }
+  }
+
+  // Prefer examples that contain especially useful school-math numbers.
+  const preferred = candidates.filter(sol => {
+    const all = sol.flat();
+    return all.some(n => [5, 6, 10, 12, 15, 16, 20, 25, 50].includes(n));
+  });
+
+  const pool = preferred.length ? preferred : candidates;
+  return pool[randInt(0, pool.length - 1)];
+}
+
+
+function buildMulReveal(sol){
+  const rows = 4;
+  const revealed = [];
+  for(let r = 0; r < rows; r++){
+    revealed[r] = new Array(r + 1).fill(false);
+  }
+
+  const mulOp = (a, b) => a * b;
+  const mulInv = (a, b) => a / b;
+
+  // Reveal enough clues for the child to solve the whole pyramid,
+  // while keeping most of the work as input.
+  while(!isSolvable(revealed, sol, rows, mulOp, mulInv)){
+    const hiddenCells = [];
+    for(let r = 0; r < rows; r++){
+      for(let i = 0; i <= r; i++){
+        if(!revealed[r][i]) hiddenCells.push([r, i]);
+      }
+    }
+    if(hiddenCells.length === 0) break;
+
+    // Prefer revealing a small bottom number as a clue.
+    const bottomHidden = hiddenCells.filter(([r]) => r === rows - 1);
+    const pool = bottomHidden.length && Math.random() < 0.65
+      ? bottomHidden
+      : hiddenCells;
+
+    const [r, i] = pool[randInt(0, pool.length - 1)];
+    revealed[r][i] = true;
+  }
+
+  return revealed;
+}
+
+/* ---------------- generation / rendering ---------------- */
+function generatePuzzle(mode, rows){
+  currentMode = mode;
+
+  if(mode === 'add'){
+    currentRows = rows;
+    solution = buildAddSolution(rows);
+    const revealed = buildAddReveal(rows, solution);
+    hidden = revealed.map(row => row.map(v => !v));
+  } else {
+    currentRows = 4;
+    solution = buildMulSolution();
+    const revealed = buildMulReveal(solution);
+    hidden = revealed.map(row => row.map(v => !v));
+  }
+}
+
+const giveColors = ['c0', 'c1', 'c2', 'c3', 'c4'];
+
+function renderPyramid(){
+  pyramidEl.dataset.mode = currentMode;
+  pyramidEl.dataset.rows = currentRows;
+  pyramidEl.innerHTML = '';
+  inputs = [];
+  busy = false;
+  let colorIdx = 0;
+
+  for(let r = 0; r < currentRows; r++){
+    const rowEl = document.createElement('div');
+    rowEl.className = 'row';
+    inputs[r] = [];
+
+    for(let i = 0; i <= r; i++){
+      const cellEl = document.createElement('div');
+
+      if(hidden[r][i]){
+        cellEl.className = 'cell';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.inputMode = 'numeric';
+        input.maxLength = 3;
+        input.addEventListener('input', () => {
+          input.value = input.value.replace(/[^0-9]/g, '');
+          if(input.value !== '' && Number(input.value) > 100){
+            input.value = '100';
+          }
+        });
+        cellEl.appendChild(input);
+        inputs[r][i] = input;
+      } else {
+        cellEl.className = 'cell given ' + giveColors[colorIdx % giveColors.length];
+        colorIdx++;
+        cellEl.textContent = solution[r][i];
+        inputs[r][i] = null;
+      }
+
+      rowEl.appendChild(cellEl);
+    }
+
+    pyramidEl.appendChild(rowEl);
+  }
+}
+
+function handleCheck(){
+  if(busy) return;
+
+  let allFilled = true;
+  for(let r = 0; r < currentRows; r++){
+    for(let i = 0; i <= r; i++){
+      const input = inputs[r][i];
+      if(input && input.value.trim() === ''){
+        allFilled = false;
+      }
+    }
+  }
+
+  if(!allFilled){
+    pyramidEl.classList.remove('shake');
+    void pyramidEl.offsetWidth;
+    pyramidEl.classList.add('shake');
+    return;
+  }
+
+  let allCorrect = true;
+  for(let r = 0; r < currentRows; r++){
+    for(let i = 0; i <= r; i++){
+      const input = inputs[r][i];
+      if(input){
+        const userValue = Number(input.value.trim());
+        const expected = Number(solution[r][i]);
+
+        if(!Number.isFinite(userValue) || !Number.isInteger(userValue) || userValue !== expected){
+          allCorrect = false;
+        }
+      }
+    }
+  }
+
+  if(allCorrect){
+    busy = true;
+    const elapsed = stopTimer();
+    const existingRecord = getRecord(currentMode, currentRows);
+    const isNewRecord = existingRecord === null || elapsed < existingRecord;
+    if(isNewRecord){
+      setRecord(currentMode, currentRows, elapsed);
+      updateRecordDisplay(currentMode, currentRows);
+    }
+    const stars = getStars(currentMode, currentRows, elapsed);
+    showResultBanner(stars, elapsed, isNewRecord);
+    playWin();
+    vibrate(isNewRecord ? [70, 50, 70, 50, 140] : 120);
+    flash(false);
+    launchConfetti(isNewRecord);
+  } else {
+    playWrong();
+    vibrate(200);
+    flash(true);
+  }
+}
+
+let flashTimers = [];
+
+function clearFlashTimers(){
+  flashTimers.forEach(clearTimeout);
+  flashTimers = [];
+  flashEl.classList.remove('on', 'wrong');
+}
+
+function flash(isWrong){
+  clearFlashTimers();
+
+  if(!isWrong){
+    flashEl.classList.remove('wrong');
+    flashEl.classList.add('on');
+    flashTimers.push(setTimeout(() => flashEl.classList.remove('on'), 250));
+    return;
+  }
+
+  // Two quick red flashes: on → off → on → off.
+  const steps = [
+    [0,    true],
+    [250,  false],
+    [300,  true],
+    [550,  false]
+  ];
+
+  steps.forEach(([delay, on]) => {
+    flashTimers.push(setTimeout(() => {
+      flashEl.classList.toggle('wrong', on);
+      flashEl.classList.toggle('on', on);
+    }, delay));
+  });
+}
+
+
+/* ---------------- sound effects (synthesized, separate from bg music) ---------------- */
+let sfxCtx = null;
+function getSfxCtx(){
+  if(!sfxCtx){
+    sfxCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if(sfxCtx.state === 'suspended'){
+    sfxCtx.resume();
+  }
+  return sfxCtx;
+}
+
+function beep(freq, duration, type, gain, delay){
+  const ctx = getSfxCtx();
+  const osc = ctx.createOscillator();
+  const g = ctx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  osc.connect(g);
+  g.connect(ctx.destination);
+  const start = ctx.currentTime + (delay || 0);
+  g.gain.setValueAtTime(0, start);
+  g.gain.linearRampToValueAtTime(gain, start + 0.01);
+  g.gain.exponentialRampToValueAtTime(0.001, start + duration);
+  osc.start(start);
+  osc.stop(start + duration + 0.02);
+}
+
+function playClick(){ beep(680, 0.07, 'square', 0.12); }
+function playWrong(){ beep(180, 0.18, 'sawtooth', 0.1); }
+function playWin(){
+  beep(523.25, 0.13, 'sine', 0.16, 0);
+  beep(659.25, 0.13, 'sine', 0.16, 0.11);
+  beep(783.99, 0.22, 'sine', 0.18, 0.22);
+}
+
+function vibrate(pattern){
+  if(navigator.vibrate){
+    navigator.vibrate(pattern);
+  }
+}
+
+/* ---------------- timer + per-mode records (localStorage) ---------------- */
+let timerStart = null;
+let timerInterval = null;
+
+function formatTime(seconds){
+  return seconds.toFixed(2) + 's';
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+  timerStart = performance.now();
+  timerDisplayEl.textContent = '⏱️ 0.00s';
+  timerInterval = setInterval(updateTimerDisplay, 40);
+}
+
+function stopTimer(){
+  clearInterval(timerInterval);
+  return (performance.now() - timerStart) / 1000;
+}
+
+function updateTimerDisplay(){
+  const elapsed = (performance.now() - timerStart) / 1000;
+  timerDisplayEl.textContent = '⏱️ ' + formatTime(elapsed);
+}
+
+function recordKey(mode, rows){
+  return 'piramidaRecord_' + mode + '_' + rows;
+}
+
+function getRecord(mode, rows){
+  const raw = localStorage.getItem(recordKey(mode, rows));
+  return raw ? parseFloat(raw) : null;
+}
+
+function setRecord(mode, rows, seconds){
+  localStorage.setItem(recordKey(mode, rows), seconds.toFixed(2));
+}
+
+function updateRecordDisplay(mode, rows){
+  const record = getRecord(mode, rows);
+  recordDisplayEl.textContent = record !== null
+    ? '🏆 Rekord: ' + formatTime(record)
+    : '🏆 Rekord: —';
+}
+
+const STAR_THRESHOLDS = {
+  add_4: [8, 15],
+  add_5: [12, 20],
+  add_6: [18, 28],
+  mul_4: [10, 18]
+};
+
+function getStars(mode, rows, seconds){
+  const thresholds = STAR_THRESHOLDS[mode + '_' + rows] || [12, 22];
+  if(seconds <= thresholds[0]) return 3;
+  if(seconds <= thresholds[1]) return 2;
+  return 1;
+}
+
+function showResultBanner(stars, seconds, isNewRecord){
+  const starsText = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
+  resultBannerEl.innerHTML =
+    (isNewRecord ? '🏆 NOVI REKORD!<br>' : '') +
+    starsText + '<br>' +
+    formatTime(seconds) +
+    '<br><button type="button" class="btn btn-check next-btn btn-return" id="nextRoundBtn">↺ Nova partija</button>';
+  resultBannerEl.classList.add('show');
+  document.getElementById('nextRoundBtn').addEventListener('click', () => {
+    playClick();
+    resultBannerEl.classList.remove('show');
+    startPuzzle(currentMode, currentRows);
+  });
+}
+
+/* ---------------- themes (Tema 1 / 2 / 3) ---------------- */
+const THEME_ORDER = ['1', '2', '3'];
+const THEME_ICONS = { '1': '🏔️', '2': '🌙', '3': '🌊' };
+const THEME_LABELS = { '1': 'Tema 1 · Sunčani dan', '2': 'Tema 2 · Svemir', '3': 'Tema 3 · Ocean' };
+const THEME_FX = {
+  '1': ['🐦', '🐤', '🕊️'],
+  '2': ['🚀', '🛸', '👨‍🚀'],
+  '3': ['🐠', '🦀', '🐬']
+};
+
+function applyTheme(themeId){
+  document.body.dataset.theme = themeId;
+  themeToggle.textContent = THEME_ICONS[themeId];
+  themeToggle.title = THEME_LABELS[themeId];
+  themeToggle.setAttribute('aria-label', 'Promijeni temu (trenutno: ' + THEME_LABELS[themeId] + ')');
+  themeFxEls.forEach((el, i) => { el.textContent = THEME_FX[themeId][i]; });
+}
+
+let savedTheme = localStorage.getItem('piramidaTheme');
+if(!THEME_ORDER.includes(savedTheme)) savedTheme = '1';
+applyTheme(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  playClick();
+  const current = document.body.dataset.theme;
+  const next = THEME_ORDER[(THEME_ORDER.indexOf(current) + 1) % THEME_ORDER.length];
+  applyTheme(next);
+  localStorage.setItem('piramidaTheme', next);
+});
+
+/* ---------------- background music (local audio file) ---------------- */
+const bgMusic = document.getElementById('bgMusic');
+bgMusic.volume = 1; // 0.0–1.0, this is max
+
+let musicOn = false; // starts OFF, as requested
+
+function setMusicButton(isOn){
+  musicToggle.textContent = isOn ? '🔊' : '🔇';
+  musicToggle.setAttribute('aria-pressed', String(isOn));
+  musicToggle.setAttribute('aria-label', isOn ? 'Isključi glazbu' : 'Uključi glazbu');
+}
+setMusicButton(musicOn);
+
+musicToggle.addEventListener('click', () => {
+  musicOn = !musicOn;
+  setMusicButton(musicOn);
+
+  if(musicOn){
+    bgMusic.currentTime = 0;
+    bgMusic.play().catch(err => console.error('Ne mogu pustiti glazbu:', err));
+  } else {
+    bgMusic.pause();
+  }
+});
+
+function startPuzzle(mode, rows){
+  generatePuzzle(mode, rows);
+  renderPyramid();
+  setActiveModeButton(mode);
+  setActiveRowButton(rows);
+  rowToggleEl.classList.toggle('hidden', mode !== 'add');
+  subtitlePill.textContent = mode === 'add' ? 'Zbrajanje' : 'Množenje';
+  resultBannerEl.classList.remove('show');
+  updateRecordDisplay(currentMode, currentRows);
+  startTimer();
+}
+
+function setActiveModeButton(mode){
+  modeToggleEl.setAttribute('aria-checked', String(mode === 'mul'));
+  modeButtons.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+}
+
+function setActiveRowButton(rows){
+  rowButtons.forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.rows, 10) === rows);
+  });
+}
+
+newBtn.addEventListener('click', () => { playClick(); startPuzzle(currentMode, currentRows); });
+checkBtn.addEventListener('click', () => { playClick(); handleCheck(); });
+rowButtons.forEach(btn => {
+  btn.addEventListener('click', () => { playClick(); startPuzzle('add', parseInt(btn.dataset.rows, 10)); });
+});
+modeToggleEl.addEventListener('click', () => {
+  playClick();
+  const mode = currentMode === 'add' ? 'mul' : 'add';
+  startPuzzle(mode, mode === 'add' ? 6 : 4);
+});
+
+startPuzzle(currentMode, currentRows);
+
+/* ---- confetti ---- */
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let confettiRunning = false;
+
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const confettiColors = ['#3ddc84', '#4fc3f7', '#ffa94d', '#ff7aa8', '#b388ff', '#ffd83d'];
+
+function launchConfetti(big){
+  particles = [];
+  const count = big ? 320 : 180;
+  const spread = big ? 22 : 15;
+  for(let i = 0; i < count; i++){
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * spread,
+      vy: (Math.random() - 1.6) * spread,
+      size: randInt(5, big ? 12 : 10),
+      color: confettiColors[randInt(0, confettiColors.length - 1)],
+      rotation: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.3,
+      life: 0
+    });
+  }
+  if(!confettiRunning){
+    confettiRunning = true;
+    requestAnimationFrame(animateConfetti);
+  }
+}
+
+function animateConfetti(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let stillAlive = false;
+
+  for(const p of particles){
+    p.vy += 0.35;
+    p.x += p.vx;
+    p.y += p.vy;
+    p.rotation += p.spin;
+    p.life++;
+
+    if(p.y < canvas.height + 20 && p.life < 220){
+      stillAlive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+    }
+  }
+
+  if(stillAlive){
+    requestAnimationFrame(animateConfetti);
+  } else {
+    confettiRunning = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a386972e8af228d0',t:'MTc4ODk2MTA3Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
