@@ -220,36 +220,29 @@
 
   .theme-fx{
     position:fixed;
-    font-size:32px;
+    left:-15vw;
+    font-size:28px;
     pointer-events:none;
     z-index:0;
     display:none;
+    animation-name:flyAcross;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
   }
-  body[data-theme="2"] .theme-fx{
-    display:block;
-    top:16%;
-    left:-10vw;
-    animation:cometFly 9s linear infinite;
-  }
+  body[data-theme="1"] .theme-fx,
+  body[data-theme="2"] .theme-fx,
   body[data-theme="3"] .theme-fx{
     display:block;
-    top:32%;
-    left:0;
-    animation:fishSwim 13s linear infinite;
   }
-  @keyframes cometFly{
-    0%{transform:translate(0,0) rotate(35deg);opacity:0;}
+  .fx1{top:9%;  font-size:26px; animation-duration:12s; animation-delay:0s;}
+  .fx2{top:30%; font-size:22px; animation-duration:16s; animation-delay:5s;}
+  .fx3{top:52%; font-size:24px; animation-duration:14s; animation-delay:9s;}
+
+  @keyframes flyAcross{
+    0%{transform:translate(0,0);opacity:0;}
     6%{opacity:1;}
-    48%{transform:translate(120vw,55vh) rotate(95deg);opacity:1;}
-    54%{opacity:0;}
-    100%{transform:translate(120vw,55vh) rotate(35deg);opacity:0;}
-  }
-  @keyframes fishSwim{
-    0%{transform:translate(-10vw,0) scaleX(1);}
-    47%{transform:translate(105vw,14vh) scaleX(1);}
-    50%{transform:translate(105vw,14vh) scaleX(-1);}
-    97%{transform:translate(-10vw,26vh) scaleX(-1);}
-    100%{transform:translate(-10vw,26vh) scaleX(1);}
+    94%{opacity:1;}
+    100%{transform:translate(130vw,0);opacity:0;}
   }
   @media (prefers-reduced-motion:reduce){
     .theme-fx{animation:none !important;}
@@ -322,8 +315,8 @@
     align-items:center;
     justify-content:center;
     gap:0;
-    width:min(100%, 390px);
-    max-width:390px;
+    width:min(100%, 440px);
+    max-width:440px;
     flex-shrink:0;
   }
 
@@ -355,18 +348,20 @@
   .panel{
     position:relative;
     background:var(--card);
+    opacity:.9;
     border:5px solid var(--ink);
     border-radius:26px;
     box-shadow:0 6px 0 var(--ink);
-    padding:30px 10px 18px;
+    padding:30px 10px 30px;
     margin-top:12px;
-    gap:18px;
+    gap:6px;
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
   }
+  #bgMusic{display:none;}
 
   /* mode toggle: top-left */
   .mode-toggle{
@@ -589,7 +584,7 @@
   }
 
   @media (max-width:420px){
-    .panel{padding:28px 8px 16px;border-width:4px;border-radius:23px;}
+    .panel{padding:28px 8px 26px;border-width:4px;border-radius:23px;}
     .mode-toggle{top:-14px;left:10px;border-width:2px;}
     .mode-toggle span{font-size:13px;padding:3px 9px;}
     .row-toggle{top:-14px;right:10px;border-width:2px;}
@@ -608,7 +603,9 @@
 </head>
 <body>
 
-<div class="theme-fx" id="themeFx" aria-hidden="true"></div>
+<div class="theme-fx fx1" aria-hidden="true"></div>
+<div class="theme-fx fx2" aria-hidden="true"></div>
+<div class="theme-fx fx3" aria-hidden="true"></div>
 
 <div id="flash"></div>
 <canvas id="confetti-canvas"></canvas>
@@ -674,7 +671,7 @@ const musicToggle = document.getElementById('musicToggle');
 const timerDisplayEl = document.getElementById('timerDisplay');
 const recordDisplayEl = document.getElementById('recordDisplay');
 const resultBannerEl = document.getElementById('resultBanner');
-const themeFx = document.getElementById('themeFx');
+const themeFxEls = document.querySelectorAll('.theme-fx');
 
 let currentMode = 'add';
 let currentRows = 6;
@@ -1171,14 +1168,18 @@ function showResultBanner(stars, seconds, isNewRecord){
 const THEME_ORDER = ['1', '2', '3'];
 const THEME_ICONS = { '1': '🏔️', '2': '🚀', '3': '🐠' };
 const THEME_LABELS = { '1': 'Tema 1 · Sunčani dan', '2': 'Tema 2 · Svemir', '3': 'Tema 3 · Ocean' };
-const THEME_FX = { '1': '', '2': '🚀', '3': '🐠' };
+const THEME_FX = {
+  '1': ['🐦', '🐤', '🕊️'],
+  '2': ['🚀', '🛸', '☄️'],
+  '3': ['🐠', '🐟', '🐡']
+};
 
 function applyTheme(themeId){
   document.body.dataset.theme = themeId;
   themeToggle.textContent = THEME_ICONS[themeId];
   themeToggle.title = THEME_LABELS[themeId];
   themeToggle.setAttribute('aria-label', 'Promijeni temu (trenutno: ' + THEME_LABELS[themeId] + ')');
-  themeFx.textContent = THEME_FX[themeId];
+  themeFxEls.forEach((el, i) => { el.textContent = THEME_FX[themeId][i]; });
 }
 
 let savedTheme = localStorage.getItem('piramidaTheme');
@@ -1211,6 +1212,7 @@ musicToggle.addEventListener('click', () => {
   setMusicButton(musicOn);
 
   if(musicOn){
+    bgMusic.currentTime = 0;
     bgMusic.play().catch(err => console.error('Ne mogu pustiti glazbu:', err));
   } else {
     bgMusic.pause();
