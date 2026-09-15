@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dvorijeka — dvostruki Wordle na hrvatskom</title>
+<style>
+  :root{
+    --bg: #0f2436;
+    --bg-panel: #16304a;
+    --ink: #eef3f1;
+    --ink-dim: #9fb3c4;
+    --stone: #3d566c;
+    --stone-light: #4d6a84;
+    --gold: #d9a441;
+    --correct: #3e7c6b;
+    --present: #c9962f;
+    --absent: #3a4c5c;
+    --border-radius: 6px;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body{
+    margin:0;
+    padding:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    min-height: 100vh;
+  }
+
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 32px 20px 48px;
+  }
+
+  header{
+    text-align:center;
+    max-width: 640px;
+    margin-bottom: 22px;
+  }
+
+  h1{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 2.6rem;
+    margin: 0 0 6px;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+
+  h1 span{
+    color: var(--gold);
+  }
+
+  .subtitle{
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .status-bar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 14px;
+    margin: 16px 0 6px;
+    min-height: 30px;
+  }
+
+  .message{
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--bg-panel);
+    border: 1px solid var(--stone);
+    color: var(--ink);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .message.show{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .message.win{ border-color: var(--correct); color: #bfe8dc; }
+  .message.lose{ border-color: #a44b4b; color: #f0c4c4; }
+
+  .tries{
+    color: var(--ink-dim);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .boards{
+    display:flex;
+    justify-content:center;
+    gap: 64px;
+    margin: 18px 0 8px;
+    flex-wrap: wrap;
+  }
+
+  .board-col{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 10px;
+  }
+
+  .board-label{
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    font-weight: 600;
+  }
+
+  .board{
+    display:grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 7px;
+  }
+
+  .row{
+    display:grid;
+    grid-template-columns: repeat(5, 52px);
+    gap: 7px;
+  }
+
+  .tile{
+    width: 52px;
+    height: 52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    background: var(--bg-panel);
+    border: 2px solid var(--stone);
+    color: var(--ink);
+    text-transform: uppercase;
+    transition: transform 0.12s ease;
+  }
+
+  .tile.filled{
+    border-color: var(--stone-light);
+  }
+
+  .tile.pop{
+    animation: pop 0.1s ease;
+  }
+  @keyframes pop{
+    0%{ transform: scale(1); }
+    50%{ transform: scale(1.06); }
+    100%{ transform: scale(1); }
+  }
+
+  .tile.correct{ background: var(--correct); border-color: var(--correct); color: #fff; }
+  .tile.present{ background: var(--present); border-color: var(--present); color: #221b08; }
+  .tile.absent{ background: var(--absent); border-color: var(--absent); color: #c6d0d9; }
+
+  .row.shake{
+    animation: shake 0.32s ease;
+  }
+  @keyframes shake{
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-4px); }
+    40%, 60% { transform: translateX(4px); }
+  }
+
+  .solved-banner{
+    font-size: 0.72rem;
+    color: var(--correct);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    height: 14px;
+    visibility: hidden;
+  }
+  .solved-banner.show{ visibility: visible; }
+
+  .keyboard{
+    margin-top: 26px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 8px;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .key-row{
+    display:flex;
+    gap: 6px;
+    justify-content:center;
+    flex-wrap: wrap;
+  }
+
+  .key{
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: var(--bg-panel);
+    color: var(--ink);
+    border: 1px solid var(--stone);
+    border-radius: 5px;
+    padding: 12px 10px;
+    min-width: 38px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.12s ease, transform 0.05s ease;
+    text-transform: uppercase;
+  }
+
+  .key:hover{ background: var(--stone-light); }
+  .key:active{ transform: translateY(1px); }
+
+  .key.wide{
+    min-width: 68px;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+  }
+
+  .key.correct{ background: var(--correct); border-color: var(--correct); color:#fff; }
+  .key.present{ background: var(--present); border-color: var(--present); color:#221b08; }
+  .key.absent{ background: var(--absent); border-color: var(--absent); color:#7f8fa0; }
+
+  .controls{
+    margin-top: 22px;
+  }
+
+  .btn{
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    background: var(--gold);
+    color: #23180a;
+    border: none;
+    border-radius: 999px;
+    padding: 11px 26px;
+    cursor: pointer;
+  }
+  .btn:hover{ filter: brightness(1.07); }
+  .btn:active{ transform: translateY(1px); }
+
+  footer{
+    margin-top: 30px;
+    color: var(--ink-dim);
+    font-size: 0.72rem;
+    text-align:center;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 760px){
+    .boards{ gap: 30px; }
+    .tile{ width: 42px; height: 42px; font-size: 1.2rem; }
+    .row{ grid-template-columns: repeat(5, 42px); }
+    h1{ font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Dvo<span>rijeka</span></h1>
+  <p class="subtitle">Dvije hrvatske riječi od pet slova, pogodi obje u šest pokušaja.
+  Svaki unos se provjerava kod obje riječi istovremeno.</p>
+</header>
+
+<div class="status-bar">
+  <div class="message" id="message"></div>
+</div>
+
+<div class="boards">
+  <div class="board-col">
+    <div class="board-label">RIJEČ 1</div>
+    <div class="board" id="board1"></div>
+    <div class="solved-banner" id="solved1">POGOĐENO</div>
+  </div>
+  <div class="board-col">
+    <div class="board-label">RIJEČ 2</div>
+    <div class="board" id="board2"></div>
+    <div class="solved-banner" id="solved2">POGOĐENO</div>
+  </div>
+</div>
+
+<div class="tries" id="tries">Pokušaj 1 / 6</div>
+
+<div class="keyboard" id="keyboard"></div>
+
+<div class="controls">
+  <button class="btn" id="newGameBtn">Nova igra</button>
+</div>
+
+<footer>
+  Riječi se biraju nasumično iz ugrađenog popisa od <span id="wordCount"></span> hrvatskih riječi u
+  nominativu jednine. Prihvaćaju se samo riječi s tog popisa — igra ne prihvaća besmislene nizove slova.
+  Igra radi u potpunosti lokalno u pregledniku, bez ikakvog poslužitelja.
+</footer>
+
+<script>
+(function(){
+
+  // ---------------------------------------------------------------
+  // Rječnik — riječi u nominativu jednine, 5 "slova" (lj/nj/dž = jedno polje)
+  // ---------------------------------------------------------------
+  const TARGET_WORDS = [
+  "banka", "bijel", "bijes", "bitka", "blato", "brava", "cesta", "crkva",
+  "crven", "divan", "dupin", "dućan", "ekran", "glava", "golub", "grana",
+  "guska", "ideja", "iskra", "istok", "izvor", "jakna", "jutro", "kabel",
+  "kamen", "kaput", "kavez", "kifla", "knjiga", "kokoš", "kolač", "korak",
+  "kotao", "kovač", "krava", "kruna", "labud", "lakat", "lampa", "lanac",
+  "limun", "ljubav", "lovac", "magla", "majka", "mačka", "misao", "mišić",
+  "mozak", "mrkva", "mržnja", "muzej", "nakit", "napad", "narod", "način",
+  "nokat", "novac", "obala", "oblak", "obrat", "odraz", "oluja", "oprez",
+  "ormar", "otrov", "paket", "pamet", "papir", "patka", "pekar", "pepeo",
+  "petak", "pisac", "plaža", "podne", "pojam", "pokus", "polet", "ponos",
+  "ponoć", "poraz", "posao", "potok", "povod", "pošta", "pravo", "ptica",
+  "pčela", "remen", "ribar", "rodak", "sapun", "sirup", "sirće", "sklop",
+  "slika", "sluga", "smjer", "snaga", "sokol", "sreća", "staza", "strah",
+  "strop", "stvar", "sudac", "sudar", "suknja", "sunce", "svinja", "tavan",
+  "tepih", "tesar", "tečaj", "tikva", "tipka", "topao", "torba", "torta",
+  "trava", "trbuh", "ukras", "ulica", "uzrok", "vatra", "večer", "vihor",
+  "vijak", "vjera", "vlada", "vodič", "vozač", "vrelo", "vrtić", "zakon",
+  "zalog", "zanat", "zapad", "zapis", "zavod", "začin", "zelen", "zemlja",
+  "zglob", "zidar", "zmija", "zubar", "čavao", "čekić", "četka", "čežnja",
+  "čizma", "šaran", "šećer", "šešir", "škola", "žamor", "život"
+  ];
+
+  // Prihvaćene riječi kao pogodak (trenutno isto što i popis ciljnih riječi —
+  // vidi napomenu u odgovoru o proširenju na padeže/množine pravim rječnikom).
+  const ACCEPTED_WORDS = new Set(TARGET_WORDS);
+
+  document.getElementById('wordCount').textContent = TARGET_WORDS.length;
+
+  // ---------------------------------------------------------------
+  // Pretvaranje niza slova u polja "pločica" — lj, nj, dž broje se kao jedno polje
+  // ---------------------------------------------------------------
+  function toTiles(word){
+    const w = word.toLowerCase();
+    const tiles = [];
+    let i = 0;
+    while(i < w.length){
+      const two = w.slice(i, i+2);
+      if(two === 'lj' || two === 'nj' || two === 'dž'){
+        tiles.push(two);
+        i += 2;
+      } else {
+        tiles.push(w[i]);
+        i += 1;
+      }
+    }
+    return tiles;
+  }
+
+  const TARGET_TILE_SETS = TARGET_WORDS.map(toTiles);
+
+  // ---------------------------------------------------------------
+  // Tipkovnica — hrvatska abeceda (gajica), lj/nj/dž kao posebne tipke
+  // ---------------------------------------------------------------
+  const KEY_ROWS = [
+    ['A','B','C','Č','Ć','D','DŽ','Đ','E','F'],
+    ['G','H','I','J','K','L','LJ','M','N','NJ'],
+    ['O','P','R','S','Š','T','U','V','Z','Ž'],
+  ];
+
+  // ---------------------------------------------------------------
+  // Stanje igre
+  // ---------------------------------------------------------------
+  const MAX_TRIES = 6;
+  const WORD_LEN = 5;
+
+  let target1, target2, target1Tiles, target2Tiles;
+  let attempt = 0;
+  let currentTiles = [];
+  let solved1 = false, solved2 = false;
+  let gameOver = false;
+  let rows1 = [], rows2 = []; // svaki element: {tiles, statuses} ili null
+  let keyStatus = {}; // simbol -> 'correct' | 'present' | 'absent'
+
+  function pickTarget(){
+    const i = Math.floor(Math.random() * TARGET_WORDS.length);
+    return { word: TARGET_WORDS[i], tiles: TARGET_TILE_SETS[i] };
+  }
+
+  function startGame(){
+    const t1 = pickTarget();
+    let t2 = pickTarget();
+    // izbjegavamo da obje riječi budu potpuno iste
+    let guard = 0;
+    while(t2.word === t1.word && guard < 20){ t2 = pickTarget(); guard++; }
+
+    target1 = t1.word; target1Tiles = t1.tiles;
+    target2 = t2.word; target2Tiles = t2.tiles;
+
+    attempt = 0;
+    currentTiles = [];
+    solved1 = false; solved2 = false;
+    gameOver = false;
+    rows1 = new Array(MAX_TRIES).fill(null);
+    rows2 = new Array(MAX_TRIES).fill(null);
+    keyStatus = {};
+
+    hideMessage();
+    document.getElementById('solved1').classList.remove('show');
+    document.getElementById('solved2').classList.remove('show');
+    renderAll();
+  }
+
+  // ---------------------------------------------------------------
+  // Evaluacija pogotka (dvoprolazni Wordle algoritam, radi nad "pločicama")
+  // ---------------------------------------------------------------
+  function evaluate(guessTiles, targetTiles){
+    const statuses = new Array(WORD_LEN).fill('absent');
+    const remaining = {};
+    for(let i=0;i<WORD_LEN;i++){
+      if(guessTiles[i] === targetTiles[i]){
+        statuses[i] = 'correct';
+      } else {
+        remaining[targetTiles[i]] = (remaining[targetTiles[i]] || 0) + 1;
+      }
+    }
+    for(let i=0;i<WORD_LEN;i++){
+      if(statuses[i] === 'correct') continue;
+      const t = guessTiles[i];
+      if(remaining[t] > 0){
+        statuses[i] = 'present';
+        remaining[t]--;
+      }
+    }
+    return statuses;
+  }
+
+  function updateKeyStatus(guessTiles, statuses){
+    const priority = {absent:0, present:1, correct:2};
+    for(let i=0;i<WORD_LEN;i++){
+      const sym = guessTiles[i];
+      const cur = keyStatus[sym];
+      if(!cur || priority[statuses[i]] > priority[cur]){
+        keyStatus[sym] = statuses[i];
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // Unos
+  // ---------------------------------------------------------------
+  function pushTile(sym){
+    if(gameOver) return;
+    if(currentTiles.length >= WORD_LEN) return;
+    currentTiles.push(sym.toLowerCase());
+    renderCurrentRow();
+  }
+
+  function pressLetter(letterUpper){
+    const sym = letterUpper.toLowerCase();
+    // spajanje digrafa: ako zadnja upisana pločica čini početak lj/nj/dž, spoji ih
+    if(currentTiles.length > 0 && currentTiles.length < WORD_LEN){
+      const last = currentTiles[currentTiles.length-1];
+      const combo = last + sym;
+      if(combo === 'lj' || combo === 'nj' || combo === 'dž'){
+        currentTiles[currentTiles.length-1] = combo;
+        renderCurrentRow();
+        return;
+      }
+    }
+    pushTile(sym);
+  }
+
+  function pressBackspace(){
+    if(gameOver) return;
+    currentTiles.pop();
+    renderCurrentRow();
+  }
+
+  function pressEnter(){
+    if(gameOver) return;
+    if(currentTiles.length !== WORD_LEN){
+      flashRowShake();
+      showMessage('Riječ mora imati 5 slova.', false, true);
+      return;
+    }
+    const guessWord = currentTiles.join('');
+    if(!ACCEPTED_WORDS.has(guessWord)){
+      flashRowShake();
+      showMessage('Nepoznata riječ.', false, true);
+      return;
+    }
+
+    const guessTiles = currentTiles.slice();
+
+    if(!solved1){
+      const statuses1 = evaluate(guessTiles, target1Tiles);
+      rows1[attempt] = { tiles: guessTiles, statuses: statuses1 };
+      updateKeyStatus(guessTiles, statuses1);
+      if(guessWord === target1){ solved1 = true; }
+    }
+    if(!solved2){
+      const statuses2 = evaluate(guessTiles, target2Tiles);
+      rows2[attempt] = { tiles: guessTiles, statuses: statuses2 };
+      updateKeyStatus(guessTiles, statuses2);
+      if(guessWord === target2){ solved2 = true; }
+    }
+
+    attempt++;
+    currentTiles = [];
+
+    if(solved1) document.getElementById('solved1').classList.add('show');
+    if(solved2) document.getElementById('solved2').classList.add('show');
+
+    if(solved1 && solved2){
+      gameOver = true;
+      showMessage('Bravo! Pogodio si obje riječi za ' + attempt + ' od ' + MAX_TRIES + ' pokušaja.', true);
+    } else if(attempt >= MAX_TRIES){
+      gameOver = true;
+      showMessage('Kraj igre. Riječi su bile: ' + target1.toUpperCase() + ' i ' + target2.toUpperCase() + '.', false);
+    }
+
+    renderAll();
+  }
+
+  function flashRowShake(){
+    [document.getElementById('board1'), document.getElementById('board2')].forEach(board=>{
+      const row = board.children[attempt];
+      if(row){
+        row.classList.remove('shake');
+        void row.offsetWidth;
+        row.classList.add('shake');
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------
+  // Poruke
+  // ---------------------------------------------------------------
+  let messageTimer = null;
+  function showMessage(text, isWin, autoHide){
+    const el = document.getElementById('message');
+    el.textContent = text;
+    el.classList.remove('win','lose');
+    if(isWin) el.classList.add('win');
+    if(gameOver && !isWin) el.classList.add('lose');
+    el.classList.add('show');
+    if(messageTimer) clearTimeout(messageTimer);
+    if(autoHide){
+      messageTimer = setTimeout(hideMessage, 1600);
+    }
+  }
+  function hideMessage(){
+    document.getElementById('message').classList.remove('show','win','lose');
+  }
+
+  // ---------------------------------------------------------------
+  // Prikaz
+  // ---------------------------------------------------------------
+  function buildBoardSkeleton(boardId){
+    const board = document.getElementById(boardId);
+    board.innerHTML = '';
+    for(let r=0;r<MAX_TRIES;r++){
+      const row = document.createElement('div');
+      row.className = 'row';
+      for(let c=0;c<WORD_LEN;c++){
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        row.appendChild(tile);
+      }
+      board.appendChild(row);
+    }
+  }
+
+  function renderBoard(boardId, rows){
+    const board = document.getElementById(boardId);
+    for(let r=0;r<MAX_TRIES;r++){
+      const rowEl = board.children[r];
+      const data = rows[r];
+      for(let c=0;c<WORD_LEN;c++){
+        const tileEl = rowEl.children[c];
+        tileEl.className = 'tile';
+        if(data){
+          tileEl.textContent = data.tiles[c];
+          tileEl.classList.add('filled', data.statuses[c]);
+        } else if(r === attempt && currentTiles[c]){
+          tileEl.textContent = currentTiles[c];
+          tileEl.classList.add('filled');
+        } else {
+          tileEl.textContent = '';
+        }
+      }
+    }
+  }
+
+  function renderCurrentRow(){
+    renderBoard('board1', rows1);
+    renderBoard('board2', rows2);
+  }
+
+  function renderKeyboard(){
+    document.querySelectorAll('.key').forEach(keyEl=>{
+      const sym = keyEl.dataset.key;
+      if(!sym) return;
+      keyEl.classList.remove('correct','present','absent');
+      const status = keyStatus[sym];
+      if(status) keyEl.classList.add(status);
+    });
+  }
+
+  function renderTries(){
+    document.getElementById('tries').textContent =
+      gameOver ? 'Igra završena' : ('Pokušaj ' + (attempt+1) + ' / ' + MAX_TRIES);
+  }
+
+  function renderAll(){
+    renderBoard('board1', rows1);
+    renderBoard('board2', rows2);
+    renderKeyboard();
+    renderTries();
+  }
+
+  // ---------------------------------------------------------------
+  // Izgradnja tipkovnice na ekranu
+  // ---------------------------------------------------------------
+  function buildKeyboard(){
+    const kb = document.getElementById('keyboard');
+    kb.innerHTML = '';
+    KEY_ROWS.forEach(row=>{
+      const rowEl = document.createElement('div');
+      rowEl.className = 'key-row';
+      row.forEach(k=>{
+        const btn = document.createElement('button');
+        btn.className = 'key' + (k.length > 1 ? ' wide' : '');
+        btn.textContent = k;
+        btn.dataset.key = k.toLowerCase();
+        btn.addEventListener('click', ()=> pressLetter(k));
+        rowEl.appendChild(btn);
+      });
+      kb.appendChild(rowEl);
+    });
+
+    const controlsRow = document.createElement('div');
+    controlsRow.className = 'key-row';
+
+    const enterBtn = document.createElement('button');
+    enterBtn.className = 'key wide';
+    enterBtn.textContent = 'ENTER';
+    enterBtn.addEventListener('click', pressEnter);
+    controlsRow.appendChild(enterBtn);
+
+    const backBtn = document.createElement('button');
+    backBtn.className = 'key wide';
+    backBtn.textContent = '⌫';
+    backBtn.addEventListener('click', pressBackspace);
+    controlsRow.appendChild(backBtn);
+
+    kb.appendChild(controlsRow);
+  }
+
+  // ---------------------------------------------------------------
+  // Fizička tipkovnica
+  // ---------------------------------------------------------------
+  const CROATIAN_LETTERS = new Set(['a','b','c','č','ć','d','đ','e','f','g','h','i','j',
+    'k','l','m','n','o','p','r','s','š','t','u','v','z','ž']);
+
+  window.addEventListener('keydown', (e)=>{
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    const key = e.key.toLowerCase();
+    if(key === 'enter'){ pressEnter(); return; }
+    if(key === 'backspace'){ pressBackspace(); return; }
+    if(CROATIAN_LETTERS.has(key)){ pressLetter(key); }
+  });
+
+  // ---------------------------------------------------------------
+  // Init
+  // ---------------------------------------------------------------
+  buildBoardSkeleton('board1');
+  buildBoardSkeleton('board2');
+  buildKeyboard();
+  document.getElementById('newGameBtn').addEventListener('click', startGame);
+  startGame();
+
+})();
+</script>
+
+</body>
+</html>
