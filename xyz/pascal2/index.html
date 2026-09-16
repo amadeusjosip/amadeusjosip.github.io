@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -382,20 +383,19 @@
     padding:3px;
     box-shadow:0 3px 0 var(--ink);
   }
-  .mode-toggle{cursor:pointer;font-family:inherit;}
-  .mode-toggle:focus-visible{outline:3px solid var(--blue);outline-offset:5px;}
-  .mode-toggle span{
+  .mode-toggle button{
     border:none;
     background:transparent;
     font-family:inherit;
-    font-size:15px;
+    font-size:14px;
     font-weight:800;
-    padding:4px 11px;
+    padding:4px 9px;
     border-radius:999px;
     color:var(--ink);
     cursor:pointer;
   }
-  .mode-toggle span.active{
+  .mode-toggle button:focus-visible{outline:3px solid var(--blue);outline-offset:3px;}
+  .mode-toggle button.active{
     background:var(--orange);
     color:#fff;
   }
@@ -522,6 +522,116 @@
     80%{transform:translateX(4px);}
   }
 
+  /* ---------------- Zmijica (snake mode) ---------------- */
+  .snake-box{
+    padding-block:8px 4px;
+  }
+  .snake-grid{
+    --scell:clamp(40px, 12.5vw, 54px);
+    --sconn:clamp(26px, 7.5vw, 38px);
+    display:grid;
+    grid-template-columns: var(--scell) var(--sconn) var(--scell) var(--sconn) var(--scell);
+    grid-template-rows: var(--scell) var(--sconn) var(--scell) var(--sconn) var(--scell);
+    align-items:center;
+    justify-items:center;
+  }
+  .snake-node{
+    width:var(--scell);
+    height:var(--scell);
+    border-radius:50%;
+    border:3px solid var(--ink);
+    box-shadow:3px 3px 0 var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:calc(var(--scell) * 0.32);
+    background:var(--cell-bg);
+  }
+  .snake-node.given{
+    color:#fff;
+    background:var(--blue);
+  }
+  .snake-node.end{
+    border-color:var(--green);
+    box-shadow:3px 3px 0 var(--green);
+  }
+  .snake-node.end:has(input:focus){
+    border-color:var(--purple);
+    box-shadow:3px 3px 0 var(--purple);
+  }
+  .snake-node input{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    text-align:center;
+    font-size:calc(var(--scell) * 0.32);
+    font-weight:800;
+    font-family:inherit;
+    color:var(--ink);
+    background:transparent;
+    border:none;
+    -moz-appearance:textfield;
+  }
+  .snake-node input::-webkit-outer-spin-button,
+  .snake-node input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+  }
+  .snake-node:has(input:focus){
+    border-color:var(--purple);
+  }
+  .snake-node input:focus{
+    outline:none;
+  }
+
+  .snake-conn{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .snake-conn::before{
+    content:"";
+    position:absolute;
+    background:var(--ink);
+  }
+  .snake-conn.h::before{
+    left:0;
+    right:0;
+    top:50%;
+    height:3px;
+    transform:translateY(-50%);
+  }
+  .snake-conn.v::before{
+    top:0;
+    bottom:0;
+    left:50%;
+    width:3px;
+    transform:translateX(-50%);
+  }
+  .snake-conn .lbl{
+    position:relative;
+    z-index:1;
+    background:var(--card);
+    color:var(--red);
+    font-weight:800;
+    font-size:clamp(11px, 3.6vw, 14px);
+    padding:2px 6px;
+    border-radius:8px;
+    white-space:nowrap;
+  }
+
+  .snake-grid.shake{
+    animation:shake .4s ease;
+  }
+
+  .puzzle-box.hidden{
+    display:none;
+  }
+
   .btn-row{
     display:flex;
     gap:7px;
@@ -592,7 +702,7 @@
   @media (max-width:420px){
     .panel{padding:28px 8px 46px;border-width:4px;border-radius:23px;}
     .mode-toggle{top:-14px;left:10px;border-width:2px;}
-    .mode-toggle span{font-size:13px;padding:3px 9px;}
+    .mode-toggle button{font-size:12px;padding:3px 7px;}
     .row-toggle{top:-14px;right:10px;border-width:2px;}
     .row-toggle button{font-size:11px;padding:3px 7px;}
     .cell{border-width:2px;box-shadow:2px 2px 0 var(--ink);border-radius:9px;}
@@ -635,10 +745,11 @@
   </div>
 
   <div class="panel">
-    <button type="button" class="mode-toggle" id="modeToggle" role="switch" aria-label="Množenje" aria-checked="false">
-      <span data-mode="add" aria-hidden="true">+</span>
-      <span data-mode="mul" aria-hidden="true">✕</span>
-    </button>
+    <div class="mode-toggle" id="modeToggle" role="group" aria-label="Način igre">
+      <button type="button" data-mode="add" aria-label="Zbrajanje" title="Zbrajanje" aria-pressed="true">+</button>
+      <button type="button" data-mode="mul" aria-label="Množenje" title="Množenje" aria-pressed="false">✕</button>
+      <button type="button" data-mode="snake" aria-label="Zmijica" title="Zmijica" aria-pressed="false">🐍</button>
+    </div>
 
     <button type="button" class="theme-toggle" id="themeToggle" aria-label="Promijeni temu" title="Tema">☀️</button>
 
@@ -656,8 +767,12 @@
       <button class="btn btn-new" id="newBtn">Mix</button>
     </div>
 
-    <div class="puzzle-box">
+    <div class="puzzle-box" id="pyramidBox">
       <div class="pyramid" id="pyramid"></div>
+    </div>
+
+    <div class="puzzle-box snake-box hidden" id="snakeBox">
+      <div class="snake-grid" id="snakeGrid"></div>
     </div>
   </div>
 </div>
@@ -668,9 +783,11 @@ const newBtn = document.getElementById('newBtn');
 const checkBtn = document.getElementById('checkBtn');
 const flashEl = document.getElementById('flash');
 const rowButtons = document.querySelectorAll('.row-toggle button');
-const modeToggleEl = document.getElementById('modeToggle');
-const modeButtons = document.querySelectorAll('.mode-toggle span');
+const modeButtons = document.querySelectorAll('.mode-toggle button');
 const rowToggleEl = document.getElementById('rowToggle');
+const pyramidBoxEl = document.getElementById('pyramidBox');
+const snakeBoxEl = document.getElementById('snakeBox');
+const snakeGridEl = document.getElementById('snakeGrid');
 const subtitlePill = document.getElementById('subtitlePill');
 const themeToggle = document.getElementById('themeToggle');
 const musicToggle = document.getElementById('musicToggle');
@@ -685,6 +802,10 @@ let solution = [];
 let hidden = [];
 let inputs = [];
 let busy = false;
+
+let snakeSolution = [];
+let snakeDeltas = [];
+let snakeInputs = [];
 
 function randInt(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -899,6 +1020,60 @@ function buildMulReveal(sol){
   return revealed;
 }
 
+/* ---------------- ZMIJICA (snake) mode ---------------- */
+/*
+ * A chain of 9 circles: the first is given, the other 8 must be filled
+ * in by applying the operation written on the connecting line to the
+ * previous circle. Rules:
+ *  - the running total never goes above 70 and never drops below 1
+ *  - most steps are +1..+20
+ *  - exactly one step along the chain is a "big" jump (over +20, up to +30)
+ *  - exactly one step is a small subtraction ("- nekoliko")
+ *  - the very first step is always positive
+ */
+const SNAKE_LEN = 9;
+const SNAKE_MAX_TOTAL = 70;
+
+function buildSnakeSolution(len){
+  const edges = len - 1; // 8
+  const start = randInt(2, 8);
+
+  const bigIdx = randInt(1, 3);        // the one ">20" jump, never the first move
+  let negIdx = randInt(1, edges - 1);  // the one small subtraction, never the first move
+  while(negIdx === bigIdx) negIdx = randInt(1, edges - 1);
+
+  const solution = [start];
+  const deltas = [];
+  let value = start;
+
+  for(let i = 0; i < edges; i++){
+    const remaining = edges - i; // edges left, including this one
+    let delta;
+
+    if(i === bigIdx){
+      const hi = Math.max(21, Math.min(30, SNAKE_MAX_TOTAL - value - (remaining - 1)));
+      delta = randInt(21, hi);
+    } else if(i === negIdx){
+      const mag = Math.min(randInt(2, 8), Math.max(1, value - 1));
+      delta = -mag;
+    } else {
+      const share = Math.max(1, Math.floor((SNAKE_MAX_TOTAL - value) / remaining));
+      const hi = Math.min(20, Math.max(1, share));
+      delta = randInt(1, hi);
+    }
+
+    value += delta;
+    solution.push(value);
+    deltas.push(delta);
+  }
+
+  return { solution, deltas };
+}
+
+function formatDelta(delta){
+  return (delta >= 0 ? '+' : '') + delta;
+}
+
 /* ---------------- generation / rendering ---------------- */
 function generatePuzzle(mode, rows){
   currentMode = mode;
@@ -908,11 +1083,16 @@ function generatePuzzle(mode, rows){
     solution = buildAddSolution(rows);
     const revealed = buildAddReveal(rows, solution);
     hidden = revealed.map(row => row.map(v => !v));
-  } else {
+  } else if(mode === 'mul'){
     currentRows = 4;
     solution = buildMulSolution();
     const revealed = buildMulReveal(solution);
     hidden = revealed.map(row => row.map(v => !v));
+  } else if(mode === 'snake'){
+    currentRows = SNAKE_LEN;
+    const built = buildSnakeSolution(SNAKE_LEN);
+    snakeSolution = built.solution;
+    snakeDeltas = built.deltas;
   }
 }
 
@@ -959,6 +1139,120 @@ function renderPyramid(){
     }
 
     pyramidEl.appendChild(rowEl);
+  }
+}
+
+/* Fixed S-shaped layout: row 1 (0,1,2) left→right, drop down under
+   column 5, row 3 (3,4,5) right→left, drop down under column 1,
+   row 5 (6,7,8) left→right again — a regular, non-spiral snake path
+   with two gentle turns. */
+const SNAKE_NODE_POS = [
+  [1, 1], [3, 1], [5, 1],
+  [5, 3], [3, 3], [1, 3],
+  [1, 5], [3, 5], [5, 5]
+];
+const SNAKE_CONN_POS = [
+  { col: 2, row: 1, dir: 'h' }, // 0 -> 1
+  { col: 4, row: 1, dir: 'h' }, // 1 -> 2
+  { col: 5, row: 2, dir: 'v' }, // 2 -> 3 (turn)
+  { col: 4, row: 3, dir: 'h' }, // 3 -> 4
+  { col: 2, row: 3, dir: 'h' }, // 4 -> 5
+  { col: 1, row: 4, dir: 'v' }, // 5 -> 6 (turn)
+  { col: 2, row: 5, dir: 'h' }, // 6 -> 7
+  { col: 4, row: 5, dir: 'h' }  // 7 -> 8
+];
+
+function renderSnake(){
+  snakeGridEl.innerHTML = '';
+  snakeInputs = [];
+  busy = false;
+  const lastIdx = SNAKE_LEN - 1;
+
+  for(let idx = 0; idx < SNAKE_LEN; idx++){
+    const [col, row] = SNAKE_NODE_POS[idx];
+    const nodeEl = document.createElement('div');
+    nodeEl.style.gridColumn = col;
+    nodeEl.style.gridRow = row;
+
+    if(idx === 0){
+      nodeEl.className = 'snake-node given';
+      nodeEl.textContent = snakeSolution[0];
+      snakeInputs.push(null);
+    } else {
+      nodeEl.className = 'snake-node' + (idx === lastIdx ? ' end' : '');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.inputMode = 'numeric';
+      input.maxLength = 2;
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        if(input.value !== '' && Number(input.value) > SNAKE_MAX_TOTAL){
+          input.value = String(SNAKE_MAX_TOTAL);
+        }
+      });
+      nodeEl.appendChild(input);
+      snakeInputs.push(input);
+    }
+
+    snakeGridEl.appendChild(nodeEl);
+  }
+
+  SNAKE_CONN_POS.forEach((c, i) => {
+    const connEl = document.createElement('div');
+    connEl.className = 'snake-conn ' + c.dir;
+    connEl.style.gridColumn = c.col;
+    connEl.style.gridRow = c.row;
+    const lbl = document.createElement('span');
+    lbl.className = 'lbl';
+    lbl.textContent = formatDelta(snakeDeltas[i]);
+    connEl.appendChild(lbl);
+    snakeGridEl.appendChild(connEl);
+  });
+}
+
+function handleCheckSnake(){
+  if(busy) return;
+
+  let allFilled = true;
+  for(let idx = 1; idx < SNAKE_LEN; idx++){
+    if(snakeInputs[idx].value.trim() === '') allFilled = false;
+  }
+
+  if(!allFilled){
+    snakeGridEl.classList.remove('shake');
+    void snakeGridEl.offsetWidth;
+    snakeGridEl.classList.add('shake');
+    return;
+  }
+
+  let allCorrect = true;
+  for(let idx = 1; idx < SNAKE_LEN; idx++){
+    const userValue = Number(snakeInputs[idx].value.trim());
+    const expected = Number(snakeSolution[idx]);
+    if(!Number.isFinite(userValue) || !Number.isInteger(userValue) || userValue !== expected){
+      allCorrect = false;
+    }
+  }
+
+  if(allCorrect){
+    busy = true;
+    const elapsed = stopTimer();
+    const existingRecord = getRecord(currentMode, currentRows);
+    const isNewRecord = existingRecord === null || elapsed < existingRecord;
+    if(isNewRecord){
+      setRecord(currentMode, currentRows, elapsed);
+      updateRecordDisplay(currentMode, currentRows);
+    }
+    const stars = getStars(currentMode, currentRows, elapsed);
+    showResultBanner(stars, elapsed, isNewRecord);
+    playWin();
+    vibrate(isNewRecord ? [70, 50, 70, 50, 140] : 120);
+    flash(false);
+    launchConfetti(isNewRecord);
+  } else {
+    playWrong();
+    vibrate(200);
+    flash(true);
   }
 }
 
@@ -1145,7 +1439,8 @@ const STAR_THRESHOLDS = {
   add_4: [8, 15],
   add_5: [12, 20],
   add_6: [18, 28],
-  mul_4: [10, 18]
+  mul_4: [10, 18],
+  snake_9: [15, 26]
 };
 
 function getStars(mode, rows, seconds){
@@ -1225,22 +1520,36 @@ musicToggle.addEventListener('click', () => {
   }
 });
 
+const MODE_LABELS = { add: 'Zbrajanje', mul: 'Množenje', snake: 'Zmijica' };
+const MODE_DEFAULT_ROWS = { add: 6, mul: 4, snake: SNAKE_LEN };
+
 function startPuzzle(mode, rows){
   generatePuzzle(mode, rows);
-  renderPyramid();
+
+  if(mode === 'snake'){
+    renderSnake();
+    pyramidBoxEl.classList.add('hidden');
+    snakeBoxEl.classList.remove('hidden');
+  } else {
+    renderPyramid();
+    snakeBoxEl.classList.add('hidden');
+    pyramidBoxEl.classList.remove('hidden');
+  }
+
   setActiveModeButton(mode);
   setActiveRowButton(rows);
   rowToggleEl.classList.toggle('hidden', mode !== 'add');
-  subtitlePill.textContent = mode === 'add' ? 'Zbrajanje' : 'Množenje';
+  subtitlePill.textContent = MODE_LABELS[mode];
   resultBannerEl.classList.remove('show');
   updateRecordDisplay(currentMode, currentRows);
   startTimer();
 }
 
 function setActiveModeButton(mode){
-  modeToggleEl.setAttribute('aria-checked', String(mode === 'mul'));
   modeButtons.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.mode === mode);
+    const isActive = btn.dataset.mode === mode;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', String(isActive));
   });
 }
 
@@ -1251,14 +1560,20 @@ function setActiveRowButton(rows){
 }
 
 newBtn.addEventListener('click', () => { playClick(); startPuzzle(currentMode, currentRows); });
-checkBtn.addEventListener('click', () => { playClick(); handleCheck(); });
+checkBtn.addEventListener('click', () => {
+  playClick();
+  if(currentMode === 'snake') handleCheckSnake(); else handleCheck();
+});
 rowButtons.forEach(btn => {
   btn.addEventListener('click', () => { playClick(); startPuzzle('add', parseInt(btn.dataset.rows, 10)); });
 });
-modeToggleEl.addEventListener('click', () => {
-  playClick();
-  const mode = currentMode === 'add' ? 'mul' : 'add';
-  startPuzzle(mode, mode === 'add' ? 6 : 4);
+modeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    playClick();
+    const mode = btn.dataset.mode;
+    if(mode === currentMode) return;
+    startPuzzle(mode, MODE_DEFAULT_ROWS[mode]);
+  });
 });
 
 startPuzzle(currentMode, currentRows);
