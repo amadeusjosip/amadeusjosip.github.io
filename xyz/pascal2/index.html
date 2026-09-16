@@ -527,13 +527,17 @@
     padding-block:8px 4px;
   }
   .snake-grid{
-    --scell:clamp(40px, 12.5vw, 54px);
-    --sconn:clamp(26px, 7.5vw, 38px);
+    --scell:clamp(38px, 11.5vw, 52px);
+    --sconn:clamp(34px, 9vw, 44px);
     display:grid;
     grid-template-columns: var(--scell) var(--sconn) var(--scell) var(--sconn) var(--scell);
     grid-template-rows: var(--scell) var(--sconn) var(--scell) var(--sconn) var(--scell);
     align-items:center;
     justify-items:center;
+  }
+
+  .snake-grid[data-len="6"]{
+    grid-template-rows:var(--scell) var(--sconn) var(--scell);
   }
   .snake-node{
     width:var(--scell);
@@ -553,8 +557,8 @@
     background:var(--blue);
   }
   .snake-node.end{
-    border-color:var(--green);
-    box-shadow:3px 3px 0 var(--green);
+    border-color:var(--red);
+    box-shadow:3px 3px 0 var(--red);
   }
   .snake-node.end:has(input:focus){
     border-color:var(--purple);
@@ -602,14 +606,14 @@
     left:0;
     right:0;
     top:50%;
-    height:3px;
+    height:5px;
     transform:translateY(-50%);
   }
   .snake-conn.v::before{
     top:0;
     bottom:0;
     left:50%;
-    width:3px;
+    width:5px;
     transform:translateX(-50%);
   }
   .snake-conn .lbl{
@@ -757,8 +761,7 @@
     <audio id="bgMusic" loop preload="none" src="music.mp3"></audio>
 
     <div class="row-toggle" id="rowToggle">
-      <button data-rows="4">4</button>
-      <button data-rows="5">5</button>
+      <button data-rows="9">9</button>
       <button data-rows="6">6</button>
     </div>
 
@@ -1022,47 +1025,71 @@ function buildMulReveal(sol){
 
 /* ---------------- ZMIJICA (snake) mode ---------------- */
 /*
- * A chain of 9 circles: the first is given, the other 8 must be filled
- * in by applying the operation written on the connecting line to the
- * previous circle. Rules:
- *  - the running total never goes above 70 and never drops below 1
+ * Snake can have 9 or 6 circles. The first is given; the other circles
+ * are filled by applying the operation on each connecting line.
+ *
+ * Rules:
+ *  - the running total never goes below 1 or above SNAKE_MAX_TOTAL
  *  - most steps are +1..+20
- *  - exactly one step along the chain is a "big" jump (over +20, up to +30)
- *  - exactly one step is a small subtraction ("- nekoliko")
- *  - the very first step is always positive
+ *  - one step is a "big" jump (over +20, up to +30)
+ *  - at least one step is a subtraction
+ *  - the first step is always positive
  */
-const SNAKE_LEN = 9;
 const SNAKE_MAX_TOTAL = 70;
+const SNAKE_DEFAULT_LEN = 9;
+const SNAKE_LENGTHS = [9, 6];
 
 function buildSnakeSolution(len){
-  const edges = len - 1; // 8
+  const edges = len - 1;
   const start = randInt(2, 8);
 
-  const bigIdx = randInt(1, 3);        // the one ">20" jump, never the first move
-  let negIdx = randInt(1, edges - 1);  // the one small subtraction, never the first move
-  while(negIdx === bigIdx) negIdx = randInt(1, edges - 1);
+  // Keep one large positive jump, and guarantee at least one subtraction.
+  const bigIdx = randInt(1, Math.min(3, edges - 1));
+  const negCount = edges >= 7 ? randInt(1, 2) : 1;
+  const negativeIndices = [];
+
+  while(negativeIndices.length < negCount){
+    const idx = randInt(1, edges - 1); // never the first move
+    if(idx !== bigIdx && !negativeIndices.includes(idx)){
+      negativeIndices.push(idx);
+    }
+  }
 
   const solution = [start];
   const deltas = [];
   let value = start;
 
   for(let i = 0; i < edges; i++){
-    const remaining = edges - i; // edges left, including this one
+    const remaining = edges - i;
     let delta;
 
     if(i === bigIdx){
-      const hi = Math.max(21, Math.min(30, SNAKE_MAX_TOTAL - value - (remaining - 1)));
-      delta = randInt(21, hi);
-    } else if(i === negIdx){
-      const mag = Math.min(randInt(2, 8), Math.max(1, value - 1));
-      delta = -mag;
+      // Leave enough headroom for the remaining moves.
+      const hi = Math.min(
+        30,
+        SNAKE_MAX_TOTAL - value - (remaining - 1)
+      );
+      delta = randInt(21, Math.max(21, hi));
+    } else if(negativeIndices.includes(i)){
+      // Never allow the running total to reach/below zero.
+      const maxMag = Math.min(8, Math.max(1, value - 1));
+      delta = -randInt(1, maxMag);
     } else {
-      const share = Math.max(1, Math.floor((SNAKE_MAX_TOTAL - value) / remaining));
-      const hi = Math.min(20, Math.max(1, share));
-      delta = randInt(1, hi);
+      const share = Math.max(
+        1,
+        Math.floor((SNAKE_MAX_TOTAL - value) / remaining)
+      );
+      const hi = Math.min(20, share);
+      delta = randInt(1, Math.max(1, hi));
     }
 
     value += delta;
+
+    // Safety guard: generated puzzles must always stay in the valid range.
+    if(value < 1 || value > SNAKE_MAX_TOTAL){
+      return buildSnakeSolution(len);
+    }
+
     solution.push(value);
     deltas.push(delta);
   }
@@ -1089,8 +1116,8 @@ function generatePuzzle(mode, rows){
     const revealed = buildMulReveal(solution);
     hidden = revealed.map(row => row.map(v => !v));
   } else if(mode === 'snake'){
-    currentRows = SNAKE_LEN;
-    const built = buildSnakeSolution(SNAKE_LEN);
+    currentRows = rows;
+    const built = buildSnakeSolution(rows);
     snakeSolution = built.solution;
     snakeDeltas = built.deltas;
   }
@@ -1142,34 +1169,50 @@ function renderPyramid(){
   }
 }
 
-/* Fixed S-shaped layout: row 1 (0,1,2) left→right, drop down under
-   column 5, row 3 (3,4,5) right→left, drop down under column 1,
-   row 5 (6,7,8) left→right again — a regular, non-spiral snake path
-   with two gentle turns. */
-const SNAKE_NODE_POS = [
-  [1, 1], [3, 1], [5, 1],
-  [5, 3], [3, 3], [1, 3],
-  [1, 5], [3, 5], [5, 5]
-];
-const SNAKE_CONN_POS = [
-  { col: 2, row: 1, dir: 'h' }, // 0 -> 1
-  { col: 4, row: 1, dir: 'h' }, // 1 -> 2
-  { col: 5, row: 2, dir: 'v' }, // 2 -> 3 (turn)
-  { col: 4, row: 3, dir: 'h' }, // 3 -> 4
-  { col: 2, row: 3, dir: 'h' }, // 4 -> 5
-  { col: 1, row: 4, dir: 'v' }, // 5 -> 6 (turn)
-  { col: 2, row: 5, dir: 'h' }, // 6 -> 7
-  { col: 4, row: 5, dir: 'h' }  // 7 -> 8
-];
+/* S-shaped layouts. The 9-cell version has two turns; the 6-cell
+   version has one turn. The red final circle makes the end obvious. */
+const SNAKE_LAYOUTS = {
+  9: {
+    nodes: [
+      [1, 1], [3, 1], [5, 1],
+      [5, 3], [3, 3], [1, 3],
+      [1, 5], [3, 5], [5, 5]
+    ],
+    connectors: [
+      { col: 2, row: 1, dir: 'h' },
+      { col: 4, row: 1, dir: 'h' },
+      { col: 5, row: 2, dir: 'v' },
+      { col: 4, row: 3, dir: 'h' },
+      { col: 2, row: 3, dir: 'h' },
+      { col: 1, row: 4, dir: 'v' },
+      { col: 2, row: 5, dir: 'h' },
+      { col: 4, row: 5, dir: 'h' }
+    ]
+  },
+  6: {
+    nodes: [
+      [1, 1], [3, 1], [5, 1],
+      [5, 3], [3, 3], [1, 3]
+    ],
+    connectors: [
+      { col: 2, row: 1, dir: 'h' },
+      { col: 4, row: 1, dir: 'h' },
+      { col: 5, row: 2, dir: 'v' },
+      { col: 4, row: 3, dir: 'h' },
+      { col: 2, row: 3, dir: 'h' }
+    ]
+  }
+};
 
 function renderSnake(){
+  const layout = SNAKE_LAYOUTS[currentRows] || SNAKE_LAYOUTS[SNAKE_DEFAULT_LEN];
+  snakeGridEl.dataset.len = String(currentRows);
   snakeGridEl.innerHTML = '';
   snakeInputs = [];
   busy = false;
-  const lastIdx = SNAKE_LEN - 1;
+  const lastIdx = currentRows - 1;
 
-  for(let idx = 0; idx < SNAKE_LEN; idx++){
-    const [col, row] = SNAKE_NODE_POS[idx];
+  layout.nodes.forEach(([col, row], idx) => {
     const nodeEl = document.createElement('div');
     nodeEl.style.gridColumn = col;
     nodeEl.style.gridRow = row;
@@ -1195,13 +1238,14 @@ function renderSnake(){
     }
 
     snakeGridEl.appendChild(nodeEl);
-  }
+  });
 
-  SNAKE_CONN_POS.forEach((c, i) => {
+  layout.connectors.forEach((c, i) => {
     const connEl = document.createElement('div');
     connEl.className = 'snake-conn ' + c.dir;
     connEl.style.gridColumn = c.col;
     connEl.style.gridRow = c.row;
+
     const lbl = document.createElement('span');
     lbl.className = 'lbl';
     lbl.textContent = formatDelta(snakeDeltas[i]);
@@ -1435,18 +1479,10 @@ function updateRecordDisplay(mode, rows){
     : '🏆 Rekord: —';
 }
 
-const STAR_THRESHOLDS = {
-  add_4: [8, 15],
-  add_5: [12, 20],
-  add_6: [18, 28],
-  mul_4: [10, 18],
-  snake_9: [15, 26]
-};
-
 function getStars(mode, rows, seconds){
-  const thresholds = STAR_THRESHOLDS[mode + '_' + rows] || [12, 22];
-  if(seconds <= thresholds[0]) return 3;
-  if(seconds <= thresholds[1]) return 2;
+  // The clock itself remains precise; only the star thresholds are softened.
+  if(seconds < 20) return 3;
+  if(seconds <= 30) return 2;
   return 1;
 }
 
@@ -1521,7 +1557,7 @@ musicToggle.addEventListener('click', () => {
 });
 
 const MODE_LABELS = { add: 'Zbrajanje', mul: 'Množenje', snake: 'Zmijica' };
-const MODE_DEFAULT_ROWS = { add: 6, mul: 4, snake: SNAKE_LEN };
+const MODE_DEFAULT_ROWS = { add: 6, mul: 4, snake: SNAKE_DEFAULT_LEN };
 
 function startPuzzle(mode, rows){
   generatePuzzle(mode, rows);
@@ -1538,7 +1574,7 @@ function startPuzzle(mode, rows){
 
   setActiveModeButton(mode);
   setActiveRowButton(rows);
-  rowToggleEl.classList.toggle('hidden', mode !== 'add');
+  rowToggleEl.classList.toggle('hidden', mode !== 'snake');
   subtitlePill.textContent = MODE_LABELS[mode];
   resultBannerEl.classList.remove('show');
   updateRecordDisplay(currentMode, currentRows);
@@ -1565,7 +1601,7 @@ checkBtn.addEventListener('click', () => {
   if(currentMode === 'snake') handleCheckSnake(); else handleCheck();
 });
 rowButtons.forEach(btn => {
-  btn.addEventListener('click', () => { playClick(); startPuzzle('add', parseInt(btn.dataset.rows, 10)); });
+  btn.addEventListener('click', () => { playClick(); startPuzzle(currentMode, parseInt(btn.dataset.rows, 10)); });
 });
 modeButtons.forEach(btn => {
   btn.addEventListener('click', () => {
