@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -762,8 +761,8 @@
   <div class="subtitle-pill" id="subtitlePill">Zbrajanje</div>
   <div class="stats-bar">
     <span id="timerDisplay">⏱️ 0.00s</span>
-    <span id="recordDisplay">🏆 Rekord: —</span>
-    <button type="button" id="relaxToggle" aria-pressed="false" title="Prikaz vremena za vrijeme igre">⏱️ DA</button>
+    <span id="recordDisplay">🏆 —</span>
+    <button type="button" id="relaxToggle" aria-pressed="false" title="Prikaz vremena za vrijeme igre">⏱️ BEZ</button>
   </div>
 
   <div class="panel">
@@ -1488,7 +1487,7 @@ function setRelaxButton(isOn){
   // isOn = true means the timer is HIDDEN during play ("opušteno").
   relaxToggleEl.classList.toggle('active', isOn);
   relaxToggleEl.setAttribute('aria-pressed', String(isOn));
-  relaxToggleEl.textContent = isOn ? '⏱️ NE' : '⏱️ DA';
+  relaxToggleEl.textContent = isOn ? '⏱️ SA' : '⏱️ BEZ';
   relaxToggleEl.title = isOn
     ? 'Vrijeme je skriveno tijekom igre (klikni za uključivanje prikaza)'
     : 'Vrijeme se prikazuje tijekom igre (klikni za isključivanje prikaza)';
@@ -1520,8 +1519,8 @@ function setRecord(mode, rows, seconds){
 function updateRecordDisplay(mode, rows){
   const record = getRecord(mode, rows);
   recordDisplayEl.textContent = record !== null
-    ? '🏆 Rekord: ' + formatTime(record)
-    : '🏆 Rekord: —';
+    ? '🏆 ' + formatTime(record)
+    : '🏆 —';
 }
 
 // Soft, universal thresholds: the clock still runs exactly as before,
