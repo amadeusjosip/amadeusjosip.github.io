@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -408,9 +409,9 @@
     border:none;
     background:transparent;
     font-family:inherit;
-    font-size:14px;
+    font-size:13px;
     font-weight:800;
-    padding:4px 9px;
+    padding:4px 7px;
     border-radius:999px;
     color:var(--ink);
     cursor:pointer;
@@ -647,6 +648,163 @@
     animation:shake .4s ease;
   }
 
+  /* ---------------- Vaga (balance mode) ----------------
+     A beam pivots on a static fulcrum; only the beam itself rotates
+     (via the --angle custom property), tipping live toward whichever
+     pan currently holds more. Getting the missing weight right makes
+     the sides equal, which is celebrated with one settling swing
+     down to level ("balanceSettle"). */
+  .balance-box{
+    padding-block:26px 4px;
+  }
+  .balance-stage{
+    position:relative;
+    width:min(340px, 92cqw);
+    margin:0 auto;
+    padding-top:30px;
+  }
+  .balance-post{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:6px;
+    height:32px;
+    background:var(--ink);
+    border-radius:3px;
+    transform:translateX(-50%);
+  }
+  .balance-fulcrum{
+    position:absolute;
+    left:50%;
+    top:26px;
+    width:0;
+    height:0;
+    border-left:13px solid transparent;
+    border-right:13px solid transparent;
+    border-bottom:20px solid var(--ink);
+    transform:translateX(-50%);
+  }
+  .balance-beam{
+    --angle:0deg;
+    position:absolute;
+    left:50%;
+    top:22px;
+    width:84%;
+    height:9px;
+    background:var(--ink);
+    border-radius:5px;
+    transform-origin:50% 50%;
+    transform:translateX(-50%) rotate(var(--angle));
+    transition:transform .18s ease;
+    z-index:1;
+  }
+  .balance-beam::before,
+  .balance-beam::after{
+    content:"";
+    position:absolute;
+    top:100%;
+    width:2px;
+    height:34px;
+    background:var(--ink);
+    opacity:.55;
+  }
+  .balance-beam::before{ left:6%; }
+  .balance-beam::after{ right:6%; }
+  .balance-beam.settle{
+    animation:balanceSettle .9s ease;
+  }
+  @keyframes balanceSettle{
+    0%{ transform:translateX(-50%) rotate(var(--from-angle, 0deg)); }
+    35%{ transform:translateX(-50%) rotate(calc(var(--from-angle, 0deg) * -0.5)); }
+    60%{ transform:translateX(-50%) rotate(calc(var(--from-angle, 0deg) * 0.22)); }
+    80%{ transform:translateX(-50%) rotate(calc(var(--from-angle, 0deg) * -0.08)); }
+    100%{ transform:translateX(-50%) rotate(0deg); }
+  }
+
+  .balance-pans{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    margin-top:66px;
+  }
+  .balance-pan{
+    flex:1;
+    min-height:64px;
+    border:3px solid var(--ink);
+    border-radius:4px 4px 20px 20px;
+    background:var(--cell-bg);
+    box-shadow:3px 3px 0 var(--ink);
+    display:flex;
+    flex-wrap:wrap;
+    align-content:flex-start;
+    justify-content:center;
+    gap:6px;
+    padding:8px 6px;
+  }
+  .balance-chip{
+    --bchip:clamp(32px, 11cqw, 44px);
+    width:var(--bchip);
+    height:var(--bchip);
+    border-radius:9px;
+    border:3px solid var(--ink);
+    box-shadow:2px 2px 0 var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:calc(var(--bchip) * 0.38);
+    background:#fff;
+  }
+  .balance-chip.given{color:#fff;}
+  .balance-chip.given.c0{background:var(--green);}
+  .balance-chip.given.c1{background:var(--blue);}
+  .balance-chip.given.c2{background:var(--orange);}
+  .balance-chip.given.c3{background:var(--pink);}
+  .balance-chip.given.c4{background:var(--purple);}
+  .balance-chip input{
+    width:100%;
+    height:100%;
+    border-radius:6px;
+    text-align:center;
+    font-size:calc(var(--bchip) * 0.38);
+    font-weight:800;
+    font-family:inherit;
+    color:var(--ink);
+    background:transparent;
+    border:none;
+    -moz-appearance:textfield;
+  }
+  .balance-chip input::-webkit-outer-spin-button,
+  .balance-chip input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+  }
+  .balance-chip:has(input:focus){
+    border-color:var(--purple);
+  }
+  .balance-chip input:focus{
+    outline:none;
+  }
+
+  .balance-stage.shake{
+    animation:shake .4s ease;
+  }
+
+  /* ---------------- Magični kvadrat (magic square mode) ----------------
+     A fixed 3x3 grid: every row, column and both diagonals must add up
+     to the same total. Reuses the same .cell look as the addition and
+     multiplication pyramids for a consistent feel. */
+  .magic-grid{
+    --cell:calc(var(--base-cell) * 1.3);
+    display:grid;
+    grid-template-columns:repeat(3, var(--cell));
+    grid-template-rows:repeat(3, var(--cell));
+    gap:var(--gap);
+  }
+  .magic-grid.shake{
+    animation:shake .4s ease;
+  }
+
   .puzzle-box.hidden{
     display:none;
   }
@@ -721,7 +879,7 @@
   @media (max-width:420px){
     .panel{padding:28px 8px 46px;border-width:4px;border-radius:23px;}
     .mode-toggle{top:-14px;left:10px;border-width:2px;}
-    .mode-toggle button{font-size:12px;padding:3px 7px;}
+    .mode-toggle button{font-size:11px;padding:3px 6px;}
     .row-toggle{top:-14px;right:10px;border-width:2px;}
     .row-toggle button{font-size:11px;padding:3px 7px;}
     .snake-lines line{stroke-width:3;}
@@ -761,8 +919,8 @@
   <div class="subtitle-pill" id="subtitlePill">Zbrajanje</div>
   <div class="stats-bar">
     <span id="timerDisplay">⏱️ 0.00s</span>
-    <span id="recordDisplay">🏆 —</span>
-    <button type="button" id="relaxToggle" aria-pressed="false" title="Prikaz vremena za vrijeme igre">⏱️ BEZ</button>
+    <span id="recordDisplay">🏆 Rekord: —</span>
+    <button type="button" id="relaxToggle" aria-pressed="false" title="Prikaz vremena za vrijeme igre">⏱️ DA</button>
   </div>
 
   <div class="panel">
@@ -770,6 +928,8 @@
       <button type="button" data-mode="add" aria-label="Zbrajanje" title="Zbrajanje" aria-pressed="true">+</button>
       <button type="button" data-mode="mul" aria-label="Množenje" title="Množenje" aria-pressed="false">✕</button>
       <button type="button" data-mode="snake" aria-label="Zmijica" title="Zmijica" aria-pressed="false">🐍</button>
+      <button type="button" data-mode="balance" aria-label="Vaga" title="Vaga" aria-pressed="false">⚖️</button>
+      <button type="button" data-mode="magic" aria-label="Magični kvadrat" title="Magični kvadrat" aria-pressed="false">🔮</button>
     </div>
 
     <button type="button" class="theme-toggle" id="themeToggle" aria-label="Promijeni temu" title="Tema">☀️</button>
@@ -794,6 +954,12 @@
       <button data-rows="5">5</button>
     </div>
 
+    <div class="row-toggle hidden" id="balanceLenToggle">
+      <button data-rows="4">4</button>
+      <button data-rows="5">5</button>
+      <button data-rows="6">6</button>
+    </div>
+
     <div class="btn-row">
       <button class="btn btn-check" id="checkBtn">Provjeri</button>
       <button class="btn btn-new" id="newBtn">Mix</button>
@@ -808,6 +974,22 @@
         <svg class="snake-lines" id="snakeLines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
       </div>
     </div>
+
+    <div class="puzzle-box balance-box hidden" id="balanceBox">
+      <div class="balance-stage" id="balanceStage">
+        <div class="balance-post"></div>
+        <div class="balance-fulcrum"></div>
+        <div class="balance-beam" id="balanceBeam"></div>
+        <div class="balance-pans">
+          <div class="balance-pan" id="balancePanLeft"></div>
+          <div class="balance-pan" id="balancePanRight"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="puzzle-box hidden" id="magicBox">
+      <div class="magic-grid" id="magicGrid"></div>
+    </div>
   </div>
 </div>
 
@@ -819,14 +1001,23 @@ const flashEl = document.getElementById('flash');
 const rowButtons = document.querySelectorAll('#rowToggle button');
 const snakeLenButtons = document.querySelectorAll('#snakeLenToggle button');
 const mulLenButtons = document.querySelectorAll('#mulLenToggle button');
+const balanceLenButtons = document.querySelectorAll('#balanceLenToggle button');
 const modeButtons = document.querySelectorAll('.mode-toggle button');
 const rowToggleEl = document.getElementById('rowToggle');
 const snakeLenToggleEl = document.getElementById('snakeLenToggle');
 const mulLenToggleEl = document.getElementById('mulLenToggle');
+const balanceLenToggleEl = document.getElementById('balanceLenToggle');
 const pyramidBoxEl = document.getElementById('pyramidBox');
 const snakeBoxEl = document.getElementById('snakeBox');
 const snakeStageEl = document.getElementById('snakeStage');
 const snakeLinesEl = document.getElementById('snakeLines');
+const balanceBoxEl = document.getElementById('balanceBox');
+const balanceStageEl = document.getElementById('balanceStage');
+const balanceBeamEl = document.getElementById('balanceBeam');
+const balancePanLeftEl = document.getElementById('balancePanLeft');
+const balancePanRightEl = document.getElementById('balancePanRight');
+const magicBoxEl = document.getElementById('magicBox');
+const magicGridEl = document.getElementById('magicGrid');
 const subtitlePill = document.getElementById('subtitlePill');
 const themeToggle = document.getElementById('themeToggle');
 const musicToggle = document.getElementById('musicToggle');
@@ -846,6 +1037,16 @@ let busy = false;
 let snakeSolution = [];
 let snakeDeltas = [];
 let snakeInputs = [];
+
+let balanceLeftVals = [];
+let balanceRightVals = [];
+let balanceUnknownSide = 'left';
+let balanceUnknownIdx = 0;
+let balanceInputEl = null;
+
+let magicSolution = [];
+let magicHidden = [];
+let magicInputs = [];
 
 let relaxMode = localStorage.getItem('piramidaRelaxMode') === '1';
 
@@ -1114,6 +1315,331 @@ function formatDelta(delta){
   return (delta >= 0 ? '+' : '') + delta;
 }
 
+/* ---------------- VAGA (balance) mode ---------------- */
+/*
+ * Two pans hold small "weights". All but one weight is given; the
+ * player must work out the missing one so both pans add up to the
+ * same total. The beam tilts live toward whichever side is heavier
+ * as the child types, and settles level with one little swing once
+ * the answer is correct.
+ */
+function buildBalanceSolution(total){
+  for(let attempt = 0; attempt < 200; attempt++){
+    let left;
+    if(total === 4) left = 2;
+    else if(total === 5) left = Math.random() < 0.5 ? 2 : 3;
+    else left = randInt(2, total - 2);
+    const right = total - left;
+
+    const leftVals = [];
+    for(let i = 0; i < left; i++) leftVals.push(randInt(1, 15));
+    const rightVals = [];
+    for(let i = 0; i < right; i++) rightVals.push(randInt(1, 15));
+
+    const side = Math.random() < 0.5 ? 'left' : 'right';
+    const arr = side === 'left' ? leftVals : rightVals;
+    const idx = randInt(0, arr.length - 1);
+
+    const sumLeftKnown = leftVals.reduce((a, v, i) => a + ((side === 'left' && i === idx) ? 0 : v), 0);
+    const sumRightKnown = rightVals.reduce((a, v, i) => a + ((side === 'right' && i === idx) ? 0 : v), 0);
+    const unknownVal = side === 'left' ? (sumRightKnown - sumLeftKnown) : (sumLeftKnown - sumRightKnown);
+
+    if(unknownVal >= 1 && unknownVal <= 45){
+      arr[idx] = unknownVal;
+      return { left: leftVals, right: rightVals, side, idx };
+    }
+  }
+  // Astronomically unlikely fallback: a trivially balanced pair.
+  const v = randInt(2, 15);
+  return { left: [v], right: [v], side: 'right', idx: 0 };
+}
+
+function updateBalanceAngle(){
+  const sumSide = (vals, side) => vals.reduce((total, v, i) => {
+    if(side === balanceUnknownSide && i === balanceUnknownIdx){
+      const raw = balanceInputEl ? balanceInputEl.value.trim() : '';
+      const n = raw === '' ? 0 : Number(raw);
+      return total + (Number.isFinite(n) ? n : 0);
+    }
+    return total + v;
+  }, 0);
+
+  const diff = sumSide(balanceLeftVals, 'left') - sumSide(balanceRightVals, 'right');
+  const angle = Math.max(-16, Math.min(16, -diff * 0.9));
+  balanceBeamEl.classList.remove('settle');
+  balanceBeamEl.style.setProperty('--angle', angle.toFixed(2) + 'deg');
+}
+
+function renderBalance(total){
+  balancePanLeftEl.innerHTML = '';
+  balancePanRightEl.innerHTML = '';
+  balanceInputEl = null;
+  busy = false;
+
+  const buildPan = (panEl, vals, side) => {
+    vals.forEach((val, i) => {
+      const chip = document.createElement('div');
+      const isUnknown = side === balanceUnknownSide && i === balanceUnknownIdx;
+
+      if(isUnknown){
+        chip.className = 'balance-chip';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.inputMode = 'numeric';
+        input.maxLength = 2;
+        input.addEventListener('input', () => {
+          input.value = input.value.replace(/[^0-9]/g, '');
+          if(input.value !== '' && Number(input.value) > 99){
+            input.value = '99';
+          }
+          updateBalanceAngle();
+        });
+        chip.appendChild(input);
+        balanceInputEl = input;
+      } else {
+        chip.className = 'balance-chip given ' + giveColors[i % giveColors.length];
+        chip.textContent = val;
+      }
+
+      panEl.appendChild(chip);
+    });
+  };
+
+  buildPan(balancePanLeftEl, balanceLeftVals, 'left');
+  buildPan(balancePanRightEl, balanceRightVals, 'right');
+  updateBalanceAngle();
+}
+
+function handleCheckBalance(){
+  if(busy) return;
+
+  if(!balanceInputEl || balanceInputEl.value.trim() === ''){
+    balanceStageEl.classList.remove('shake');
+    void balanceStageEl.offsetWidth;
+    balanceStageEl.classList.add('shake');
+    return;
+  }
+
+  const userValue = Number(balanceInputEl.value.trim());
+  const expected = balanceUnknownSide === 'left'
+    ? balanceLeftVals[balanceUnknownIdx]
+    : balanceRightVals[balanceUnknownIdx];
+
+  if(Number.isFinite(userValue) && Number.isInteger(userValue) && userValue === expected){
+    busy = true;
+    const elapsed = stopTimer();
+    const existingRecord = getRecord(currentMode, currentRows);
+    const isNewRecord = existingRecord === null || elapsed < existingRecord;
+    if(isNewRecord){
+      setRecord(currentMode, currentRows, elapsed);
+      updateRecordDisplay(currentMode, currentRows);
+    }
+    const stars = getStars(currentMode, currentRows, elapsed);
+
+    // One settling swing down to level, celebrating the balance.
+    const kick = (Math.random() < 0.5 ? -1 : 1) * randInt(9, 14);
+    balanceBeamEl.style.setProperty('--from-angle', kick + 'deg');
+    balanceBeamEl.style.setProperty('--angle', '0deg');
+    balanceBeamEl.classList.remove('settle');
+    void balanceBeamEl.offsetWidth;
+    balanceBeamEl.classList.add('settle');
+
+    showResultBanner(stars, elapsed, isNewRecord);
+    playWin();
+    vibrate(isNewRecord ? [70, 50, 70, 50, 140] : 120);
+    flash(false);
+    launchConfetti(isNewRecord);
+  } else {
+    playWrong();
+    vibrate(200);
+    flash(true);
+    balanceStageEl.classList.remove('shake');
+    void balanceStageEl.offsetWidth;
+    balanceStageEl.classList.add('shake');
+  }
+}
+
+/* ---------------- MAGIČNI KVADRAT (magic square) mode ---------------- */
+/*
+ * A fixed 3x3 grid where every row, column and both diagonals add up
+ * to the same "magic" total. Generated from the classic Lo Shu square
+ * (magic constant 15) by scaling (a) and shifting (b) every cell —
+ * a linear transform always preserves the magic property — then
+ * randomly rotated/reflected (a symmetry of the square, which also
+ * always preserves it) for layout variety.
+ */
+const LO_SHU = [4, 9, 2, 3, 5, 7, 8, 1, 6];
+const MAGIC_LINES = [
+  [0,1,2],[3,4,5],[6,7,8],   // rows
+  [0,3,6],[1,4,7],[2,5,8],   // columns
+  [0,4,8],[2,4,6]            // diagonals
+];
+
+function transformGrid(vals, flipRows, flipCols, transpose){
+  const get = (r, c) => vals[r * 3 + c];
+  const out = new Array(9);
+  for(let r = 0; r < 3; r++){
+    for(let c = 0; c < 3; c++){
+      let sr = flipRows ? 2 - r : r;
+      let sc = flipCols ? 2 - c : c;
+      if(transpose){ const t = sr; sr = sc; sc = t; }
+      out[r * 3 + c] = get(sr, sc);
+    }
+  }
+  return out;
+}
+
+function buildMagicSolution(){
+  const a = randInt(1, 3);
+  const b = randInt(0, 100 - a * 9);
+  const base = LO_SHU.map(v => a * v + b);
+  return transformGrid(base, Math.random() < 0.5, Math.random() < 0.5, Math.random() < 0.5);
+}
+
+// Propagates "target total" deductions across the 8 magic lines until
+// every cell is known, or gets stuck (same fixpoint idea as isSolvable).
+function isMagicSolvable(revealed, sol){
+  const known = sol.map((v, i) => revealed[i] ? v : null);
+  let target = null;
+  let changed = true;
+
+  while(changed){
+    changed = false;
+    if(target === null){
+      for(const line of MAGIC_LINES){
+        if(line.every(idx => known[idx] !== null)){
+          target = known[line[0]] + known[line[1]] + known[line[2]];
+          changed = true;
+          break;
+        }
+      }
+    }
+    if(target !== null){
+      for(const line of MAGIC_LINES){
+        const vals = line.map(idx => known[idx]);
+        if(vals.filter(v => v === null).length === 1){
+          const missingIdx = line[vals.indexOf(null)];
+          const sumKnown = vals.reduce((a, v) => a + (v || 0), 0);
+          if(known[missingIdx] === null){
+            known[missingIdx] = target - sumKnown;
+            changed = true;
+          }
+        }
+      }
+    }
+  }
+
+  return known.every(v => v !== null);
+}
+
+function buildMagicReveal(sol){
+  const revealed = new Array(9).fill(false);
+
+  while(!isMagicSolvable(revealed, sol)){
+    const hiddenIdx = [];
+    for(let i = 0; i < 9; i++) if(!revealed[i]) hiddenIdx.push(i);
+    if(hiddenIdx.length === 0) break;
+
+    // Prefer completing a line that already has 2 known cells — the
+    // fastest path to a fully-known line, which gives a compact,
+    // well-structured set of clues instead of scattered hints.
+    let pool = hiddenIdx;
+    for(const line of MAGIC_LINES){
+      if(line.filter(idx => revealed[idx]).length === 2){
+        pool = [line.find(idx => !revealed[idx])];
+        break;
+      }
+    }
+
+    const idx = pool[randInt(0, pool.length - 1)];
+    revealed[idx] = true;
+  }
+
+  return revealed;
+}
+
+function renderMagicSquare(){
+  magicGridEl.innerHTML = '';
+  magicInputs = [];
+  busy = false;
+  let colorIdx = 0;
+
+  for(let i = 0; i < 9; i++){
+    const cellEl = document.createElement('div');
+
+    if(magicHidden[i]){
+      cellEl.className = 'cell';
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.inputMode = 'numeric';
+      input.maxLength = 3;
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        if(input.value !== '' && Number(input.value) > 100){
+          input.value = '100';
+        }
+      });
+      cellEl.appendChild(input);
+      magicInputs.push(input);
+    } else {
+      cellEl.className = 'cell given ' + giveColors[colorIdx % giveColors.length];
+      colorIdx++;
+      cellEl.textContent = magicSolution[i];
+      magicInputs.push(null);
+    }
+
+    magicGridEl.appendChild(cellEl);
+  }
+}
+
+function handleCheckMagic(){
+  if(busy) return;
+
+  let allFilled = true;
+  for(let i = 0; i < 9; i++){
+    if(magicInputs[i] && magicInputs[i].value.trim() === '') allFilled = false;
+  }
+
+  if(!allFilled){
+    magicGridEl.classList.remove('shake');
+    void magicGridEl.offsetWidth;
+    magicGridEl.classList.add('shake');
+    return;
+  }
+
+  let allCorrect = true;
+  for(let i = 0; i < 9; i++){
+    if(magicInputs[i]){
+      const userValue = Number(magicInputs[i].value.trim());
+      const expected = Number(magicSolution[i]);
+      if(!Number.isFinite(userValue) || !Number.isInteger(userValue) || userValue !== expected){
+        allCorrect = false;
+      }
+    }
+  }
+
+  if(allCorrect){
+    busy = true;
+    const elapsed = stopTimer();
+    const existingRecord = getRecord(currentMode, currentRows);
+    const isNewRecord = existingRecord === null || elapsed < existingRecord;
+    if(isNewRecord){
+      setRecord(currentMode, currentRows, elapsed);
+      updateRecordDisplay(currentMode, currentRows);
+    }
+    const stars = getStars(currentMode, currentRows, elapsed);
+    showResultBanner(stars, elapsed, isNewRecord);
+    playWin();
+    vibrate(isNewRecord ? [70, 50, 70, 50, 140] : 120);
+    flash(false);
+    launchConfetti(isNewRecord);
+  } else {
+    playWrong();
+    vibrate(200);
+    flash(true);
+  }
+}
+
 /* ---------------- generation / rendering ---------------- */
 function generatePuzzle(mode, rows){
   currentMode = mode;
@@ -1133,6 +1659,17 @@ function generatePuzzle(mode, rows){
     const built = buildSnakeSolution(currentRows);
     snakeSolution = built.solution;
     snakeDeltas = built.deltas;
+  } else if(mode === 'balance'){
+    currentRows = [4, 5, 6].includes(rows) ? rows : 4;
+    const built = buildBalanceSolution(currentRows);
+    balanceLeftVals = built.left;
+    balanceRightVals = built.right;
+    balanceUnknownSide = built.side;
+    balanceUnknownIdx = built.idx;
+  } else if(mode === 'magic'){
+    currentRows = 3;
+    magicSolution = buildMagicSolution();
+    magicHidden = buildMagicReveal(magicSolution);
   }
 }
 
@@ -1487,7 +2024,7 @@ function setRelaxButton(isOn){
   // isOn = true means the timer is HIDDEN during play ("opušteno").
   relaxToggleEl.classList.toggle('active', isOn);
   relaxToggleEl.setAttribute('aria-pressed', String(isOn));
-  relaxToggleEl.textContent = isOn ? '⏱️ SA' : '⏱️ BEZ';
+  relaxToggleEl.textContent = isOn ? '⏱️ NE' : '⏱️ DA';
   relaxToggleEl.title = isOn
     ? 'Vrijeme je skriveno tijekom igre (klikni za uključivanje prikaza)'
     : 'Vrijeme se prikazuje tijekom igre (klikni za isključivanje prikaza)';
@@ -1519,8 +2056,8 @@ function setRecord(mode, rows, seconds){
 function updateRecordDisplay(mode, rows){
   const record = getRecord(mode, rows);
   recordDisplayEl.textContent = record !== null
-    ? '🏆 ' + formatTime(record)
-    : '🏆 —';
+    ? '🏆 Rekord: ' + formatTime(record)
+    : '🏆 Rekord: —';
 }
 
 // Soft, universal thresholds: the clock still runs exactly as before,
@@ -1602,27 +2139,35 @@ musicToggle.addEventListener('click', () => {
   }
 });
 
-const MODE_LABELS = { add: 'Zbrajanje', mul: 'Množenje', snake: 'Zmijica' };
-const MODE_DEFAULT_ROWS = { add: 6, mul: 4, snake: 9 };
+const MODE_LABELS = { add: 'Zbrajanje', mul: 'Množenje', snake: 'Zmijica', balance: 'Vaga', magic: 'Magični kvadrat' };
+const MODE_DEFAULT_ROWS = { add: 6, mul: 4, snake: 9, balance: 4, magic: 3 };
+const MODE_BOXES = { add: pyramidBoxEl, mul: pyramidBoxEl, snake: snakeBoxEl, balance: balanceBoxEl, magic: magicBoxEl };
 
 function startPuzzle(mode, rows){
   generatePuzzle(mode, rows);
 
   if(mode === 'snake'){
     renderSnake(currentRows);
-    pyramidBoxEl.classList.add('hidden');
-    snakeBoxEl.classList.remove('hidden');
+  } else if(mode === 'balance'){
+    renderBalance(currentRows);
+  } else if(mode === 'magic'){
+    renderMagicSquare();
   } else {
     renderPyramid();
-    snakeBoxEl.classList.add('hidden');
-    pyramidBoxEl.classList.remove('hidden');
   }
+
+  const activeBox = MODE_BOXES[mode];
+  Object.values(MODE_BOXES).forEach(box => {
+    if(box !== activeBox) box.classList.add('hidden');
+  });
+  activeBox.classList.remove('hidden');
 
   setActiveModeButton(mode);
   setActiveRowButton(currentRows);
   rowToggleEl.classList.toggle('hidden', mode !== 'add');
   mulLenToggleEl.classList.toggle('hidden', mode !== 'mul');
   snakeLenToggleEl.classList.toggle('hidden', mode !== 'snake');
+  balanceLenToggleEl.classList.toggle('hidden', mode !== 'balance');
   subtitlePill.textContent = MODE_LABELS[mode];
   resultBannerEl.classList.remove('show');
   updateRecordDisplay(currentMode, currentRows);
@@ -1643,10 +2188,18 @@ function setActiveRowButton(rows){
   });
 }
 
+const CHECK_HANDLERS = {
+  add: handleCheck,
+  mul: handleCheck,
+  snake: handleCheckSnake,
+  balance: handleCheckBalance,
+  magic: handleCheckMagic
+};
+
 newBtn.addEventListener('click', () => { playClick(); startPuzzle(currentMode, currentRows); });
 checkBtn.addEventListener('click', () => {
   playClick();
-  if(currentMode === 'snake') handleCheckSnake(); else handleCheck();
+  (CHECK_HANDLERS[currentMode] || handleCheck)();
 });
 rowButtons.forEach(btn => {
   btn.addEventListener('click', () => { playClick(); startPuzzle('add', parseInt(btn.dataset.rows, 10)); });
@@ -1656,6 +2209,9 @@ snakeLenButtons.forEach(btn => {
 });
 mulLenButtons.forEach(btn => {
   btn.addEventListener('click', () => { playClick(); startPuzzle('mul', parseInt(btn.dataset.rows, 10)); });
+});
+balanceLenButtons.forEach(btn => {
+  btn.addEventListener('click', () => { playClick(); startPuzzle('balance', parseInt(btn.dataset.rows, 10)); });
 });
 modeButtons.forEach(btn => {
   btn.addEventListener('click', () => {
